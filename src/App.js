@@ -1,25 +1,40 @@
 import logo from './logo.svg';
 import './App.css';
+import UnderConstruction from 'react-under-construction';
+import 'react-under-construction/build/css/index.css';
+import underconstructionImg from './assets/images/underconstruction.png';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+    <UnderConstruction
+        background={{
+          image: 'https://static.pexels.com/photos/259698/pexels-photo-259698.jpeg',
+          textColor: '#fff',
+          overlay: {
+            color: '#000',
+            opacity: '.5'
+          }
+        }}
+        logo={{
+          src: underconstructionImg,
+          alt: 'construction image'
+        }}
+        title={{
+          text: 'My Website',
+        }}
+        description={{
+          text: 'Our website is under construction. We\'ll be here soon, subscribe to be notified',
+          style: {
+            maxWidth: '440px',
+          }
+        }}
+        subscribe={{
+          placeholder: 'Enter your email',
+          buttonText: 'Subscribe',
+          onSubmit: (value) => {
+            console.log('user typed email :', value);
+          }
+        }}
+    />
+);
 
 export default App;
