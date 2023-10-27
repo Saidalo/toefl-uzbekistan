@@ -1,0 +1,113 @@
+<div class="section page-header breadcrumbs-custom-wrap bg-image bg-image-9">
+  <!-- Breadcrumbs-->
+  <section class="breadcrumbs-custom breadcrumbs-custom-svg">
+    <div class="container">
+      <p class="breadcrumbs-custom-subtitle">Get in Touch with Us</p>
+      <p class="heading-1 breadcrumbs-custom-title">Contacts</p>
+      <ul class="breadcrumbs-custom-path">
+        <li><a routerLink="/">Home</a></li>
+        <li class="active">Contacts</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<!-- Contact information-->
+<section class="section section-lg bg-default">
+  <div class="container">
+    <div class="row row-ten row-50 justify-content-md-center justify-content-xl-between">
+      <div class="col-md-9 col-lg-6">
+        <h3>Contact us</h3>
+        <hr class="divider divider-left divider-default">
+        <p class="big">You can contact us any way that is convenient for you. We are available 24/7 via fax or email. You can also use a quick contact form below or visit our office personally.</p>
+        <!-- RD Mailform-->
+        <form class="rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="assets/bat/rd-mailform.php">
+          <div class="row row-20 row-fix">
+            <div class="col-md-6">
+              <div class="form-wrap form-wrap-validation">
+                <label class="form-label-outside" for="form-1-name">First name</label>
+                <input class="form-input" id="form-1-name" type="text" name="name" data-constraints="@Required"/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-wrap form-wrap-validation">
+                <label class="form-label-outside" for="form-1-last-name">Last name</label>
+                <input class="form-input" id="form-1-last-name" type="text" name="last-name" data-constraints="@Required"/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-wrap form-wrap-validation">
+                <label class="form-label-outside" for="form-1-email">E-mail</label>
+                <input class="form-input" id="form-1-email" type="email" name="email" data-constraints="@Email @Required"/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-wrap form-wrap-validation">
+                <label class="form-label-outside" for="form-1-phone">Phone</label>
+                <input class="form-input" id="form-1-phone" type="text" name="phone" data-constraints="@Numeric @Required"/>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-wrap form-wrap-validation">
+                <label class="form-label-outside" for="form-1-message">Message</label>
+                <textarea class="form-input" id="form-1-message" name="message" data-constraints="@Required"></textarea>
+              </div>
+            </div>
+            <div class="col-sm-12 offset-custom-4">
+              <div class="form-button">
+                <button class="button button-primary button-nina" type="submit">Send message</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-9 col-lg-4 col-xl-3">
+        <div class="column-aside">
+          <div class="row">
+            <div class="col-sm-10 col-md-6 col-lg-12">
+              <h6>Address</h6>
+              <hr class="divider-thin">
+              <article class="box-inline"><span class="icon novi-icon icon-md-smaller icon-primary mdi mdi-map-marker"></span><span><a href="#">2130 Fulton Street, Chicago, IL <br class="d-none d-xl-block"> 94117-1080 USA</a></span></article>
+            </div>
+            <div class="col-sm-10 col-md-6 col-lg-12">
+              <h6>Phone</h6>
+              <hr class="divider-thin">
+              <article class="box-inline"><span class="icon novi-icon icon-md-smaller icon-primary mdi mdi-phone"></span>
+                <ul class="list-comma">
+                  <li><a href="tel:#">1-800-6543-765</a></li>
+                  <li><a href="tel:#">1-800-3434-876</a></li>
+                </ul>
+              </article>
+            </div>
+            <div class="col-sm-10 col-md-6 col-lg-12">
+              <h6>E-mail</h6>
+              <hr class="divider-thin">
+              <article class="box-inline"><span class="icon novi-icon icon-md-smaller icon-primary mdi mdi-email-open"></span><span><a href="mailto:#">mail@demolink.org</a></span></article>
+            </div>
+            <div class="col-sm-10 col-md-6 col-lg-12">
+              <h6>Opening hours</h6>
+              <hr class="divider-thin">
+              <article class="box-inline"><span class="icon novi-icon icon-md-smaller icon-primary mdi mdi-calendar-clock"></span>
+                <ul class="list-0">
+                  <li>Mon–Fri: 9:00 am–6:00 pm</li>
+                  <li>Sat–Sun: 11:00 am–4:00 pm</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-preset='{"title":"Map fullwidth","category":"maps","reload":true,"id":"map-fullwidth"}'>
+  <!-- Google Map-->
+  <div class="google-map-container google-map-with-icon google-map-default google-map-sm" data-center="9870 St Vincent Place, Glasgow, DC 45 Fr 45." data-zoom="5" data-icon="assets/images/gmap_marker.png" data-icon-active="assets/images/gmap_marker_active.png">
+    <div class="google-map"></div>
+    <ul class="google-map-markers">
+      <li data-location="9870 St Vincent Place, Glasgow, DC 45 Fr 45." data-description="9870 St Vincent Place, Glasgow"></li>
+    </ul>
+  </div>
+</section>

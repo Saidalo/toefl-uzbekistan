@@ -32,7 +32,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/script.js",
+              "src/assets/js/core.min.js"
+            ]
           },
           "configurations": {
             "production": {
