@@ -6,9 +6,14 @@ import {AboutUsComponent} from "./pages/about-us/about-us.component";
 import {TeachersComponent} from "./pages/teachers/teachers.component";
 import {CoursesComponent} from "./pages/courses/courses.component";
 import {ContactsComponent} from "./pages/contacts/contacts.component";
+import {LoginComponent} from "./pages/login/login.component";
 
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   {
     path: 'contacts',
     component: ContactsComponent,
