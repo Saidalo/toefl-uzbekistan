@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build --base-href=/toefl-uzbekistan/
+        run: ng deploy --base-href=/toefl-uzbekistan/
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v1
