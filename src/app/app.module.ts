@@ -12,6 +12,10 @@ import { TeachersComponent } from './pages/teachers/teachers.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { LoginComponent } from './pages/login/login.component';
+import {TokenInterceptor} from "./helpers/token.interceptor";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,13 +28,18 @@ import { LoginComponent } from './pages/login/login.component';
     TeachersComponent,
     CoursesComponent,
     ContactsComponent,
-    LoginComponent
+    LoginComponent,
+    UnderConstructionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

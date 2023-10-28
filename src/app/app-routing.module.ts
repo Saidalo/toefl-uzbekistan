@@ -7,9 +7,23 @@ import {TeachersComponent} from "./pages/teachers/teachers.component";
 import {CoursesComponent} from "./pages/courses/courses.component";
 import {ContactsComponent} from "./pages/contacts/contacts.component";
 import {LoginComponent} from "./pages/login/login.component";
+import {AuthGuard} from "./helpers/auth.guard";
+import {UnderConstructionComponent} from "./pages/under-construction/under-construction.component";
 
 
 const routes: Routes = [
+
+  {
+    path: '',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+      },
+    ]
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -17,27 +31,40 @@ const routes: Routes = [
   {
     path: 'contacts',
     component: ContactsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'courses',
     component: CoursesComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'teachers',
     component: TeachersComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'about-us',
     component: AboutUsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '404',
     component: NotfoundComponent,
   },
   {
-    path: '**',
+    path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard],
   },
+  {
+    path: 'under-construction',
+    component: UnderConstructionComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/404',
+  }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
