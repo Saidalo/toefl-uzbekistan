@@ -11,8 +11,15 @@ export class AuthenticationClient {
 
   public login(username: string, password: string): Observable<string> {
     // Return a dummy token
+    console.log(username, password);
+    if(username === 'admin' && password === 'admin') {
+      return new Observable((observer) => {
+        observer.next('token');
+      });
+    }
+    //send error
     return new Observable((observer) => {
-      observer.next('token');
+      observer.error('Invalid username or password');
     });
 
     // return this.http.post(
