@@ -10,7 +10,8 @@ export class PreparationComponent {
 
   constructor(@Inject(DOCUMENT) private document: Document) { }
   goToUrl(url: any): void {
-    this.document.location.href = url;
+    // this.document.location.href = url;
+    window.open(url, "_blank");
   }
 
 }
