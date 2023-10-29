@@ -17,6 +17,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { TopHeaderComponent } from './layouts/top-header/top-header.component';
+import { PreparationComponent } from './pages/preparation/preparation.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TopHeaderComponent } from './layouts/top-header/top-header.component';
     ContactsComponent,
     LoginComponent,
     UnderConstructionComponent,
-    TopHeaderComponent
+    TopHeaderComponent,
+    PreparationComponent
   ],
   imports: [
     BrowserModule,

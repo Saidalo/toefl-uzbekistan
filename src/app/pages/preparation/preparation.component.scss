@@ -1,0 +1,64 @@
+.subtitle{
+  margin: 15px auto;
+  max-width: 70%;
+  text-align: center;
+  padding: 0 30px;
+  font-family: "Open Sans",arial,sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #444;
+}
+
+.content-part{
+  background-color: #f7f7f7;
+  padding: 36px;
+  border-radius: 16px;
+  border: solid;
+  border-width: thin;
+}
+
+
+li{
+  list-style: disc;
+}
+.cmp-text{
+  padding-left: 24px;
+}
+
+.table-scroll-enable{
+  table{
+    tbody, td, tfoot, th, thead, tr {
+      border-color: inherit;
+      border-style: solid;
+      border-width: 0;
+    }
+    width: 80%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    caption-side: bottom;
+  }
+}
+
+tbody, td, tfoot, th, thead, tr {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
+.text table td, .text table th {
+  border: 1px solid #949494;
+  height: 3pc;
+  padding: .375rem 1rem;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.text table th {
+  background-color: #d8eaff;
+  font-weight: 700;
+  font-size: 1rem;
+}
+table {
+  caption-side: bottom;
+  border-collapse: collapse;
+}

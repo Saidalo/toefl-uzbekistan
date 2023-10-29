@@ -9,6 +9,7 @@ import {ContactsComponent} from "./pages/contacts/contacts.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {AuthGuard} from "./helpers/auth.guard";
 import {UnderConstructionComponent} from "./pages/under-construction/under-construction.component";
+import {PreparationComponent} from "./pages/preparation/preparation.component";
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'contacts',
+    path: 'contact',
     component: ContactsComponent,
     canActivate: [AuthGuard],
   },
@@ -55,6 +56,11 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'preparation',
+    component: PreparationComponent,
     canActivate: [AuthGuard],
   },
   {
