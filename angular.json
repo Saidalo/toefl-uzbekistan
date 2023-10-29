@@ -33,8 +33,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/js/script.js",
-              "src/assets/js/core.min.js"
             ]
           },
           "configurations": {

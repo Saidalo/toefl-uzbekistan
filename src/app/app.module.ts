@@ -16,6 +16,7 @@ import {TokenInterceptor} from "./helpers/token.interceptor";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { TopHeaderComponent } from './layouts/top-header/top-header.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     CoursesComponent,
     ContactsComponent,
     LoginComponent,
-    UnderConstructionComponent
+    UnderConstructionComponent,
+    TopHeaderComponent
   ],
   imports: [
     BrowserModule,

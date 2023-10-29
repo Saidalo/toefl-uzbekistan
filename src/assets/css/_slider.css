@@ -1,0 +1,81 @@
+/* 3. slider */
+.slider-area {
+  position: relative; }
+
+.slider-height {
+  min-height: 960px; }
+
+.slider-1-height {
+  min-height: 930px; }
+
+.slider-2-height {
+  min-height: 870px; }
+
+.single-slider {
+  background-size: cover;
+  background-position: center center; }
+
+.slider-content > span {
+  color: #32ea91;
+  font-size: 30px;
+  letter-spacing: 2px;
+  font-weight: 400;
+  margin-bottom: 38px;
+  display: inline-block; }
+
+.slider-content h1 {
+  font-family: 'Kaushan Script', cursive;
+  font-size: 220px;
+  color: #fff;
+  letter-spacing: -.6px;
+  font-weight: 400;
+  margin-bottom: 0; }
+
+.slider-button {
+  margin-top: 88px; }
+
+.slider-active button.slick-arrow {
+  position: absolute;
+  top: 50%;
+  left: 70px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border: 0;
+  font-size: 15px;
+  padding: 0;
+  color: #222;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #32ea91; }
+
+.slider-active button.slick-next {
+  left: auto;
+  right: 70px; }
+
+.slider-active:hover button {
+  opacity: 1;
+  visibility: visible; }
+
+.slider-active button:hover {
+  background: #202AAE;
+  color: #fff; }
+
+.slider-2 .slider-active button.slick-arrow {
+  background: #d10459;
+  color: #fff; }
+
+.slider-2 .slider-active button:hover {
+  background: #202AAE;
+  color: #fff; }
+
+.slider-active button:hover {
+  background: #202AAE;
+  color: #fff; }
+
+/*# sourceMappingURL=_slider.css.map */
