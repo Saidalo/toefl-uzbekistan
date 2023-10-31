@@ -24,12 +24,11 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-      - name: Deploy
-        uses: easingthemes/ssh-deploy@v2.1.5
-        env: 
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rltgoDzvO --delete"
-          SOURCE: "dist/toefl-uzbek-angular/"
-          REMOTE_HOST: toefl-test.uz
-          REMOTE_USER: toefltes
-          TARGET: /home/toefltes/domains/toefl-test.uz/public_html/
+      - name: Deploy copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: toefl-test.uz
+          username: toefltes
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/toefl-uzbek-angular/"
+          target: "/home/toefltes/domains/toefl-test.uz/public_html/"
