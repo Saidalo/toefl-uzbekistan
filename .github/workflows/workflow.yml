@@ -1,52 +1,35 @@
-name: Deploy Master to GitHub Pages
+name: Angular CI
 
 on:
   push:
-    branches:
-      - develop
+    branches: [develop]
 
-permissions:
-  contents: write
 jobs:
-  build:
+  build-and-deploy:
+
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    strategy:
+      matrix:
+        node-version: [16.20.1]
 
-      - name: Setup Node.js
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: 16
-
+          node-version: '16.20.1'
       - name: Install Dependencies
         run: npm install
-
       - name: Build
-        run: npm run build --base-href="https://saidalo.github.io/toefl-uzbekistan/"
-
-      - name: Upload Build Artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          name: github-pages
-          path: dist/toefl-uzbek-angular
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop'
-
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+        run: npm run build
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env: 
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "dist/toefl-uzbek-angular/"
+          REMOTE_HOST: toefl-test.uz
+          REMOTE_USER: toefltes
+          TARGET: /home/toefltes/domains/toefl-test.uz/public_html/
