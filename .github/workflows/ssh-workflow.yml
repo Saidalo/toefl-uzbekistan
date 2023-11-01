@@ -34,7 +34,7 @@ jobs:
           host: toefl-test.uz
           username: toefltes
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/toefl-uzbek-angular/**"
+          source: "dist/toefl-uzbek-angular/"
           target: "/home/toefltes/domains/toefl-test.uz/public_html/"
           
       - name: Clear directory, then move files
