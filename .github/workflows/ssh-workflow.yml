@@ -43,4 +43,4 @@ jobs:
           host: toefl-test.uz
           username: toefltes
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: "cd /home/toefltes/domains/toefl-test.uz/public_html/ && dist/toefl-uzbek-angular/* ."
+          script: "cd /home/toefltes/domains/toefl-test.uz/public_html/ && mv dist/toefl-uzbek-angular/* ."
