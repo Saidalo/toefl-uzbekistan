@@ -18,7 +18,7 @@
 }
 
 
-li{
+.tab-pane li{
   list-style: disc;
 }
 .cmp-text{
@@ -61,4 +61,43 @@ tbody, td, tfoot, th, thead, tr {
 table {
   caption-side: bottom;
   border-collapse: collapse;
+}
+
+.nav-link {
+  background: #fff;
+  border-radius: 1pc;
+  //width: 197px;
+  //height: 90px;
+  border: 3px solid #fff;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  //font-size: .875rem;
+  //line-height: 1.125rem;
+  color: #003082;
+  text-transform: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 20px;
+}
+.nav-item{
+  margin: 0 0.5rem;
+}
+
+.bakix-details-tab{
+  padding-top: 24px;
+}
+.product-desc-area{
+  background-color: #f2f2f2;
+}
+
+.nav-link.active{
+  background-color: #003082;
+  color: #fff;
 }
