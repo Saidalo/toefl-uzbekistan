@@ -34,8 +34,9 @@ jobs:
           host: toefl-test.uz
           username: toefltes
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "/dist/toefl-uzbek-angular/**"
+          source: "dist/toefl-uzbek-angular/**"
           target: "/home/toefltes/domains/toefl-test.uz/public_html/"
+          script: "cd /home/toefltes/domains/toefl-test.uz/public_html/ && dist/toefl-uzbek-angular/* ."
           
       # - name: Restart the application
       #   uses: appleboy/ssh-action@master
