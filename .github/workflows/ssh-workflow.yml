@@ -37,10 +37,13 @@ jobs:
           source: "dist/toefl-uzbek-angular/**"
           target: "/home/toefltes/domains/toefl-test.uz/public_html/"
           
-      - name: Copy files to root
+      - name: Clear directory, then move files
         uses: appleboy/ssh-action@master
         with:
-          host: toefl-test.uz
-          username: toefltes
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: "cd /home/toefltes/domains/toefl-test.uz/public_html/ && mv dist/toefl-uzbek-angular/* ."
+         host: toefl-test.uz
+         username: toefltes
+         key: ${{ secrets.SSH_PRIVATE_KEY }}
+         script: |
+          cd /home/toefltes/domains/toefl-test.uz/public_html/
+          find . -mindepth 1 ! \( -name 'dist' -o -name '.htaccess' \) -exec rm -rf {} +
+          mv dist/toefl-uzbek-angular/* .
