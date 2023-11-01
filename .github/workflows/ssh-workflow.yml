@@ -34,13 +34,13 @@ jobs:
           host: toefl-test.uz
           username: toefltes
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/toefl-uzbek-angular/*"
+          source: "/dist/toefl-uzbek-angular/**"
           target: "/home/toefltes/domains/toefl-test.uz/public_html/"
           
-      - name: Restart the application
-        uses: appleboy/ssh-action@master
-        with:
-          host: toefl-test.uz
-          username: toefltes
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: cd /home/toefltes/domains/toefl-test.uz/public_html/ && npm run restart
+      # - name: Restart the application
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: toefl-test.uz
+      #     username: toefltes
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: cd /home/toefltes/domains/toefl-test.uz/public_html/ && npm run restart
