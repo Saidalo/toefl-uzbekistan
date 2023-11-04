@@ -1,0 +1,20 @@
+<div class="m-auto">
+  <table class="m-auto">
+    <tr>
+      <th>Index</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>image</th>
+    </tr>
+    <tr *ngFor="let item of acounts; index as i;">
+      <td>{{i}}</td>
+      <td>{{item.Name}}</td>
+      <td>{{item.Surname}}</td>
+      <td>{{item.Email}}</td>
+      <td>{{item.permissions}}</td>
+      <td><img [src]="imgSrc+item.Email" alt="image" [width]="100" (click)="openDialog(imgSrc+item.Email)"></td>
+    </tr>
+  </table>
+</div>

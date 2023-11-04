@@ -10,6 +10,8 @@ import {LoginComponent} from "./pages/login/login.component";
 import {AuthGuard} from "./helpers/auth.guard";
 import {UnderConstructionComponent} from "./pages/under-construction/under-construction.component";
 import {PreparationComponent} from "./pages/preparation/preparation.component";
+import {RegistrationComponent} from "./pages/registration/registration.component";
+import {AccountListComponent} from "./pages/account-list/account-list.component";
 
 
 const routes: Routes = [
@@ -26,12 +28,21 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'register',
+    component: RegistrationComponent,
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
   {
     path: 'contact',
     component: ContactsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'account-list',
+    component: AccountListComponent,
     canActivate: [AuthGuard],
   },
   {

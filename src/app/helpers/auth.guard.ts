@@ -16,12 +16,14 @@ export class AuthGuard implements CanActivate {
     private router: Router
   ) {}
 
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/under-construction']);
+      return false;
     }
 
     return true;

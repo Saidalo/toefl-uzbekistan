@@ -1,0 +1,45 @@
+<div class="loginForm">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Enter Name" formControlName="name" id="name" required>
+
+      <label for="surname"><b>Surname</b></label>
+      <input type="text" placeholder="Enter surname" formControlName="surname" id="surname" required>
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" formControlName="email" id="email" required>
+
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" formControlName="password" id="password" required>
+
+      <label for="date"><b>Date</b></label>
+      <div class="datepickr">
+          <mat-form-field>
+              <mat-label>Choose a date</mat-label>
+              <input id="date" formControlName="date" (dateChange)="onDateChange($event)" matInput [matDatepicker]="picker">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <span class="date-aviability {{spaceLeft < 0 ? 'redColor' : null}}">{{dateMessage}}</span>
+      </div>
+<br/>
+
+      <label class="image-upload-container">
+        <b>Select Image</b>
+      </label>
+        <input #imageInput
+               type="file"
+               accept="image/*"
+               (change)="selectFile($event)">
+
+      <button type="submit">Register</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" class="cancelbtn" routerLink="/">Cancel</button>
+      <span class="psw"><a routerLink="/login">login</a></span>
+    </div>
+  </form>
+</div>

@@ -1,33 +1,48 @@
 import { Injectable } from '@angular/core';
 import {AuthenticationClient} from "../clients/authentication.client";
 import {Router} from "@angular/router";
+import {FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   private tokenKey = 'token';
+  private roleKey = 'roles';
 
   constructor(
     private authenticationClient: AuthenticationClient,
     private router: Router
   ) {}
 
-  public login(username: string, password: string): void {
-    this.authenticationClient.login(username, password).subscribe((token) => {
-      localStorage.setItem(this.tokenKey, token);
-      this.router.navigate(['/']).then(() => {
-        window.location.reload();
-      });
+  public login(email: string, password: string): void {
+    this.authenticationClient.login(email, password).subscribe((response :any) => {
+      console.log(response.status);
+      if(response.status == 1) {
+        localStorage.setItem(this.tokenKey, response.token);
+        // localStorage.setItem(this.roleKey, response.permissions);
+        this.router.navigate(['/']).then(() => {
+          window.location.reload();
+        });
+      } else{
+        alert(response.error);
+      }
     });
   }
 
-  public register(username: string, email: string, password: string): void {
+  public register(form: FormData): void {
     this.authenticationClient
-      .register(username, email, password)
-      .subscribe((token) => {
-        localStorage.setItem(this.tokenKey, token);
-        this.router.navigate(['/']);
+      .register(form)
+      .subscribe((response:any) => {
+        if(response.status == 1) {
+          localStorage.setItem(this.tokenKey, response.token);
+          localStorage.setItem(this.tokenKey, response.token);
+          this.router.navigate(['/']).then(() => {
+            window.location.reload();
+          });
+        } else{
+          alert(response.error);
+        }
       });
   }
 
@@ -45,5 +60,9 @@ export class AuthenticationService {
 
   public getToken(): string | null {
     return this.isLoggedIn() ? localStorage.getItem(this.tokenKey) : null;
+  }
+
+  public setDataInLocalStorage(variableName: string, data: any) {
+    localStorage.setItem(variableName, data);
   }
 }

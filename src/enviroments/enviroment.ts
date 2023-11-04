@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7215',
+  // apiUrl: 'http://localhost:8080',
+  apiUrl: 'https://api.toefl-test.uz',
 };
