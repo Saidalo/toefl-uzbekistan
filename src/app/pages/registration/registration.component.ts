@@ -20,6 +20,7 @@ export class RegistrationComponent implements OnInit {
   spaceLeft: number = 0;
 
   dateMessage = "";
+  aviableDates : any[] = [];
 
   constructor(private authenticationService: AuthenticationService,
               private http: HttpClient,
@@ -32,6 +33,23 @@ export class RegistrationComponent implements OnInit {
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       date: new FormControl('')
+    });
+    this.getAllDateAvailability();
+  }
+
+  getAllDateAvailability(){
+    this.http.get(environment.apiUrl + '/account/getAllDateAvailability',
+      {
+        observe: 'response'
+      }
+    ).pipe(first()).subscribe({
+      next: (response: any) => {
+        this.aviableDates = response.body.data;
+        console.log(this.aviableDates);
+      },
+      error: (error: any) => {
+        this.errorMessage = error.error.message;
+      }
     });
   }
 
@@ -95,6 +113,43 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+  dateClass = (d: Date): any => {
+    const date = d.getDate();
+    const classes = [];
+
+    const day = (d || new Date()).getTime();
+    const result = (this.aviableDates.find(item => {
+      return new Date(item.date).getTime() === day;
+    }) || null);
+    if(result === null) {
+      return [];
+    }
+    switch (true) {
+      case result.freespace <= 0:
+        classes.push('date-full');
+        break;
+      case result.freespace < 50:
+        classes.push('date-half');
+        break;
+      case result.freespace >= 50:
+        classes.push('date-less');
+        break;
+    }
+
+    return classes;
+  }
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getTime();
+    const result = (this.aviableDates.find(item => {
+      return new Date(item.date).getTime() === day;
+    }) || null);
+    return result !== null;
+
+
+    // console.log(d);
+    // Prevent Saturday and Sunday from being selected.
+    // return day !== 0 && day !== 6;
+  };
 
 
 }

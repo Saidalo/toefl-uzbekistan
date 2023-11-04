@@ -143,3 +143,18 @@ span.psw {
 .redColor{
   color: red;
 }
+::ng-deep.date-full .mat-calendar-body-cell-content {
+  background-color: red !important;
+}
+
+::ng-deep.date-half .mat-calendar-body-cell-content {
+  background-color: yellow !important;
+}
+
+::ng-deep.date-less .mat-calendar-body-cell-content {
+  background-color: green !important;
+}
+
+.other-special-date {
+  background-color: lightblue;
+}

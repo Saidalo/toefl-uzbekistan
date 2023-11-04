@@ -17,11 +17,14 @@
       <div class="datepickr">
           <mat-form-field>
               <mat-label>Choose a date</mat-label>
-              <input id="date" formControlName="date" (dateChange)="onDateChange($event)" matInput [matDatepicker]="picker">
+              <input id="date" formControlName="date" (dateChange)="onDateChange($event)" [matDatepickerFilter]="myFilter"  matInput [matDatepicker]="picker">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+              <mat-datepicker #picker [dateClass]="dateClass">
+
+              </mat-datepicker>
           </mat-form-field>
+
           <span class="date-aviability {{spaceLeft < 0 ? 'redColor' : null}}">{{dateMessage}}</span>
       </div>
 <br/>
