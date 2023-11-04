@@ -3,7 +3,7 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {HttpClient} from "@angular/common/http";
-import {DatePipe} from "@angular/common";
+import {DatePipe, formatDate} from "@angular/common";
 import {first} from "rxjs";
 import {environment} from "../../../enviroments/enviroment";
 
@@ -114,12 +114,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   dateClass = (d: Date): any => {
-    const date = d.getDate();
     const classes = [];
 
-    const day = (d || new Date()).getTime();
+    const day = formatDate((d || new Date()),'yyyy-MM-dd','en_US');
     const result = (this.aviableDates.find(item => {
-      return new Date(item.date).getTime() === day;
+      const dt = formatDate(item.date,'yyyy-MM-dd','en_US');
+      return dt === day;
     }) || null);
     if(result === null) {
       return [];
@@ -139,9 +139,10 @@ export class RegistrationComponent implements OnInit {
     return classes;
   }
   myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getTime();
+    const day = formatDate((d || new Date()),'yyyy-MM-dd','en_US');
     const result = (this.aviableDates.find(item => {
-      return new Date(item.date).getTime() === day;
+      const dt = formatDate(item.date,'yyyy-MM-dd','en_US');
+      return dt === day;
     }) || null);
     return result !== null;
 
