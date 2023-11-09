@@ -1,5 +1,60 @@
 <div class="slider-area">
-  <div class="slider-active">
+  <!-- home.component.html -->
+<div class="slider-area">
+  <ngb-carousel>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper single-slider slider-height slider-overlay d-flex align-items-center" [style.background-image]="'url(' + images[0] + ')'">
+        <!-- Your content here -->
+        <div class="carousel-caption white-color">
+          <p class="white-color font-italic">Updates on the TOEFL iBT® test</p>
+          <h1 class="font-weight-bold bigFont">Enhancements to the TOEFL iBT® Test</h1>
+          <a href="https://www.etsglobal.org/nl/en/blog/news/toefl-ibt-enhancements">
+            <button class="btn">
+              <span class="btn-text">learn more <i class="far fa-long-arrow-right"></i></span>
+              <span class="btn-border"></span>
+            </button>
+          </a>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper single-slider slider-height slider-overlay d-flex align-items-center" [style.background-image]="'url(' + images[1] + ')'">
+        <!-- Your content here -->
+        <div class="carousel-caption white-color">
+          <p class="white-color font-italic">Stand out from the competition</p>
+          <h1 class="font-weight-bold bigFont">Find the nearest TOEIC test session</h1>
+          <a href="https://www.etsglobal.org/nl/en/blog/news/toefl-ibt-enhancements">
+            <button class="btn">
+              <span class="btn-text">learn more <i class="far fa-long-arrow-right"></i></span>
+              <span class="btn-border"></span>
+            </button>
+          </a>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper single-slider slider-height slider-overlay d-flex align-items-center" [style.background-image]="'url(' + images[2] + ')'">
+        <!-- Your content here -->
+        <div class="carousel-caption white-color">
+          <p class="white-color font-italic">OEIC placement tool</p>
+          <h1 class="font-weight-bold bigFont">Estimate your english level for free</h1>
+          <a href="https://www.etsglobal.org/nl/en/blog/news/toefl-ibt-enhancements">
+            <button class="btn">
+              <span class="btn-text">Estimate my level <i class="far fa-long-arrow-right"></i></span>
+              <span class="btn-border"></span>
+            </button>
+          </a>
+        </div>
+      </div>
+    </ng-template>
+<!--    <div class="carousel-indicators">-->
+<!--      <div *ngFor="let slideId of carousel.slides; index as i" [id]="slideId.id" (click)="carousel.select(slideId.id)" [ngClass]="{ 'active': carousel.activeId === slideId.id }"></div>-->
+<!--    </div>-->
+  </ngb-carousel>
+</div>
+  <!-- <div class="slider-active">
     <div class="single-slider slider-height slider-overlay d-flex align-items-center"
          style="background-image:url(assets/img/photo1698580078.jpeg)">
       <div class="container">
@@ -22,7 +77,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 <!-- slider-start -->
 

@@ -13,3 +13,46 @@
   background-image: url('/assets/img/photo1698580124.jpg');
   //opacity: 0.75;
 }
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.carousel-indicators div {
+  width: 10px;
+  height: 10px;
+  margin: 1em 0.5em;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.carousel-indicators div.active {
+  background-color: #337ab7;
+}
+
+.carousel-caption2 {
+  text-align: left; /* Align text to the left */
+  padding-left: 20vw; /* Add padding to the left */
+}
+
+.carousel-caption{
+  position:absolute;
+  bottom:30%;
+  left:20%;
+  z-index:10;
+  //padding-top:20p;
+  //padding-bottom:20px;
+  color:#fff;
+  text-align:left;
+  max-width: 35%;
+}
+
+.bigFont{
+  font-size: 70px;
+  line-height: 70px;
+}
