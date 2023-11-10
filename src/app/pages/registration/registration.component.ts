@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {HttpClient} from "@angular/common/http";
 import {DatePipe, formatDate} from "@angular/common";
@@ -15,6 +15,7 @@ import {environment} from "../../../enviroments/enviroment";
 export class RegistrationComponent implements OnInit {
   errorMessage: any
   public registerForm!: FormGroup;
+  hide = true;
 
   selectedFiles: FileList | undefined;
   spaceLeft: number = 0;
@@ -22,9 +23,25 @@ export class RegistrationComponent implements OnInit {
   dateMessage = "";
   aviableDates : any[] = [];
 
+  firstFormGroup = this._formBuilder.group({
+    name: ['', Validators.required],
+    surname: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
+  });
+
+  secondFormGroup = this._formBuilder.group({
+    image: ['', Validators.required],
+  });
+
+  thirdFormGroup = this._formBuilder.group({
+    date: [''],
+  });
+
   constructor(private authenticationService: AuthenticationService,
               private http: HttpClient,
-              private datePipe: DatePipe) {}
+              private datePipe: DatePipe,
+              private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -63,11 +80,21 @@ export class RegistrationComponent implements OnInit {
     if(this.selectedFiles && this.selectedFiles.length > 0) {
       currentFileUpload = this.selectedFiles.item(0);
     }
-    data.append('name', this.registerForm.get('name')?.value);
-    data.append('surname', this.registerForm.get('surname')?.value);
-    data.append('email', this.registerForm.get('email')?.value);
-    data.append('password', this.registerForm.get('password')?.value);
-    data.append('date', this.datePipe.transform(this.registerForm.get('date')?.value, 'yyyy/MM/dd') || '');
+    // / Map firstFormGroup to formData
+    Object.keys(this.firstFormGroup.controls).forEach(key => {
+      data.append(key, this.firstFormGroup.get(key)?.value);
+    });
+
+    // Map secondFormGroup to formData
+    Object.keys(this.thirdFormGroup.controls).forEach(key => {
+      data.append(key, this.secondFormGroup.get(key)?.value);
+    });
+
+    // data.append('name', this.registerForm.get('name')?.value);
+    // data.append('surname', this.registerForm.get('surname')?.value);
+    // data.append('email', this.registerForm.get('email')?.value);
+    // data.append('password', this.registerForm.get('password')?.value);
+    // data.append('date', this.datePipe.transform(this.registerForm.get('date')?.value, 'yyyy/MM/dd') || '');
     if(currentFileUpload) {
       data.append('image', currentFileUpload, currentFileUpload.name);
     }
