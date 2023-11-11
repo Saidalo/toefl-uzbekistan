@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {HttpClient} from "@angular/common/http";
 import {DatePipe, formatDate} from "@angular/common";
@@ -27,8 +27,9 @@ export class RegistrationComponent implements OnInit {
     name: ['', Validators.required],
     surname: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-  });
+    password: ['', [Validators.required, Validators.minLength(8)]],
+    repassword: ['', Validators.required],
+  }, {validator: passwordMatchValidator});
 
   secondFormGroup = this._formBuilder.group({
     image: ['', Validators.required],
@@ -42,7 +43,17 @@ export class RegistrationComponent implements OnInit {
               private http: HttpClient,
               private datePipe: DatePipe,
               private _formBuilder: FormBuilder) {}
+  /* Shorthands for form controls (used from within template) */
+  get password() { return this.firstFormGroup.get('password'); }
+  get repassword() { return this.firstFormGroup.get('repassword'); }
 
+  /* Called on each input in either password field */
+  onPasswordInput() {
+    if (this.firstFormGroup.hasError('passwordMismatch'))
+      this.repassword?.setErrors([{'passwordMismatch': true}]);
+    else
+      this.repassword?.setErrors(null);
+  }
   ngOnInit() {
     this.registerForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -181,3 +192,10 @@ export class RegistrationComponent implements OnInit {
 
 
 }
+
+export const passwordMatchValidator = (formGroup: FormGroup): ValidationErrors | null => {
+  if (formGroup.get('password')?.value === formGroup.get('repassword')?.value)
+    return null;
+  else
+    return {passwordMismatch: true};
+};
