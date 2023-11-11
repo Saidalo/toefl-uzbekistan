@@ -1,10 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {
+  AbstractControl, AsyncValidatorFn,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {HttpClient} from "@angular/common/http";
 import {DatePipe, formatDate} from "@angular/common";
-import {first} from "rxjs";
+import {first, map, Observable, of} from "rxjs";
 import {environment} from "../../../enviroments/enviroment";
 
 @Component({
@@ -26,7 +34,12 @@ export class RegistrationComponent implements OnInit {
   firstFormGroup = this._formBuilder.group({
     name: ['', Validators.required],
     surname: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', {
+      validators: [Validators.required, Validators.email],
+      // asyncValidators: [this.emailValidator().bind(this)],
+      updateOn: 'blur'
+    },
+    ],
     password: ['', [Validators.required, Validators.minLength(8)]],
     repassword: ['', Validators.required],
   }, {validator: passwordMatchValidator});
@@ -43,9 +56,34 @@ export class RegistrationComponent implements OnInit {
               private http: HttpClient,
               private datePipe: DatePipe,
               private _formBuilder: FormBuilder) {}
+
+
+  emailValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+      return this.checkEmailExistence(control.value).pipe(
+        map(response => {
+          return response.data.exist ? { emailExists: true } : null;
+        })
+      );
+    };
+  }
+
+
+  // validateEmail(): AsyncValidatorFn {
+  //   return (control: AbstractControl): Observable<ValidationErrors> => {
+  //     let bReturn: boolean = true;
+  //     if (this.form.controls['username'].value == 'test@test.test')
+  //     {
+  //       bReturn = false;
+  //     }
+  //     let err: ValidationErrors = { 'exists': true };
+  //     return bReturn ? of(null) : of(err);
+  //   };
+  // }
   /* Shorthands for form controls (used from within template) */
   get password() { return this.firstFormGroup.get('password'); }
   get repassword() { return this.firstFormGroup.get('repassword'); }
+  get email() { return this.firstFormGroup.get('email'); }
 
   /* Called on each input in either password field */
   onPasswordInput() {
@@ -58,7 +96,7 @@ export class RegistrationComponent implements OnInit {
     this.registerForm = new FormGroup({
       name: new FormControl('', Validators.required),
       surname: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required]),
       password: new FormControl('', Validators.required),
       date: new FormControl('')
     });
@@ -101,11 +139,6 @@ export class RegistrationComponent implements OnInit {
       data.append(key, this.secondFormGroup.get(key)?.value);
     });
 
-    // data.append('name', this.registerForm.get('name')?.value);
-    // data.append('surname', this.registerForm.get('surname')?.value);
-    // data.append('email', this.registerForm.get('email')?.value);
-    // data.append('password', this.registerForm.get('password')?.value);
-    // data.append('date', this.datePipe.transform(this.registerForm.get('date')?.value, 'yyyy/MM/dd') || '');
     if(currentFileUpload) {
       data.append('image', currentFileUpload, currentFileUpload.name);
     }
@@ -114,12 +147,6 @@ export class RegistrationComponent implements OnInit {
       data
     );
   }
-
-  // public dateChecker(event: any) {
-  //   let date = new Date(event.value);
-  //   console.log(date.toDateString());
-  //
-  // }
 
   onDateChange(event: MatDatepickerInputEvent<Date>) {
     const date = this.datePipe.transform(event.value, 'yyyy/MM/dd');
@@ -184,11 +211,25 @@ export class RegistrationComponent implements OnInit {
     }) || null);
     return result !== null;
 
-
-    // console.log(d);
-    // Prevent Saturday and Sunday from being selected.
-    // return day !== 0 && day !== 6;
   };
+
+  goForward(stepper: any) {
+    const email = this.firstFormGroup.get('email')?.value;
+    this.checkEmailExistence(email).subscribe(response => {
+      if (response.data.exist) {
+        // Show error message
+        alert('Email already exists');
+      } else {
+        stepper.next();
+      }
+    });
+  }
+
+  checkEmailExistence(email: string): Observable<any> {
+    // Call the API and return the response as an Observable
+    // Replace the URL with the actual URL of your API
+    return this.http.get(environment.apiUrl + `/account/checkEmailExistence?email=${email}`);
+  }
 
 
 }
