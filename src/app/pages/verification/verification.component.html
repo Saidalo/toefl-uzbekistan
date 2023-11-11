@@ -1,0 +1,42 @@
+<div class="container">
+  <div *ngIf="status==='verified'">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Email Verification Successful</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Your email has been successfully verified.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button routerLink="/login">Go to login</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div *ngIf="status==='pending'">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Email Verification Pending</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Your email has been sent.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button routerLink="/">Go to Home</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div *ngIf="status==='not_verified'">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Email Verification Pending</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Your email has been sent. Do you want to send again?</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="sendVerificationEmail()">Yes, Please</button>
+        <button mat-button routerLink="/">Go to Home</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

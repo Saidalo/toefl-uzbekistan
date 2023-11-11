@@ -16,16 +16,36 @@ export class AuthenticationService {
   ) {}
 
   public login(email: string, password: string): void {
-    this.authenticationClient.login(email, password).subscribe((response :any) => {
-      console.log(response.status);
-      if(response.status == 1) {
-        localStorage.setItem(this.tokenKey, response.token);
-        // localStorage.setItem(this.roleKey, response.permissions);
-        this.router.navigate(['/']).then(() => {
-          window.location.reload();
-        });
-      } else{
-        alert(response.error);
+    this.authenticationClient.login(email, password).subscribe({
+      next: (response: any) => {
+        console.log(response.status);
+        if (response.status == 1) {
+          localStorage.setItem(this.tokenKey, response.token);
+          // localStorage.setItem(this.roleKey, response.permissions);
+          this.router.navigate(['/']).then(() => {
+            window.location.reload();
+          });
+        } else {
+          alert(response.error);
+        }
+      },
+      error: error => {
+        console.log(error);
+        switch (error.status) {
+          case 401:
+            this.router.navigate([`/verification`],
+              {
+                queryParams: {status: 'not_verified'},
+                state: {email: email}
+              });
+            break;
+          case 403:
+            alert('You are not verified!');
+            break;
+          default:
+            alert('Something went wrong!');
+            break;
+        }
       }
     });
   }
@@ -35,11 +55,8 @@ export class AuthenticationService {
       .register(form)
       .subscribe((response:any) => {
         if(response.status == 1) {
-          localStorage.setItem(this.tokenKey, response.token);
-          localStorage.setItem(this.tokenKey, response.token);
-          this.router.navigate(['/']).then(() => {
-            window.location.reload();
-          });
+          // localStorage.setItem(this.tokenKey, response.token);
+          this.router.navigate(['/verification?status=pending']);
         } else{
           alert(response.error);
         }

@@ -12,6 +12,7 @@ import {UnderConstructionComponent} from "./pages/under-construction/under-const
 import {PreparationComponent} from "./pages/preparation/preparation.component";
 import {RegistrationComponent} from "./pages/registration/registration.component";
 import {AccountListComponent} from "./pages/account-list/account-list.component";
+import {VerificationComponent} from "./pages/verification/verification.component";
 
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'verification',
+    component: VerificationComponent,
   },
   {
     path: 'contact',

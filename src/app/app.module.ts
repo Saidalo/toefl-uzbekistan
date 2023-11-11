@@ -32,6 +32,8 @@ import {DatePipe} from "@angular/common";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatIconModule} from "@angular/material/icon";
+import {MatCardModule} from "@angular/material/card";
+import { VerificationComponent } from './pages/verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import {MatIconModule} from "@angular/material/icon";
     PreparationComponent,
     RegistrationComponent,
     AccountListComponent,
-    DialogComponent
+    DialogComponent,
+    VerificationComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatNativeDateModule,
     NgbModule,
     MatStepperModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
