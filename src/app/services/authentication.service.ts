@@ -56,7 +56,7 @@ export class AuthenticationService {
       .subscribe((response:any) => {
         if(response.status == 1) {
           // localStorage.setItem(this.tokenKey, response.token);
-          this.router.navigate(['/verification?status=pending']);
+          this.router.navigate(['/verification'], {queryParams: {status: 'pending'}});
         } else{
           alert(response.error);
         }
