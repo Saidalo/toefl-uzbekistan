@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-xl-8 col-lg-8 col-md-6 d-flex align-items-center">
           <div class="header-info">
-            <span><i class="far fa-map-marker-alt"> </i> 8 Kushbegi Street, Yakkasaroy dist, Tashkent, Uzbekistan 100100</span>
+            <span><i class="far fa-map-marker-alt"> </i>Kushbegi 8, Yakkasaroy dist, Tashkent, Uzbekistan 100100</span>
             <span class="header-ph"><i class="far fa-phone"> </i> (+998) 71 200 80 04</span>
             <span class="header-en"><i class="far fa-envelope-open"></i> info@toefl-test.uz</span>
           </div>
@@ -25,13 +25,13 @@
   <div id="sticky-header" class="main-menu-area">
     <div class="container">
       <div class="row">
-        <div class="col-xl-3 col-lg-3 d-flex align-items-center">
+        <div class="col-xl-1 col-lg-1 d-flex align-items-center">
           <div class="logo">
             <a routerLink="/"><img src="assets/img/logo/logo_toefl.svg" alt="" width="150px"/></a>
           </div>
 
         </div>
-        <div class="col-xl-9 col-lg-9">
+        <div class="col-xl-11 col-lg-11">
           <div class="header-button f-right d-none d-lg-block">
             <a class="btn btn-primary" *ngIf="isLoggedIn" (click)="logOut()"><span class="btn-text">Log Out <i class="far fa-long-arrow-right"></i></span> </a>
 <!--            <a class="btn" routerLink="login"><span class="btn-text">Register <i class="far fa-long-arrow-right"></i></span> </a>-->
@@ -40,11 +40,35 @@
             <nav id="mobile-menu">
               <ul>
                 <li><a href="/">home</a>
-                <li><a routerLink="/account-list">Applicants</a>
-
+                <!-- <li><a routerLink="/account-list">Applicants</a></li> -->
+                <li><a href="/our-tests">Our Tests</a>
+                    <ul class="sub-menu text-left">
+                      <li><a href="/our-tests/toefl-itp">TOEFL ITP</a></li>
+                      <li><a href="/our-tests/toefl-ibt">TOEFL iBT</a></li>
+                      <li><a href="/our-tests/gre">GRE</a></li>
+                      <li><a href="/our-tests/toeic">TOEIC</a></li>
+                    </ul>
                 </li>
-                <li><a routerLink="about-us">About</a></li>
+                <li><a class="nav-link" id="id-prep" data-toggle="tab" (click)="goToUrl('https://www.ets.org/toefl/itp/prepare.html')" role="tab"
+                  aria-controls="profile" aria-selected="false" style="cursor: pointer;">Prepare</a></li>
+                <li><a routerLink="/resources">RESOURCES</a>
+                  <ul class="sub-menu text-left">
+                    <li><a href="/resources/test-materials">TEST materials</a></li>
+                    <li><a href="/resources/mock-test">MOCK test</a></li>
+                  </ul>
+                </li>
                 <li><a routerLink="preparation">Preparation</a></li>
+                <li><a routerLink="/faq">FAQ</a></li>
+                <li><a routerLink="/partners">PARTNERS</a>
+                  <ul class="sub-menu text-left">
+                    <li><a href="/partners/ets-global">ETS Global</a></li>
+                    <li><a href="/partners/universities">Universities</a></li>
+                    <li><a href="/partners/learning-centers">Learning centers</a></li>
+                    <li><a href="/partners/educational-organisations">Educational organisations</a></li>
+                  </ul>
+                </li>
+                <li><a routerLink="contact-us">Contact us</a></li>
+                <!-- <li><a routerLink="about-us">About</a></li> -->
 <!--                <li><a href="it-services.html">Services</a>-->
 <!--                  <ul class="sub-menu text-left">-->
 <!--                    <li><a href="it-services.html">Services</a>-->
@@ -78,7 +102,7 @@
 <!--                    <li><a href="contact.html">contact</a></li>-->
 <!--                  </ul>-->
 <!--                </li>-->
-                <li><a routerLink="contact">contact</a></li>
+                <!-- <li><a routerLink="contact">contact</a></li> -->
 
                 <li><a routerLink="/register">Register</a></li>
               </ul>

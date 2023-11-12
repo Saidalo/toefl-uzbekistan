@@ -15,6 +15,10 @@ export class HeaderComponent {
     this.isLoggedIn = authenticationService.isLoggedIn();
     this.authenticationService = authenticationService;
   }
+  goToUrl(url: any): void {
+    // this.document.location.href = url;
+    window.open(url, "_blank");
+  }
 
   logOut(){
     this.isLoggedIn = false;
