@@ -159,7 +159,6 @@ export class CalendarComponent implements OnInit{
         this.setDate.emit(date);
       }
     });
-    this.setDate.emit(date);
     console.log(formatDate((date || new Date()),'yyyy-MM-dd','en_US'));
     if (isSameMonth(date, this.viewDate)) {
       if (
