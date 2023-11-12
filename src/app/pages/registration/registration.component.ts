@@ -28,7 +28,7 @@ export class RegistrationComponent implements OnInit {
   selectedFiles: FileList | undefined;
   spaceLeft: number = 0;
 
-  dateMessage = "";
+  dateMessage = "no Date selected";
   aviableDates : any[] = [];
   datesLoading = true;
 
@@ -182,11 +182,26 @@ export class RegistrationComponent implements OnInit {
   }
 
   addSelectedDateFromCalendar(date: Date){
-    console.log(formatDate((date || new Date()),'yyyy-MM-dd','en_US'));
-    this.thirdFormGroup.patchValue({
-      date: formatDate((date || new Date()),'yyyy-MM-dd','en_US')
+    let found = false;
+    const day = formatDate((date || new Date()),'yyyy-MM-dd','en_US');
+    this.aviableDates.forEach((item: any) => {
+      const dt = formatDate(item.date,'yyyy-MM-dd','en_US');
+      if(dt === day && item.freespace > 0) {
+
+        this.dateMessage = "";
+        found = true;
+        this.thirdFormGroup.patchValue({
+          date: formatDate((date || new Date()),'yyyy-MM-dd','en_US')
+        });
+      }
     });
-    console.log(this.thirdFormGroup.value)
+    if(!found) {
+      this.thirdFormGroup.patchValue({
+        date: ''
+      });
+      this.dateMessage = "No Exam";
+    }
+
   }
 
   dateClass = (d: Date): any => {

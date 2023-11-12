@@ -73,7 +73,7 @@
             <!--            <span class="date-aviability {{spaceLeft < 0 ? 'redColor' : null}}">{{dateMessage}}</span>-->
           </div>
           <div class="pt-3">
-            <button mat-button matStepperNext>Next</button>
+            <button [disabled]="(dateMessage !== '')" mat-button matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>

@@ -151,15 +151,8 @@ export class CalendarComponent implements OnInit{
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    const day = formatDate((date || new Date()),'yyyy-MM-dd','en_US');
 
-    this.availableDates.forEach((item: any) => {
-      const dt = formatDate(item.date,'yyyy-MM-dd','en_US');
-      if(dt === day && item.freespace > 0) {
-        this.setDate.emit(date);
-      }
-    });
-    console.log(formatDate((date || new Date()),'yyyy-MM-dd','en_US'));
+    this.setDate.emit(date);
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
