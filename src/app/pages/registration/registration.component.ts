@@ -30,6 +30,7 @@ export class RegistrationComponent implements OnInit {
 
   dateMessage = "";
   aviableDates : any[] = [];
+  datesLoading = true;
 
   firstFormGroup = this._formBuilder.group({
     name: ['', Validators.required],
@@ -111,9 +112,11 @@ export class RegistrationComponent implements OnInit {
     ).pipe(first()).subscribe({
       next: (response: any) => {
         this.aviableDates = response.body.data;
+        this.datesLoading = false;
         console.log(this.aviableDates);
       },
       error: (error: any) => {
+        this.datesLoading = false;
         this.errorMessage = error.error.message;
       }
     });
@@ -136,7 +139,7 @@ export class RegistrationComponent implements OnInit {
 
     // Map secondFormGroup to formData
     Object.keys(this.thirdFormGroup.controls).forEach(key => {
-      data.append(key, this.secondFormGroup.get(key)?.value);
+      data.append(key, this.thirdFormGroup.get(key)?.value);
     });
 
     if(currentFileUpload) {
@@ -176,6 +179,14 @@ export class RegistrationComponent implements OnInit {
         this.dateMessage = "Try again...";
       }
     });
+  }
+
+  addSelectedDateFromCalendar(date: Date){
+    console.log(formatDate((date || new Date()),'yyyy-MM-dd','en_US'));
+    this.thirdFormGroup.patchValue({
+      date: formatDate((date || new Date()),'yyyy-MM-dd','en_US')
+    });
+    console.log(this.thirdFormGroup.value)
   }
 
   dateClass = (d: Date): any => {

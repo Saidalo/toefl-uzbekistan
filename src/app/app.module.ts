@@ -15,7 +15,7 @@ import { LoginComponent } from './pages/login/login.component';
 import {TokenInterceptor} from "./helpers/token.interceptor";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TopHeaderComponent } from './layouts/top-header/top-header.component';
 import { PreparationComponent } from './pages/preparation/preparation.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
@@ -34,6 +34,10 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import { VerificationComponent } from './pages/verification/verification.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarComponent } from './widgets/calendar/calendar.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -53,7 +57,8 @@ import { VerificationComponent } from './pages/verification/verification.compone
     RegistrationComponent,
     AccountListComponent,
     DialogComponent,
-    VerificationComponent
+    VerificationComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +75,10 @@ import { VerificationComponent } from './pages/verification/verification.compone
     NgbModule,
     MatStepperModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

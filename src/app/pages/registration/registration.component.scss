@@ -171,6 +171,13 @@
   }
 }
 
+.formFlexCalendar {
+  width: 100%;
+  max-width: none;
+}
 ::ng-deep .mat-horizontal-stepper-header{
   pointer-events: none !important;
+}
+app-calendar{
+  min-width: 100%;
 }
