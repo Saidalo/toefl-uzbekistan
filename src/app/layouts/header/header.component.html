@@ -12,10 +12,11 @@
         <div class="col-xl-4 col-lg-4 col-md-6">
           <div class="header-right f-right ">
             <div class="header-icon f-right">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <!-- <a href="#"><i class="fab fa-facebook-f"></i></a>
               <a href="#"><i class="fab fa-twitter"></i></a>
               <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a> -->
+              <a href="/login"><i class="fas fa-sign-in-alt"></i>Log in</a>
             </div>
           </div>
         </div>
@@ -33,7 +34,7 @@
         </div>
         <div class="col-xl-11 col-lg-11">
           <div class="header-button f-right d-none d-lg-block">
-            <a class="btn btn-primary" *ngIf="isLoggedIn" (click)="logOut()"><span class="btn-text">Log Out <i class="far fa-long-arrow-right"></i></span> </a>
+            <a class="btn btn-primary" *ngIf="isLoggedIn" href="/register"><span class="btn-text">REGISTER FOR A TEST<i class="far fa-long-arrow-right"></i></span> </a>
 <!--            <a class="btn" routerLink="login"><span class="btn-text">Register <i class="far fa-long-arrow-right"></i></span> </a>-->
           </div>
           <div class="main-menu text-right">
@@ -57,7 +58,7 @@
                     <li><a href="/resources/mock-test">MOCK test</a></li>
                   </ul>
                 </li>
-                <li><a routerLink="preparation">Preparation</a></li>
+                <!-- <li><a routerLink="preparation">Preparation</a></li> -->
                 <li><a routerLink="/faq">FAQ</a></li>
                 <li><a routerLink="/partners">PARTNERS</a>
                   <ul class="sub-menu text-left">
@@ -104,7 +105,7 @@
 <!--                </li>-->
                 <!-- <li><a routerLink="contact">contact</a></li> -->
 
-                <li><a routerLink="/register">Register</a></li>
+                <!-- <li><a routerLink="/register">REGISTER FOR A TEST</a></li> -->
               </ul>
             </nav>
           </div>
