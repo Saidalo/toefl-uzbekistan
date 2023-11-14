@@ -12,6 +12,10 @@
               <input matInput placeholder="Surname" formControlName="surname" required>
             </mat-form-field>
             <mat-form-field>
+              <mat-label>Phone</mat-label>
+              <input matInput placeholder="+998 (**)***-**-**" formControlName="phone" required>
+            </mat-form-field>
+            <mat-form-field>
               <mat-label>Email</mat-label>
               <input matInput placeholder="Email" formControlName="email" required>
               <mat-error *ngIf="email?.hasError('exist')">Email is already exist</mat-error>
@@ -42,13 +46,41 @@
       <mat-step [stepControl]="secondFormGroup">
         <ng-template matStepLabel>Upload Image</ng-template>
         <form [formGroup]="secondFormGroup" class="formFlex">
-          <mat-label>Uplaod image</mat-label>
-          <input type="file"
-                 class="form-control"
-                 id="customFile"
-                 formControlName="image"
-                 accept="image/*"
-                 (change)="selectFile($event)"/>
+          <table>
+            <tr>
+              <td rowspan="4" class="p-3">
+                <img width="64" height="64" src="https://img.icons8.com/cotton/64/checked-identification-documents.png" alt="checked-identification-documents"/>
+              </td>
+              <td class="p-3"><mat-label>Uplaod image</mat-label></td>
+            </tr>
+            <tr>
+              <td class="p-3">
+                <input type="radio" name="id_document" value="passport" >Passport
+                <input type="radio" name="id_document" value="national_id" class="ml-5">National ID
+                <input type="radio" name="id_document" value="driving_license" class="ml-5">Driving License
+                <input type="radio" name="id_document" value="other_id" class="ml-4">Other ID
+              </td>
+            </tr>
+            <tr>
+              <td class="pb-3 pl-3 pr-3">
+                <select name="country">
+                  <option *ngFor="let country of countryOptions" [value]="country.value">{{country.label}}</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="p-3">
+                <input type="file"
+                  class="form-control"
+                  id="customFile"
+                  formControlName="image"
+                  accept="image/*"
+                  (change)="selectFile($event)"/>
+              </td>
+            </tr>
+          </table>
+          
+          
             <div>
               <button mat-button matStepperNext>Next</button>
             </div>

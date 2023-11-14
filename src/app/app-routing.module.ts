@@ -13,6 +13,7 @@ import {PreparationComponent} from "./pages/preparation/preparation.component";
 import {RegistrationComponent} from "./pages/registration/registration.component";
 import {AccountListComponent} from "./pages/account-list/account-list.component";
 import {VerificationComponent} from "./pages/verification/verification.component";
+import {ProfileComponent} from "./pages/profile/profile.component";
 
 
 const routes: Routes = [
@@ -78,6 +79,11 @@ const routes: Routes = [
     path: 'preparation',
     component: PreparationComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'under-construction',
