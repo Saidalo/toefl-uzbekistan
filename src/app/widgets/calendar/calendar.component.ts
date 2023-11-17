@@ -50,6 +50,7 @@ export class CalendarComponent implements OnInit{
 
   @Input() availableDates!: any[];
   @Output() setDate = new EventEmitter<Date>();
+  @Output() refreshDates = new EventEmitter<Date>();
 
   view: CalendarView = CalendarView.Month;
 

@@ -1,7 +1,7 @@
 <div class="container">
     <mat-stepper [linear]="true" #stepper>
       <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup" class="formFlex">
+        <form *ngIf="!isLoading" [formGroup]="firstFormGroup" class="formFlex">
             <ng-template matStepLabel>Fill out your informations</ng-template>
             <mat-form-field>
               <mat-label>Name</mat-label>
@@ -42,6 +42,10 @@
               <button mat-button (click)="goForward(stepper)">Next</button>
             </div>
         </form>
+
+        <div *ngIf="isLoading">
+          <mat-spinner></mat-spinner>
+        </div>
       </mat-step>
       <mat-step [stepControl]="secondFormGroup">
         <ng-template matStepLabel>Upload Image</ng-template>
@@ -55,36 +59,39 @@
             </tr>
             <tr>
               <td class="p-3">
-                <input type="radio" name="id_document" value="passport" >Passport
-                <input type="radio" name="id_document" value="national_id" class="ml-5">National ID
-                <input type="radio" name="id_document" value="driving_license" class="ml-5">Driving License
-                <input type="radio" name="id_document" value="other_id" class="ml-4">Other ID
+                <mat-radio-group aria-label="Select an option" formControlName="identity_type">
+                  <mat-radio-button checked="true" value="passport">Passport</mat-radio-button>
+                  <mat-radio-button value="national_id">National ID</mat-radio-button>
+                  <mat-radio-button value="other_id">Other ID</mat-radio-button>
+                </mat-radio-group>
               </td>
             </tr>
             <tr>
               <td class="pb-3 pl-3 pr-3">
-                <select name="country">
-                  <option *ngFor="let country of countryOptions" [value]="country.value">{{country.label}}</option>
-                </select>
+
+                <mat-form-field>
+                  <mat-label>Country</mat-label>
+                  <mat-select formControlName="country">
+                    <mat-option *ngFor="let country of countryOptions" [value]="country.value">{{country.label}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
               </td>
             </tr>
             <tr>
               <td class="p-3">
                 <input type="file"
-                  class="form-control"
-                  id="customFile"
-                  formControlName="image"
-                  accept="image/*"
-                  (change)="selectFile($event)"/>
+                       class="form-control"
+                       id="customFile"
+                       formControlName="image"
+                       accept="image/*"
+                       (change)="selectFile($event)"/>
               </td>
             </tr>
           </table>
-          
-          
-            <div>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
+          <div>
+            <button mat-button (click)="goForwardUploadImage(stepper)">Next</button>
+          </div>
+        </form>
       </mat-step>
       <mat-step [stepControl]="thirdFormGroup">
         <ng-template matStepLabel>Pick a date</ng-template>
@@ -92,20 +99,9 @@
           <mat-label>Pick a exam date</mat-label>
           <mat-spinner *ngIf="datesLoading"></mat-spinner>
 
-          <app-calendar *ngIf="!datesLoading" [availableDates]="aviableDates" (setDate)="addSelectedDateFromCalendar($event)"></app-calendar>
-          <div class="datepickr">
-            <!--            <mat-form-field>-->
-            <!--              <mat-label>Choose a date</mat-label>-->
-            <!--              <input id="date" formControlName="date" (dateChange)="onDateChange($event)" [matDatepickerFilter]="myFilter"  matInput [matDatepicker]="picker">-->
-            <!--              <mat-hint>MM/DD/YYYY</mat-hint>-->
-            <!--              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
-            <!--              <mat-datepicker #picker [dateClass]="dateClass" touchUi="true">-->
-            <!--              </mat-datepicker>-->
-            <!--            </mat-form-field>-->
-            <!--            <span class="date-aviability {{spaceLeft < 0 ? 'redColor' : null}}">{{dateMessage}}</span>-->
-          </div>
+          <app-calendar *ngIf="!datesLoading" [availableDates]="aviableDates" (setDate)="addSelectedDateFromCalendar($event)" (refreshDates)="refreshDates()"></app-calendar>
           <div class="pt-3">
-            <button [disabled]="(dateMessage !== '')" mat-button matStepperNext>Next</button>
+            <button [disabled]="(dateMessage !== '')" mat-button (click)="goForwardDate(stepper)">Next</button>
           </div>
         </form>
       </mat-step>
@@ -113,60 +109,9 @@
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button routerLink="login">login</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
-          <button mat-button (click)="onSubmit()">Register</button>
         </div>
       </mat-step>
     </mat-stepper>
-          </div>
-
-
-          <!--<div class="loginForm">-->
-<!--  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">-->
-<!--    <div class="container">-->
-<!--      <label for="name"><b>Name</b></label>-->
-<!--      <input type="text" placeholder="Enter Name" formControlName="name" id="name" required>-->
-
-<!--      <label for="surname"><b>Surname</b></label>-->
-<!--      <input type="text" placeholder="Enter surname" formControlName="surname" id="surname" required>-->
-
-<!--      <label for="email"><b>Email</b></label>-->
-<!--      <input type="text" placeholder="Enter Email" formControlName="email" id="email" required>-->
-
-<!--      <label for="password"><b>Password</b></label>-->
-<!--      <input type="password" placeholder="Enter Password" formControlName="password" id="password" required>-->
-
-<!--      <label for="date"><b>Date</b></label>-->
-<!--      <div class="datepickr">-->
-<!--          <mat-form-field>-->
-<!--              <mat-label>Choose a date</mat-label>-->
-<!--              <input id="date" formControlName="date" (dateChange)="onDateChange($event)" [matDatepickerFilter]="myFilter"  matInput [matDatepicker]="picker">-->
-<!--              <mat-hint>MM/DD/YYYY</mat-hint>-->
-<!--              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
-<!--              <mat-datepicker #picker [dateClass]="dateClass">-->
-
-<!--              </mat-datepicker>-->
-<!--          </mat-form-field>-->
-
-<!--          <span class="date-aviability {{spaceLeft < 0 ? 'redColor' : null}}">{{dateMessage}}</span>-->
-<!--      </div>-->
-<!--<br/>-->
-
-<!--      <label class="image-upload-container">-->
-<!--        <b>Select Image</b>-->
-<!--      </label>-->
-<!--        <input #imageInput-->
-<!--               type="file"-->
-<!--               accept="image/*"-->
-<!--               (change)="selectFile($event)">-->
-
-<!--      <button type="submit">Register</button>-->
-<!--    </div>-->
-
-<!--    <div class="container" style="background-color:#f1f1f1">-->
-<!--      <button type="button" class="cancelbtn" routerLink="/">Cancel</button>-->
-<!--      <span class="psw"><a routerLink="/login">login</a></span>-->
-<!--    </div>-->
-<!--  </form>-->
-<!--</div>-->
+</div>

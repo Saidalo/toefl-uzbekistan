@@ -38,6 +38,10 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './widgets/calendar/calendar.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {NotifierModule} from "angular-notifier";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSelectModule} from "@angular/material/select";
+import {ProfileComponent} from "./pages/profile/profile.component";
 
 @NgModule({
   declarations: [
@@ -58,28 +62,34 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     AccountListComponent,
     DialogComponent,
     VerificationComponent,
-    CalendarComponent
+    CalendarComponent,
+    ProfileComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    NgbModule,
-    MatStepperModule,
-    MatIconModule,
-    MatCardModule,
-    CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
-    FormsModule,
-    MatProgressSpinnerModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        NgbModule,
+        MatStepperModule,
+        MatIconModule,
+        MatCardModule,
+        CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
+        FormsModule,
+        MatProgressSpinnerModule,
+        NotifierModule.withConfig({
+            // Custom options in here
+        }),
+        MatRadioModule,
+        MatSelectModule,
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     DatePipe

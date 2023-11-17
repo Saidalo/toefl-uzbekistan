@@ -1,4 +1,8 @@
 <div class="row text-center">
+
+  <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="refreshDates.emit()">
+    <mat-icon>refresh</mat-icon>
+  </button>
   <div class="col-md-4">
     <div class="btn-group">
       <div
@@ -70,24 +74,6 @@
     (eventTimesChanged)="eventTimesChanged($event)"
   >
   </mwl-calendar-month-view>
-<!--  <mwl-calendar-week-view-->
-<!--    *ngSwitchCase="CalendarView.Week"-->
-<!--    [viewDate]="viewDate"-->
-<!--    [events]="events"-->
-<!--    [refresh]="refresh"-->
-<!--    (eventClicked)="handleEvent('Clicked', $event.event)"-->
-<!--    (eventTimesChanged)="eventTimesChanged($event)"-->
-<!--  >-->
-<!--  </mwl-calendar-week-view>-->
-<!--  <mwl-calendar-day-view-->
-<!--    *ngSwitchCase="CalendarView.Day"-->
-<!--    [viewDate]="viewDate"-->
-<!--    [events]="events"-->
-<!--    [refresh]="refresh"-->
-<!--    (eventClicked)="handleEvent('Clicked', $event.event)"-->
-<!--    (eventTimesChanged)="eventTimesChanged($event)"-->
-<!--  >-->
-<!--  </mwl-calendar-day-view>-->
 </div>
 
 <!-- Everything you see below is just for the demo, you don't need to include it in your app -->

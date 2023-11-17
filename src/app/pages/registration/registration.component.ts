@@ -14,6 +14,7 @@ import {HttpClient} from "@angular/common/http";
 import {DatePipe, formatDate} from "@angular/common";
 import {first, map, Observable, of} from "rxjs";
 import {environment} from "../../../enviroments/enviroment";
+import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'app-registration',
@@ -21,9 +22,13 @@ import {environment} from "../../../enviroments/enviroment";
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+
+  private readonly notifier: NotifierService;
   errorMessage: any
   public registerForm!: FormGroup;
   hide = true;
+  isLoading = false;
+  id = -1;
 
   selectedFiles: FileList | undefined;
   spaceLeft: number = 0;
@@ -35,6 +40,7 @@ export class RegistrationComponent implements OnInit {
   firstFormGroup = this._formBuilder.group({
     name: ['', Validators.required],
     surname: ['', Validators.required],
+    phone: ['', Validators.required],
     email: ['', {
       validators: [Validators.required, Validators.email],
       // asyncValidators: [this.emailValidator().bind(this)],
@@ -46,7 +52,8 @@ export class RegistrationComponent implements OnInit {
   }, {validator: passwordMatchValidator});
 
   secondFormGroup = this._formBuilder.group({
-    image: ['', Validators.required],
+    country: ['', Validators.required],
+    identity_type: ['', Validators.required],
   });
 
   thirdFormGroup = this._formBuilder.group({
@@ -303,7 +310,10 @@ export class RegistrationComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,
               private http: HttpClient,
               private datePipe: DatePipe,
-              private _formBuilder: FormBuilder) {}
+              private _formBuilder: FormBuilder,
+              notifierService: NotifierService) {
+    this.notifier = notifierService;
+  }
 
 
   emailValidator(): AsyncValidatorFn {
@@ -364,7 +374,7 @@ export class RegistrationComponent implements OnInit {
       },
       error: (error: any) => {
         this.datesLoading = false;
-        this.errorMessage = error.error.message;
+        this.notifier.notify('error', error.error.message);
       }
     });
   }
@@ -396,6 +406,69 @@ export class RegistrationComponent implements OnInit {
     this.authenticationService.register(
       data
     );
+  }
+
+  public onSubmitFirstForm(stepper: any){
+    const data: FormData = new FormData();
+    // / Map firstFormGroup to formData
+    Object.keys(this.firstFormGroup.controls).forEach(key => {
+      data.append(key, this.firstFormGroup.get(key)?.value);
+    });
+
+    this.authenticationService.registerAccount(this.firstFormGroup.value).subscribe({
+      next: (response: any) => {
+        this.id = response.result.insertId;
+        this.isLoading = false;
+        this.firstFormGroup.enable();
+        this.notifier.notify('success', "Successfully registered your account!");
+        stepper.next();
+      },
+      error: (error: any) => {
+        this.isLoading = false;
+        this.firstFormGroup.enable();
+        this.notifier.notify('error', error.error.message);
+      },
+    });
+  }
+
+  public onSubmitImageForm(stepper: any){
+    let currentFileUpload;
+    const data: FormData = new FormData();
+    if(this.selectedFiles && this.selectedFiles.length > 0) {
+      currentFileUpload = this.selectedFiles.item(0);
+    }
+
+    if (this.id == -1){
+      this.id = this.authenticationService.getUserId() ?? -1;
+    }
+
+    if(this.id == -1){
+      this.notifier.notify('error', "Something went wrong!");
+      return;
+    }
+    Object.keys(this.secondFormGroup.controls).forEach(key => {
+      data.append(key, this.secondFormGroup.get(key)?.value);
+    });
+
+    data.append('id', this.id.toString());
+
+    if(currentFileUpload) {
+      data.append('image', currentFileUpload, currentFileUpload.name);
+    }
+    this.secondFormGroup.disable();
+    this.authenticationService.uploadImage(data).subscribe({
+      next: (response: any) => {
+        this.isLoading = false;
+        this.secondFormGroup.enable();
+        this.notifier.notify('success', "Successfully uploaded your image!");
+        stepper.next();
+      },
+      error: (error: any) => {
+        this.isLoading = false;
+        this.secondFormGroup.enable();
+        this.notifier.notify('error', error.error.message);
+      },
+    });
   }
 
   onDateChange(event: MatDatepickerInputEvent<Date>) {
@@ -451,31 +524,11 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  dateClass = (d: Date): any => {
-    const classes = [];
-
-    const day = formatDate((d || new Date()),'yyyy-MM-dd','en_US');
-    const result = (this.aviableDates.find(item => {
-      const dt = formatDate(item.date,'yyyy-MM-dd','en_US');
-      return dt === day;
-    }) || null);
-    if(result === null) {
-      return [];
-    }
-    switch (true) {
-      case result.freespace <= 0:
-        classes.push('date-full');
-        break;
-      case result.freespace < 50:
-        classes.push('date-half');
-        break;
-      case result.freespace >= 50:
-        classes.push('date-less');
-        break;
-    }
-
-    return classes;
+  refreshDates(){
+    this.datesLoading = true;
+    this.getAllDateAvailability();
   }
+
   myFilter = (d: Date | null): boolean => {
     const day = formatDate((d || new Date()),'yyyy-MM-dd','en_US');
     const result = (this.aviableDates.find(item => {
@@ -487,15 +540,59 @@ export class RegistrationComponent implements OnInit {
   };
 
   goForward(stepper: any) {
-    const email = this.firstFormGroup.get('email')?.value;
-    this.checkEmailExistence(email).subscribe(response => {
-      if (response.data.exist) {
-        // Show error message
-        alert('Email already exists');
-      } else {
-        stepper.next();
+    if(this.firstFormGroup.valid) {
+      const email = this.firstFormGroup.get('email')?.value;
+      this.checkEmailExistence(email).subscribe(response => {
+        if (response.data.exist) {
+          // Show error message
+          alert('Email already exists');
+        } else {
+          this.isLoading = true;
+          // this.firstFormGroup.disable();
+          this.onSubmitFirstForm(stepper);
+        }
+      });
+    }
+  }
+
+  goForwardUploadImage(stepper: any) {
+      if(this.secondFormGroup.valid) {
+        this.isLoading = true;
+        // this.firstFormGroup.disable();
+        this.onSubmitImageForm(stepper);
+      } else{
+        this.notifier.notify('error', "Please fill all required fields!");
       }
-    });
+  }
+
+  goForwardDate(stepper: any) {
+    if(this.thirdFormGroup.valid) {
+      this.isLoading = true;
+      this.thirdFormGroup.disable();
+      const data: FormData = new FormData();
+      // / Map firstFormGroup to formData
+      Object.keys(this.thirdFormGroup.controls).forEach(key => {
+        data.append(key, this.thirdFormGroup.get(key)?.value);
+      });
+
+      data.append('id', this.id.toString());
+
+      this.authenticationService.registerDate(data).subscribe({
+        next: (response: any) => {
+          this.isLoading = false;
+          this.thirdFormGroup.enable();
+          this.notifier.notify('success', "Successfully registered your date!");
+          stepper.next()
+        },
+        error: (error: any) => {
+          this.isLoading = false;
+          this.thirdFormGroup.enable();
+          this.notifier.notify('error', error.error.message);
+        },
+      });
+    } else{
+      this.notifier.notify('error', "Please fill all required fields!");
+    }
   }
 
   checkEmailExistence(email: string): Observable<any> {
