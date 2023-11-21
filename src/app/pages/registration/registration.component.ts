@@ -47,7 +47,11 @@ export class RegistrationComponent implements OnInit {
       updateOn: 'blur'
     },
     ],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    password: ['', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
+    ]],
     repassword: ['', Validators.required],
   }, {validator: passwordMatchValidator});
 
