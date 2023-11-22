@@ -50,7 +50,7 @@ export class RegistrationComponent implements OnInit {
     password: ['', [
       Validators.required,
       Validators.minLength(8),
-      Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
+      Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')
     ]],
     repassword: ['', Validators.required],
   }, {validator: passwordMatchValidator});
