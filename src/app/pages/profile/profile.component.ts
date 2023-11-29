@@ -15,6 +15,7 @@ import {passwordMatchValidator} from "../registration/registration.component";
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  active = 1;
 
   private readonly notifier: NotifierService;
 

@@ -88,7 +88,7 @@
       <div class="col-xl-4 col-lg-4 mb-30">
         <div class="about-text">
           <span>who we are</span>
-          <h1>TESTING FOR SUCCESS 
+          <h1>TESTING FOR SUCCESS
             <br><span>EVALUATE YOUR PROGRESS </span>
           </h1>
           <p>Toefl Test Center Uzbekistan is the trusted partner for student, teachers, government agencies, organizations, and institutions to conduct fair, valid and reliable proficiency-based assessments of English language. Being as ETS Official Partner in Uzbekistan, we support a wide range of TOEFL: TOEFL ITP Level 1, TOEFL ITP Level 2, TOEFL iBT, GRE and TOEIC Tests. For more information and to reserve a test session, please visit our registration page</p>
@@ -534,7 +534,7 @@
         </div>
         <div class="col-xl-7 col-lg-7 mb-30">
           <div class="appointment-wrapper">
-            <form id="appointment-form" action="#">
+            <form [formGroup]="contactForm" (ngSubmit)="submitContactForm()">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-box user-icon mb-30">
@@ -556,7 +556,7 @@
                     <textarea name="message" id="message" cols="30" rows="10" placeholder="Write message"></textarea>
                   </div>
                   <div class="contact-btn">
-                    <button class="btn" type="submit"><span class="btn-text">send message <i class="far fa-long-arrow-right"></i></span> <span class="btn-border"></span></button>
+                    <button mat-flat-button color="primary" type="submit"><span class="btn-text">send message <i class="far fa-long-arrow-right"></i></span> <span class="btn-border"></span></button>
                   </div>
                 </div>
               </div>

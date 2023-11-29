@@ -1,3 +1,6 @@
+<ngb-alert [dismissible]="false">
+  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+</ngb-alert>
 <div class="container-xl px-4 mt-4">
     <div class="row">
         <div class="col-xl-4">
@@ -6,7 +9,7 @@
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <img class="img-account-profile rounded-circle mb-2" [src]="'assets/img/avatar1.png'" alt="">
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                     <!-- Profile picture upload button-->
@@ -50,65 +53,111 @@
             </div>
         </div>
         <div class="col-xl-8">
-            <!-- Account details card-->
-            <div *ngIf="account" class="card mb-4">
-                <div class="card-header">Account Details</div>
-                <div class="card-body">
+          <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+            <li [ngbNavItem]="1">
+              <button ngbNavLink>Account Details</button>
+              <ng-template ngbNavContent>
+                <!-- Account details card-->
+                <div *ngIf="account" class="card mb-4">
+<!--                  <div class="card-header">Account Details</div>-->
+                  <div class="card-body">
                     <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
-                        <!-- Form Group (username)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="Username" value="username">
+                      <!-- Form Row-->
+                      <div class="row gx-3 mb-3">
+                        <!-- Form Group (first name)-->
+                        <div class="col-md-6">
+                          <label class="small mb-1" for="inputFirstName">First name</label>
+                          <input class="form-control" id="inputFirstName" type="text" placeholder="Name" formControlName="name">
                         </div>
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (first name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputFirstName">First name</label>
-                                <input class="form-control" id="inputFirstName" type="text" placeholder="Name" formControlName="name">
-                            </div>
-                            <!-- Form Group (last name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">Last name</label>
-                                <input class="form-control" id="inputLastName" type="text" placeholder="Surname" formControlName="surname">
-                            </div>
+                        <!-- Form Group (last name)-->
+                        <div class="col-md-6">
+                          <label class="small mb-1" for="inputLastName">Last name</label>
+                          <input class="form-control" id="inputLastName" type="text" placeholder="Surname" formControlName="surname">
                         </div>
-                        <!-- Form Row        -->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (organization name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
-                            </div>
-                            <!-- Form Group (location)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Location</label>
-                                <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" formControlName="country">
-                            </div>
+                      </div>
+                      <!-- Form Row        -->
+                      <div class="row gx-3 mb-3">
+                        <!-- Form Group (organization name)-->
+                        <div class="col-md-6">
+                          <label class="small mb-1" for="inputOrgName">Organization name</label>
+                          <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
                         </div>
-                        <!-- Form Group (email address)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" formControlName="email">
+                        <!-- Form Group (location)-->
+                        <div class="col-md-6">
+                          <label class="small mb-1" for="inputLocation">Location</label>
+                          <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" formControlName="country">
                         </div>
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (phone number)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Phone number</label>
-                                <input class="form-control" id="inputPhone" type="tel" placeholder="Phone" formControlName="phone">
-                            </div>
-                            <!-- Form Group (birthday)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
-                            </div>
+                      </div>
+                      <!-- Form Group (email address)-->
+                      <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                          <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                          <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" formControlName="email">
                         </div>
-                        <!-- Save changes button-->
-                        <button mat-raised-button color="primary">Save changes</button>
+
+                        <!-- Form Group (gender)-->
+                        <div class="col-md-6">
+                          <label class="small mb-1" for="inputGender">Gender</label>
+                          <select class="form-control" id="inputGender" formControlName="gender">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Form Row-->
+                      <div class="row gx-3 mb-3">
+                        <!-- Form Group (phone number)-->
+                        <div class="col-md-6">
+                          <label class="small mb-1" for="inputPhone">Phone number</label>
+                          <input class="form-control" id="inputPhone" type="tel" placeholder="Phone" formControlName="phone">
+                        </div>
+                        <!-- Form Group (birthday)-->
+                        <div class="col-md-6">
+                          <label class="small mb-1" for="inputBirthday">Birthday</label>
+                          <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
+                        </div>
+                      </div>
+                      <!-- Save changes button-->
+                      <button mat-raised-button color="primary">Save changes</button>
                     </form>
+                  </div>
                 </div>
-            </div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+              <button ngbNavLink>Payments</button>
+              <ng-template ngbNavContent>
+                <p>
+                  Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
+                  farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
+                  ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
+                  helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
+                  8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+                  stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+                </p>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+              <button ngbNavLink>My Certificates</button>
+              <ng-template ngbNavContent>
+                <p>
+                  Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi.
+                  Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio.
+                  Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna,
+                  egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec
+                  tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et
+                  magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget
+                  neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                </p>
+              </ng-template>
+            </li>
+          </ul>
+
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
         </div>
     </div>
 </div>
