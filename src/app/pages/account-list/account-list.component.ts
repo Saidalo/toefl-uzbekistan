@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {environment} from "../../../enviroments/enviroment";
 import {map} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogComponent} from "../../layouts/dialog/dialog.component";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-account-list',

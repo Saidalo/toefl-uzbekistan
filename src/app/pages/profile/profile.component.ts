@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
-import {environment} from "../../../enviroments/enviroment";
-import {map} from "rxjs";
 import {AuthenticationService} from "../../services/authentication.service";
-import {DatePipe} from "@angular/common";
+import {DatePipe, formatDate} from "@angular/common";
 import {FormBuilder, Validators} from "@angular/forms";
 import {NotifierService} from "angular-notifier";
 import {passwordMatchValidator} from "../registration/registration.component";
+import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'profile',
@@ -15,6 +14,9 @@ import {passwordMatchValidator} from "../registration/registration.component";
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  showNotFilled = false;
+  birthdate: Date = new Date();
+  model: NgbDateStruct | undefined;
   active = 1;
 
   private readonly notifier: NotifierService;
@@ -31,11 +33,15 @@ export class ProfileComponent implements OnInit {
     phone: [''],
     country: [''],
     email: ['', {
-      validators: [ Validators.email],
-      // asyncValidators: [this.emailValidator().bind(this)],
-      updateOn: 'blur'
-    },
-    ]
+        validators: [ Validators.email],
+        required: true,
+        // asyncValidators: [this.emailValidator().bind(this)],
+        updateOn: 'blur'
+      },
+    ],
+    gender: [''],
+    birthdate: [''],
+    birthdateMd: [''],
   });
 
 
@@ -46,6 +52,32 @@ export class ProfileComponent implements OnInit {
               notifierService: NotifierService,
               private datePipe: DatePipe) {
     this.notifier = notifierService;
+  }
+
+  heckEmptyFields() {
+    console.log(this.account)
+    if(this.account.Name == null || this.account.Name == ''){
+      return true;
+    }
+    if(this.account.Surname == null || this.account.Surname == ''){
+      return true;
+    }
+    if(this.account.phone == null || this.account.phone == ''){
+      return true;
+    }
+    if(this.account.country == null || this.account.country == ''){
+      return true;
+    }
+    if(this.account.Email == null || this.account.Email == ''){
+      return true;
+    }
+    if(this.account.gender == null || this.account.gender == ''){
+      return true;
+    }
+    if(this.account.birthdate == null || this.account.birthdate == ''){
+      return true;
+    }
+    return false; // No empty fields found
   }
 
   account: any;
@@ -61,8 +93,13 @@ export class ProfileComponent implements OnInit {
           surname: res.Surname,
           phone: res.phone,
           country: res.country,
-          email: res.Email
+          email: res.Email,
+          gender: res.gender,
+          birthdate: res.birthdate,
         });
+        this.showNotFilled = this.heckEmptyFields();
+        this.birthdate = new Date(res['birthdate']);
+        this.model = {year: this.birthdate.getFullYear(), month: this.birthdate.getMonth() + 1, day: this.birthdate.getDate()};
       });
     } else{
       this.notifier.notify('error', 'Something went wrong!');
@@ -76,13 +113,16 @@ export class ProfileComponent implements OnInit {
   updateProfile() {
     if (this.profileForm.valid) {
       this.profileForm.disable();
+      // let ngbDate : any = this.profileForm.controls['birthdate'].value;
+      let myDate = new Date(this.model!.year, this.model!.month - 1, this.model!.day);
+      this.profileForm.patchValue({
+        birthdate: formatDate(myDate, 'yyyy-MM-dd', 'en-US')
+      });
       this.authenticationService.updateProfile(this.profileForm.value).subscribe({
         next: (res: any) => {
-          if (res.status == 1) {
-          } else {
-            this.profileForm.enable();
-            this.notifier.notify('error', 'Something went wrong!');
-          }
+          this.profileForm.enable();
+          this.notifier.notify('success', 'Profile updated successfully!');
+          this.ngOnInit();
         },
         error: (error: any) => {
           this.profileForm.enable();

@@ -1,5 +1,5 @@
-<ngb-alert [dismissible]="false">
-  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+<ngb-alert [dismissible]="false" *ngIf="showNotFilled">
+  <strong>Warning!</strong> Your profile is incomplete, please enter essential informations!
 </ngb-alert>
 <div class="container-xl px-4 mt-4">
     <div class="row">
@@ -59,7 +59,6 @@
               <ng-template ngbNavContent>
                 <!-- Account details card-->
                 <div *ngIf="account" class="card mb-4">
-<!--                  <div class="card-header">Account Details</div>-->
                   <div class="card-body">
                     <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
                       <!-- Form Row-->
@@ -117,7 +116,17 @@
                         <!-- Form Group (birthday)-->
                         <div class="col-md-6">
                           <label class="small mb-1" for="inputBirthday">Birthday</label>
-                          <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
+                          <input
+                            id="inputBirthday"
+                            class="form-control"
+                            placeholder="yyyy-mm-dd"
+                            name="dp"
+                            formControlName="birthdateMd"
+                            [(ngModel)]="model"
+                            ngbDatepicker
+                            (click)="datePicker.toggle()"
+                            #datePicker="ngbDatepicker"
+                          />
                         </div>
                       </div>
                       <!-- Save changes button-->

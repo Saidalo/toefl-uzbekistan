@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {environment} from "../../../enviroments/enviroment";
 import {first} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-verification',

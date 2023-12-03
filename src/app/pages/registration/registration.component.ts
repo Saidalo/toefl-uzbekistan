@@ -12,9 +12,9 @@ import {
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {HttpClient} from "@angular/common/http";
 import {DatePipe, formatDate} from "@angular/common";
-import {first, map, Observable, of} from "rxjs";
-import {environment} from "../../../enviroments/enviroment";
+import {first, map, Observable} from "rxjs";
 import {NotifierService} from "angular-notifier";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-registration',
