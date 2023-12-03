@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
     gender: [''],
     birthdate: [''],
     birthdateMd: [''],
-    agreeTerms: [true, Validators.requiredTrue],
+    agreeTerms: [true],
   });
 
 
