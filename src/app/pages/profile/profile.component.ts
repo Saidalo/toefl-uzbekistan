@@ -15,6 +15,7 @@ import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 })
 export class ProfileComponent implements OnInit {
   showNotFilled = false;
+  isOver18 = false;
   birthdate: Date = new Date();
   model: NgbDateStruct | undefined;
   active = 1;
@@ -42,6 +43,7 @@ export class ProfileComponent implements OnInit {
     gender: [''],
     birthdate: [''],
     birthdateMd: [''],
+    agreeTerms: [true, Validators.requiredTrue],
   });
 
 
@@ -80,6 +82,30 @@ export class ProfileComponent implements OnInit {
     return false; // No empty fields found
   }
 
+
+  initProfileForm(res: any) {
+    this.profileForm.patchValue({
+      name: res.Name,
+      surname: res.Surname,
+      phone: res.phone,
+      country: res.country,
+      email: res.Email,
+      gender: res.gender,
+      birthdate: res.birthdate,
+      agreeTerms: res.agreeTerms
+    });
+    this.showNotFilled = this.heckEmptyFields();
+    this.birthdate = new Date(res['birthdate']);
+    this.model = {year: this.birthdate.getFullYear(), month: this.birthdate.getMonth() + 1, day: this.birthdate.getDate()};
+    let timeDiff = Math.abs(Date.now() - this.birthdate.getTime());
+    let age = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    this.isOver18 = age >= 18;
+    if(!this.isOver18 && (!res.agreeTerms)){
+      this.profileForm.controls['agreeTerms'].setValue(false);
+    }
+    console.log(timeDiff, age, this.isOver18);
+  }
+
   account: any;
   ngOnInit() {
     this.id = this.authenticationService.getUserId();
@@ -87,19 +113,9 @@ export class ProfileComponent implements OnInit {
     if(this.id) {
       this.authenticationService.profile(this.id).subscribe((res: any) => {
         this.account = res;
+        this.initProfileForm(res);
         console.log(this.account);
-        this.profileForm.patchValue({
-          name: res.Name,
-          surname: res.Surname,
-          phone: res.phone,
-          country: res.country,
-          email: res.Email,
-          gender: res.gender,
-          birthdate: res.birthdate,
-        });
-        this.showNotFilled = this.heckEmptyFields();
-        this.birthdate = new Date(res['birthdate']);
-        this.model = {year: this.birthdate.getFullYear(), month: this.birthdate.getMonth() + 1, day: this.birthdate.getDate()};
+
       });
     } else{
       this.notifier.notify('error', 'Something went wrong!');
