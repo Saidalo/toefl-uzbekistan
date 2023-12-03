@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, TemplateRef} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
 import {AuthenticationService} from "../../services/authentication.service";
@@ -6,7 +6,7 @@ import {DatePipe, formatDate} from "@angular/common";
 import {FormBuilder, Validators} from "@angular/forms";
 import {NotifierService} from "angular-notifier";
 import {passwordMatchValidator} from "../registration/registration.component";
-import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {NgbDateStruct, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'profile',
@@ -15,6 +15,7 @@ import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 })
 export class ProfileComponent implements OnInit {
   showNotFilled = false;
+  private modalService = inject(NgbModal);
   isOver18 = false;
   birthdate: Date = new Date();
   model: NgbDateStruct | undefined;
@@ -80,6 +81,15 @@ export class ProfileComponent implements OnInit {
       return true;
     }
     return false; // No empty fields found
+  }
+
+  open(content: TemplateRef<any>) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+      },
+      (reason) => {
+      },
+    );
   }
 
 
