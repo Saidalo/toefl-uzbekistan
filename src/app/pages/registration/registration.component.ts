@@ -36,6 +36,18 @@ export class RegistrationComponent implements OnInit {
   dateMessage = "no Date selected";
   aviableDates : any[] = [];
   datesLoading = true;
+  disableSelect = new FormControl(false);
+  selectedTest = 'TOEFL_ITP';
+
+  secondFormGroup = this._formBuilder.group({
+    test: ['', Validators.required]
+  });
+
+  testOptions = [
+    {value: "TOEFL_ITP", text: "Bring the global standard in English-language assessment to your classroom with the TOEFL ITP® Assessment Series — a convenient, affordable and reliable assessment of English-language skills. More than 2,500 institutions in 50+ countries administer the tests annually.<br>When you use the TOEFL ITP tests, you'll measure students' proficiency level in four different skills — reading comprehension, listening comprehension, structure and written expression, and speaking. You'll be able to pinpoint the areas in which your students need help so you can tailor your teaching to meet those needs. Knowing your students' English-skill levels better today gives them the best chance for success tomorrow."},
+    {value: "TOEFL_IBT", text: "Designed by institutions for institutions, the TOEFL iBT test meets your needs in a superior way. That's why more than 12,000 universities in over 160 countries trust it to showcase their applicants' ability to succeed in an English-speaking academic environment."}
+  ];
+  testText = "";
 
   firstFormGroup = this._formBuilder.group({
     name: ['', Validators.required],
@@ -55,16 +67,17 @@ export class RegistrationComponent implements OnInit {
     repassword: ['', Validators.required],
   }, {validator: passwordMatchValidator});
 
-  secondFormGroup = this._formBuilder.group({
+  thirdFormGroup = this._formBuilder.group({
     country: ['', Validators.required],
     identity_type: ['', Validators.required],
   });
 
-  thirdFormGroup = this._formBuilder.group({
+  fourthFormGroup = this._formBuilder.group({
     date: [''],
   });
 
   countryOptions = [
+    { value: "Uzbekistan", label: "Uzbekistan" },
     { value: "Afghanistan", label: "Afghanistan" },
     { value: "Åland Islands", label: "Åland Islands" },
     { value: "Albania", label: "Albania" },
@@ -298,7 +311,6 @@ export class RegistrationComponent implements OnInit {
     { value: "United States", label: "United States" },
     { value: "United States Minor Outlying Islands", label: "United States Minor Outlying Islands" },
     { value: "Uruguay", label: "Uruguay" },
-    { value: "Uzbekistan", label: "Uzbekistan" },
     { value: "Vanuatu", label: "Vanuatu" },
     { value: "Venezuela", label: "Venezuela" },
     { value: "Vietnam", label: "Vietnam" },
@@ -317,6 +329,7 @@ export class RegistrationComponent implements OnInit {
               private _formBuilder: FormBuilder,
               notifierService: NotifierService) {
     this.notifier = notifierService;
+    this.testText = this.testOptions.find(value => value.value === this.selectedTest)?.text ?? "";
   }
 
 
@@ -399,8 +412,8 @@ export class RegistrationComponent implements OnInit {
     });
 
     // Map secondFormGroup to formData
-    Object.keys(this.thirdFormGroup.controls).forEach(key => {
-      data.append(key, this.thirdFormGroup.get(key)?.value);
+    Object.keys(this.fourthFormGroup.controls).forEach(key => {
+      data.append(key, this.fourthFormGroup.get(key)?.value);
     });
 
     if(currentFileUpload) {
@@ -475,6 +488,12 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+  onTestSelect(testName: string) {
+    this.selectedTest = testName;
+    const testText = this.testOptions.find(value => value.value === testName)?.text;
+    this.testText = testText ?? "";
+  }
+
   onDateChange(event: MatDatepickerInputEvent<Date>) {
     const date = this.datePipe.transform(event.value, 'yyyy/MM/dd');
     this.dateMessage = "Loading...";
@@ -514,13 +533,13 @@ export class RegistrationComponent implements OnInit {
 
         this.dateMessage = "";
         found = true;
-        this.thirdFormGroup.patchValue({
+        this.fourthFormGroup.patchValue({
           date: formatDate((date || new Date()),'yyyy-MM-dd','en_US')
         });
       }
     });
     if(!found) {
-      this.thirdFormGroup.patchValue({
+      this.fourthFormGroup.patchValue({
         date: ''
       });
       this.dateMessage = "No Exam";
@@ -570,13 +589,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   goForwardDate(stepper: any) {
-    if(this.thirdFormGroup.valid) {
+    if(this.fourthFormGroup.valid) {
       this.isLoading = true;
-      this.thirdFormGroup.disable();
+      this.fourthFormGroup.disable();
       const data: FormData = new FormData();
       // / Map firstFormGroup to formData
-      Object.keys(this.thirdFormGroup.controls).forEach(key => {
-        data.append(key, this.thirdFormGroup.get(key)?.value);
+      Object.keys(this.fourthFormGroup.controls).forEach(key => {
+        data.append(key, this.fourthFormGroup.get(key)?.value);
       });
 
       data.append('id', this.id.toString());
@@ -584,13 +603,13 @@ export class RegistrationComponent implements OnInit {
       this.authenticationService.registerDate(data).subscribe({
         next: (response: any) => {
           this.isLoading = false;
-          this.thirdFormGroup.enable();
+          this.fourthFormGroup.enable();
           this.notifier.notify('success', "Successfully registered your date!");
           stepper.next()
         },
         error: (error: any) => {
           this.isLoading = false;
-          this.thirdFormGroup.enable();
+          this.fourthFormGroup.enable();
           this.notifier.notify('error', error.error.message);
         },
       });

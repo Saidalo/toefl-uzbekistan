@@ -39,8 +39,8 @@
               <mat-error *ngIf="repassword?.hasError('required')">Please confirm your password</mat-error>
               <mat-error *ngIf="repassword?.invalid && !repassword?.hasError('required')">Passwords don't match</mat-error>
             </mat-form-field>
-            <div>
-              <button mat-button (click)="goForward(stepper)">Next</button>
+            <div class="text-right">
+              <button mat-button (click)="goForward(stepper)" class="btn btn-primary btn-lg">Next</button>
             </div>
         </form>
 
@@ -49,8 +49,28 @@
         </div>
       </mat-step>
       <mat-step [stepControl]="secondFormGroup">
+        <form *ngIf="!isLoading" [formGroup]="secondFormGroup" class="formFlex">
+          <ng-template matStepLabel>Choose test you would like to apply</ng-template>
+          <mat-form-field>
+            <mat-label>test</mat-label>
+            <mat-select [(value)]="selectedTest" [disabled]="disableSelect.value" (selectionChange)="onTestSelect($event.value)">
+              <mat-option *ngFor="let testOption of testOptions" [value]="testOption.value">{{testOption.value}}</mat-option>
+              <mat-option value="GRE" disabled>GRE</mat-option>
+              <mat-option value="TOEIC" disabled>TOEIC</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+        <blockquote class="blockquote text-center">
+          <p class="mb-4">{{testText}}</p>
+          <footer class="blockquote-footer">taken from <cite title="Source Title">ETS global</cite></footer>
+        </blockquote>
+        <div class="text-right">
+          <button type="button" (click)="goForward(stepper)" class="btn btn-primary btn-lg">Next</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="thirdFormGroup">
         <ng-template matStepLabel>Upload Image</ng-template>
-        <form [formGroup]="secondFormGroup" class="formFlex">
+        <form [formGroup]="thirdFormGroup" class="formFlex">
           <table>
             <tr>
               <td rowspan="4" class="p-3">
@@ -89,20 +109,20 @@
               </td>
             </tr>
           </table>
-          <div>
-            <button mat-button (click)="goForwardUploadImage(stepper)">Next</button>
+          <div class="text-right">
+            <button mat-button (click)="goForwardUploadImage(stepper)" class="btn btn-primary btn-lg">Next</button>
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="thirdFormGroup">
+      <mat-step [stepControl]="fourthFormGroup">
         <ng-template matStepLabel>Pick a date</ng-template>
-        <form [formGroup]="thirdFormGroup" class="formFlex formFlexCalendar">
+        <form [formGroup]="fourthFormGroup" class="formFlex formFlexCalendar">
           <mat-label>Pick a exam date</mat-label>
           <mat-spinner *ngIf="datesLoading"></mat-spinner>
 
-          <app-calendar *ngIf="!datesLoading" [availableDates]="aviableDates" (setDate)="addSelectedDateFromCalendar($event)" (refreshDates)="refreshDates()"></app-calendar>
-          <div class="pt-3">
-            <button [disabled]="(dateMessage !== '')" mat-button (click)="goForwardDate(stepper)">Next</button>
+          <app-calendar *ngIf="!datesLoading" [availableDates]="aviableDates" (setDate)="addSelectedDateFromCalendar($event)" (refreshDates)="refreshDates()" class="p-10"></app-calendar>
+          <div class="pt-3 text-right">
+            <button [disabled]="(dateMessage !== '')" mat-button (click)="goForwardDate(stepper)" class="btn btn-primary btn-lg">Next</button>
           </div>
         </form>
       </mat-step>
@@ -110,8 +130,8 @@
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
         <div>
-          <button mat-button routerLink="/login">login</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button routerLink="/login" class="btn btn-primary btn-lg">Login</button>
+          <button mat-button (click)="stepper.reset()" class="btn btn-primary btn-lg">Reset</button>
         </div>
       </mat-step>
     </mat-stepper>
