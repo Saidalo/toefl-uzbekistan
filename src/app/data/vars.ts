@@ -3,6 +3,7 @@ export class MyVars{
   public static userId = 'user_id';
 
   public static countryOptions = [
+    { value: "Uzbekistan", label: "Uzbekistan" },
     { value: "Afghanistan", label: "Afghanistan" },
     { value: "Åland Islands", label: "Åland Islands" },
     { value: "Albania", label: "Albania" },
@@ -236,7 +237,6 @@ export class MyVars{
     { value: "United States", label: "United States" },
     { value: "United States Minor Outlying Islands", label: "United States Minor Outlying Islands" },
     { value: "Uruguay", label: "Uruguay" },
-    { value: "Uzbekistan", label: "Uzbekistan" },
     { value: "Vanuatu", label: "Vanuatu" },
     { value: "Venezuela", label: "Venezuela" },
     { value: "Vietnam", label: "Vietnam" },

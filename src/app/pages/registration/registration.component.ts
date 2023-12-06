@@ -40,7 +40,7 @@ export class RegistrationComponent implements OnInit {
   disableSelect = new FormControl(false);
   selectedTest = 'TOEFL_ITP';
 
-  secondFormGroup = this._formBuilder.group({
+  testTypeFormGroup = this._formBuilder.group({
     test: ['', Validators.required]
   });
 
@@ -68,12 +68,12 @@ export class RegistrationComponent implements OnInit {
     repassword: ['', Validators.required],
   }, {validator: passwordMatchValidator});
 
-  thirdFormGroup = this._formBuilder.group({
+  secondFormGroup = this._formBuilder.group({
     country: ['', Validators.required],
     identity_type: ['', Validators.required],
   });
 
-  fourthFormGroup = this._formBuilder.group({
+  thirdFormGroup = this._formBuilder.group({
     date: [''],
   });
   myVars = MyVars;
@@ -170,9 +170,9 @@ export class RegistrationComponent implements OnInit {
       data.append(key, this.firstFormGroup.get(key)?.value);
     });
 
-    // Map secondFormGroup to formData
-    Object.keys(this.fourthFormGroup.controls).forEach(key => {
-      data.append(key, this.fourthFormGroup.get(key)?.value);
+    // Map thirdForm to formData
+    Object.keys(this.thirdFormGroup.controls).forEach(key => {
+      data.append(key, this.thirdFormGroup.get(key)?.value);
     });
 
     if(currentFileUpload) {
@@ -249,6 +249,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   onTestSelect(testName: string) {
+    this.testTypeFormGroup.patchValue({
+      test: testName
+    });
     this.selectedTest = testName;
     const testText = this.testOptions.find(value => value.value === testName)?.text;
     this.testText = testText ?? "";
@@ -293,13 +296,13 @@ export class RegistrationComponent implements OnInit {
 
         this.dateMessage = "";
         found = true;
-        this.fourthFormGroup.patchValue({
+        this.thirdFormGroup.patchValue({
           date: formatDate((date || new Date()),'yyyy-MM-dd','en_US')
         });
       }
     });
     if(!found) {
-      this.fourthFormGroup.patchValue({
+      this.thirdFormGroup.patchValue({
         date: ''
       });
       this.dateMessage = "No Exam";
@@ -338,6 +341,19 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+  goForwardExamType(stepper: any) {
+
+    this.generalStepper.next();
+    // if(this.testTypeFormGroup.valid) {
+    //   stepper.next();
+    //   // this.isLoading = true;
+    //   // this.firstFormGroup.disable();
+    //   // this.onSubmitFirstForm(stepper);
+    // } else{
+    //   this.notifier.notify('error', "Please fill all required fields!");
+    // }
+  }
+
   goForwardUploadImage(stepper: any) {
       if(this.secondFormGroup.valid) {
         this.isLoading = true;
@@ -349,13 +365,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   goForwardDate(stepper: any) {
-    if(this.fourthFormGroup.valid) {
+    if(this.thirdFormGroup.valid) {
       this.isLoading = true;
-      this.fourthFormGroup.disable();
+      this.thirdFormGroup.disable();
       const data: FormData = new FormData();
       // / Map firstFormGroup to formData
-      Object.keys(this.fourthFormGroup.controls).forEach(key => {
-        data.append(key, this.fourthFormGroup.get(key)?.value);
+      Object.keys(this.thirdFormGroup.controls).forEach(key => {
+        data.append(key, this.thirdFormGroup.get(key)?.value);
       });
 
       data.append('id', this.id.toString());
@@ -363,13 +379,13 @@ export class RegistrationComponent implements OnInit {
       this.authenticationService.registerDate(data).subscribe({
         next: (response: any) => {
           this.isLoading = false;
-          this.fourthFormGroup.enable();
+          this.thirdFormGroup.enable();
           this.notifier.notify('success', "Successfully registered your date!");
           stepper.next()
         },
         error: (error: any) => {
           this.isLoading = false;
-          this.fourthFormGroup.enable();
+          this.thirdFormGroup.enable();
           this.notifier.notify('error', error.error.message);
         },
       });

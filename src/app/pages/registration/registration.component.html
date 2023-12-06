@@ -48,29 +48,30 @@
           <mat-spinner></mat-spinner>
         </div>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroup">
-        <form *ngIf="!isLoading" [formGroup]="secondFormGroup" class="formFlex">
+      <mat-step [stepControl]="testTypeFormGroup">
+        <form [formGroup]="testTypeFormGroup" class="formFlex">
           <ng-template matStepLabel>Choose test you would like to apply</ng-template>
           <mat-form-field>
             <mat-label>test</mat-label>
-            <mat-select [(value)]="selectedTest" [disabled]="disableSelect.value" (selectionChange)="onTestSelect($event.value)">
+            <mat-select [(value)]="selectedTest" (selectionChange)="onTestSelect($event.value)" formControlName="test">
               <mat-option *ngFor="let testOption of testOptions" [value]="testOption.value">{{testOption.value}}</mat-option>
               <mat-option value="GRE" disabled>GRE</mat-option>
               <mat-option value="TOEIC" disabled>TOEIC</mat-option>
             </mat-select>
           </mat-form-field>
+          <blockquote class="blockquote text-center">
+            <p class="mb-4">{{testText}}</p>
+            <footer class="blockquote-footer">taken from <cite title="Source Title">ETS global</cite></footer>
+          </blockquote>
+          <div class="text-right">
+            <button mat-button (click)="goForwardExamType(stepper)" class="btn btn-primary btn-lg">Next</button>
+          </div>
         </form>
-        <blockquote class="blockquote text-center">
-          <p class="mb-4">{{testText}}</p>
-          <footer class="blockquote-footer">taken from <cite title="Source Title">ETS global</cite></footer>
-        </blockquote>
-        <div class="text-right">
-          <button type="button" (click)="goForward(stepper)" class="btn btn-primary btn-lg">Next</button>
-        </div>
+
       </mat-step>
-      <mat-step [stepControl]="thirdFormGroup">
+      <mat-step [stepControl]="secondFormGroup">
         <ng-template matStepLabel>Upload Image</ng-template>
-        <form [formGroup]="thirdFormGroup" class="formFlex">
+        <form [formGroup]="secondFormGroup" class="formFlex">
           <table>
             <tr>
               <td rowspan="4" class="p-3">
@@ -103,7 +104,6 @@
                 <input type="file"
                        class="form-control"
                        id="customFile"
-                       formControlName="image"
                        accept="image/*"
                        (change)="selectFile($event)"/>
               </td>
@@ -114,9 +114,9 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="fourthFormGroup">
+      <mat-step [stepControl]="thirdFormGroup">
         <ng-template matStepLabel>Pick a date</ng-template>
-        <form [formGroup]="fourthFormGroup" class="formFlex formFlexCalendar">
+        <form [formGroup]="thirdFormGroup" class="formFlex formFlexCalendar">
           <mat-label>Pick a exam date</mat-label>
           <mat-spinner *ngIf="datesLoading"></mat-spinner>
 
