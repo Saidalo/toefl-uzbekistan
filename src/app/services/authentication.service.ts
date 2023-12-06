@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import {AuthenticationClient} from "../clients/authentication.client";
 import {Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
+import {MyVars} from "../data/vars";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private tokenKey = 'token';
-  private userId = 'user_id';
   private roleKey = 'roles';
 
   constructor(
@@ -20,8 +19,8 @@ export class AuthenticationService {
     this.authenticationClient.login(email, password).subscribe({
       next: (response: any) => {
         if (response.status == 1) {
-          localStorage.setItem(this.tokenKey, response.token);
-          localStorage.setItem(this.userId, response.data.id);
+          localStorage.setItem(MyVars.tokenKey, response.token);
+          localStorage.setItem(MyVars.userId, response.data.id);
 
           this.router.navigate(['/']).then(() => {
             window.location.reload();
@@ -56,8 +55,8 @@ export class AuthenticationService {
       .register(form)
       .subscribe({next: (response:any) => {
           if(response.status == 1) {
-            localStorage.setItem(this.tokenKey, response.token);
-            localStorage.setItem(this.userId, response.data.id);
+            localStorage.setItem(MyVars.tokenKey, response.token);
+            localStorage.setItem(MyVars.userId, response.data.id);
 
             this.router.navigate(['/verification'], {queryParams: {status: 'pending'}});
           } else{
@@ -82,7 +81,7 @@ export class AuthenticationService {
     return this.authenticationClient.registerDate(form);
   }
 
-  public profile(id: number){
+  public profile(id: number = this.getUserId()!){
     return this.authenticationClient.profile(id);
   }
 
@@ -91,24 +90,24 @@ export class AuthenticationService {
   }
 
   public logout() {
-    localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.userId);
+    localStorage.removeItem(MyVars.tokenKey);
+    localStorage.removeItem(MyVars.userId);
     this.router.navigate(['/login']).then(() => {
       window.location.reload();
     });
   }
 
   public isLoggedIn(): boolean {
-    let token = localStorage.getItem(this.tokenKey);
+    let token = localStorage.getItem(MyVars.tokenKey);
     return token != null && token.length > 0;
   }
 
   public getToken(): string | null {
-    return this.isLoggedIn() ? localStorage.getItem(this.tokenKey) : null;
+    return this.isLoggedIn() ? localStorage.getItem(MyVars.tokenKey) : null;
   }
 
   public getUserId(): number | null {
-    return this.isLoggedIn() ? parseInt(localStorage.getItem(this.userId)!) : null;
+    return this.isLoggedIn() ? parseInt(localStorage.getItem(MyVars.userId)!) : null;
   }
 
   public setDataInLocalStorage(variableName: string, data: any) {

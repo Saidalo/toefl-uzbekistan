@@ -93,7 +93,7 @@
                 <mat-form-field>
                   <mat-label>Country</mat-label>
                   <mat-select formControlName="country">
-                    <mat-option *ngFor="let country of countryOptions" [value]="country.value">{{country.label}}</mat-option>
+                    <mat-option *ngFor="let country of myVars.countryOptions" [value]="country.value">{{country.label}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </td>
