@@ -43,6 +43,7 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'account-list',
@@ -52,14 +53,17 @@ const routes: Routes = [
   {
     path: 'courses',
     component: CoursesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'teachers',
     component: TeachersComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'about-us',
     component: AboutUsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '404',
@@ -68,10 +72,12 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'preparation',
     component: PreparationComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',
