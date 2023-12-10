@@ -1,4 +1,7 @@
 /* Normal desktop :1200px. */
+.counter-wrapper {
+    text-align: justify;
+}
 @media (min-width: 1200px) and (max-width: 1500px) {
     .map-img img {
         width: 100%;
