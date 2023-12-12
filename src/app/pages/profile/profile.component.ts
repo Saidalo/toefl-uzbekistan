@@ -7,6 +7,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {NotifierService} from "angular-notifier";
 import {passwordMatchValidator} from "../registration/registration.component";
 import {NgbDateStruct, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'profile',
@@ -159,5 +160,18 @@ export class ProfileComponent implements OnInit {
       this.profileForm.enable();
       this.notifier.notify('error', 'Please fill all required fields!');
     }
+  }
+
+  generateAgreement(){
+    this.authenticationService.generateAgreement().subscribe({
+      next: (data: any) => {
+        saveAs(data, `Agreement.pdf`)
+        this.notifier.notify('success', 'Agreement generated successfully!');
+      },
+      error: (error: any) => {
+        console.log(error);
+        this.notifier.notify('error', 'Something went wrong!');
+      }
+    });
   }
 }

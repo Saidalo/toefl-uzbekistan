@@ -113,4 +113,9 @@ export class AuthenticationService {
   public setDataInLocalStorage(variableName: string, data: any) {
     localStorage.setItem(variableName, data);
   }
+
+  public generateAgreement(): any{
+    return this.authenticationClient.generateAgreement(this.getUserId()!);
+
+  }
 }

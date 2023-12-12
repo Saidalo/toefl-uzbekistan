@@ -132,6 +132,7 @@
                         </label>
                       </div>
                       <button [disabled]="!isOver18 && !this.profileForm.controls['agreeTerms'].value" mat-raised-button color="primary">Save changes</button>
+                      <button mat-button color="primary" type="button" (click)="generateAgreement()" class="pl-3"><mat-icon>download</mat-icon> Agreement file</button>
                     </form>
                   </div>
                 </div>

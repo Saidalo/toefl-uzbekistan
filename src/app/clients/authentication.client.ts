@@ -68,5 +68,12 @@ export class AuthenticationClient {
       }
     ).pipe(map(res => {return res;}));
   }
+
+  public generateAgreement(id: number){
+    return this.http.get(
+      environment.apiUrl + '/filemanager/agreement/' + id,
+      {responseType: 'blob'}
+    ).pipe(map(res => {return res;}));
+  }
 }
 
