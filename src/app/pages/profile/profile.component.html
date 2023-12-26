@@ -141,14 +141,66 @@
             <li [ngbNavItem]="2">
               <button ngbNavLink>Payments</button>
               <ng-template ngbNavContent>
-                <p>
-                  Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-                  farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-                  ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-                  helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
-                  8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-                  stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
-                </p>
+                <div class="row">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                        <th scope="col">Exam</th>
+                        <th scope="col">Exam date</th>
+                        <th scope="col">Payment Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="table-success">
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>TOEFL ITP</td>
+                        <td>12-01-2024</td>
+                        <td>Paid</td>
+                      </tr>
+                      <tr class="table-success">
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>TOEFL ITP</td>
+                        <td>12-01-2024</td>
+                        <td>Paid</td>
+                      </tr>
+                      <tr class="table-success">
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>TOEFL ITP</td>
+                        <td>12-01-2024</td>
+                        <td>Paid</td>
+                      </tr>
+                      <tr class="table-danger">
+                        <th scope="row">4</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>TOEFL ITP</td>
+                        <td>12-01-2024</td>
+                        <td>
+                          <div class="row">
+                            <div class="col-md-4">Not paid</div>
+                            <div class="col-md-4"><button class="click btn btn-outline-primary"></button></div>
+                            <div class="col-md-4"><button class="payme btn btn-outline-primary"></button></div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
               </ng-template>
             </li>
             <li [ngbNavItem]="3">
