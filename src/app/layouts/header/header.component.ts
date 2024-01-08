@@ -10,9 +10,11 @@ export class HeaderComponent {
   public width1200 = false;
   public size400_700 = false;
   isLoggedIn = false;
+  isAdmin = false;
   authenticationService: AuthenticationService | undefined;
   constructor(authenticationService: AuthenticationService) {
     this.isLoggedIn = authenticationService.isLoggedIn();
+    this.isAdmin = authenticationService.isAdmin();
     this.authenticationService = authenticationService;
   }
   goToUrl(url: any): void {
@@ -22,6 +24,7 @@ export class HeaderComponent {
 
   logOut(){
     this.isLoggedIn = false;
+    this.isAdmin = false;
     this.authenticationService?.logout();
   }
 

@@ -42,6 +42,7 @@ import {NotifierModule} from "angular-notifier";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {ErrorInterceptor} from "./helpers/error.interceptor";
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import {ProfileComponent} from "./pages/profile/profile.component";
     DialogComponent,
     VerificationComponent,
     CalendarComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
     imports: [
         BrowserModule,
@@ -92,7 +93,8 @@ import {ProfileComponent} from "./pages/profile/profile.component";
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    DatePipe
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

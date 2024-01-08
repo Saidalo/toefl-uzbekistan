@@ -14,6 +14,9 @@ import {RegistrationComponent} from "./pages/registration/registration.component
 import {AccountListComponent} from "./pages/account-list/account-list.component";
 import {VerificationComponent} from "./pages/verification/verification.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
+const adminModule = () =>
+  import("./pages/admin/admin.module").then((x) => x.AdminModule);
+
 
 
 const routes: Routes = [
@@ -85,6 +88,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: "admin",
+    loadChildren: adminModule,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'under-construction',
     component: UnderConstructionComponent
   },
@@ -94,7 +102,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false, useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

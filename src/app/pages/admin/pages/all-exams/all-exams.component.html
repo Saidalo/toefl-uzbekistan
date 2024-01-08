@@ -1,0 +1,8 @@
+<app-table
+  *ngIf="exams.length>0 && !isLoading"
+  [items]="exams"
+  [tableName]="'Exams'"
+  (updateItems)="updateExams()"
+>
+</app-table>
+<mat-spinner *ngIf="isLoading"></mat-spinner>

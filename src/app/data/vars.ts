@@ -1,5 +1,6 @@
 export class MyVars{
   public static tokenKey = 'token';
+  public static roleKey = 'roles';
   public static userId = 'user_id';
 
   public static countryOptions = [

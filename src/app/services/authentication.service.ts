@@ -8,7 +8,6 @@ import {MyVars} from "../data/vars";
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private roleKey = 'roles';
 
   constructor(
     private authenticationClient: AuthenticationClient,
@@ -20,6 +19,7 @@ export class AuthenticationService {
       next: (response: any) => {
         if (response.status == 1) {
           localStorage.setItem(MyVars.tokenKey, response.token);
+          localStorage.setItem(MyVars.roleKey, response.data.permissions);
           localStorage.setItem(MyVars.userId, response.data.id);
 
           this.router.navigate(['/']).then(() => {
@@ -90,8 +90,7 @@ export class AuthenticationService {
   }
 
   public logout() {
-    localStorage.removeItem(MyVars.tokenKey);
-    localStorage.removeItem(MyVars.userId);
+    localStorage.clear();
     this.router.navigate(['/login']).then(() => {
       window.location.reload();
     });
@@ -100,6 +99,11 @@ export class AuthenticationService {
   public isLoggedIn(): boolean {
     let token = localStorage.getItem(MyVars.tokenKey);
     return token != null && token.length > 0;
+  }
+
+  public isAdmin(): boolean {
+    let roles = localStorage.getItem(MyVars.roleKey);
+    return roles != null && roles.includes('ADMIN');
   }
 
   public getToken(): string | null {
@@ -118,4 +122,5 @@ export class AuthenticationService {
     return this.authenticationClient.generateAgreement(this.getUserId()!);
 
   }
+
 }
