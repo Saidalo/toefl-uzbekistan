@@ -123,4 +123,7 @@ export class AuthenticationService {
 
   }
 
+  registerExam(account_id: number, exam_id: number) {
+    return this.authenticationClient.registerExam(account_id, exam_id);
+  }
 }

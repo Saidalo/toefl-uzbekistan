@@ -2,7 +2,67 @@
   *ngIf="accounts.length>0 && !isLoading"
   [items]="accounts"
   [tableName]="'Accounts'"
+  [additionalActionName]="'Show Registered Exams'"
+  (additionalAction)="openMoreActions($event)"
   (updateItems)="updateAccounts()"
 >
 </app-table>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<ng-template #moreActions let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">More actions</h4>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <mat-spinner *ngIf="isExamsLoading"></mat-spinner>
+    <div *ngIf="!isExamsLoading">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>exam_id</th>
+            <th>date</th>
+            <th>Description</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let exam of exams">
+            <td>{{exam.exam_id}}</td>
+            <td>{{exam.date}}</td>
+            <td>{{exam.description}}</td>
+            <td>
+              <span *ngIf="exam.score">{{exam.score}}</span>
+              <span *ngIf="!exam.score">Not Set</span>
+              <button type="button" class="btn btn-link" (click)="openEditScore(exam)">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #editScore let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Score</h4>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <input [(ngModel)]="selectedExam.score">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Close</button>
+    <button type="button" class="btn btn-success" (click)="updateScores();modal.dismiss('Cross click');">Save</button>
+  </div>
+</ng-template>

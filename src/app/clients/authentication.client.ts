@@ -75,5 +75,15 @@ export class AuthenticationClient {
       {responseType: 'blob'}
     ).pipe(map(res => {return res;}));
   }
+
+  registerExam(account_id: number, exam_id: number) {
+    return this.http.post(
+      environment.apiUrl + '/account/registerExam',
+      {
+        account_id: account_id,
+        exam_id: exam_id
+      }
+    ).pipe(map(res => {return res;}));
+  }
 }
 

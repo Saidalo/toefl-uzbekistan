@@ -11,8 +11,10 @@ import {NotifierService} from "angular-notifier";
 export class TableComponent implements OnInit {
 
   @Input() items: any | undefined;
+  @Input() additionalActionName: string | undefined;
   @Input() tableName: string | undefined;
   @Output() updateItems = new EventEmitter<any>();
+  @Output() additionalAction : EventEmitter<any> = new EventEmitter<any>();
   keys: any;
   notifier: NotifierService;
   id_key: string = 'id';

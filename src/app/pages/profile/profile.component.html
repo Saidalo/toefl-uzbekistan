@@ -132,13 +132,13 @@
                         </label>
                       </div>
                       <button [disabled]="!isOver18 && !this.profileForm.controls['agreeTerms'].value" mat-raised-button color="primary">Save changes</button>
-                      <button mat-button color="primary" type="button" (click)="generateAgreement()" class="pl-3"><mat-icon>download</mat-icon> Agreement file</button>
+                      <button *ngIf="!isAdmin" mat-button color="primary" type="button" (click)="generateAgreement()" class="pl-3"><mat-icon>download</mat-icon> Agreement file</button>
                     </form>
                   </div>
                 </div>
               </ng-template>
             </li>
-            <li [ngbNavItem]="2">
+            <li [ngbNavItem]="2" *ngIf="!isAdmin">
               <button ngbNavLink>Payments</button>
               <ng-template ngbNavContent>
                 <div class="row">
@@ -203,7 +203,7 @@
                 </div>
               </ng-template>
             </li>
-            <li [ngbNavItem]="3">
+            <li [ngbNavItem]="3" *ngIf="!isAdmin">
               <button ngbNavLink>My Certificates</button>
               <ng-template ngbNavContent>
                 <p>

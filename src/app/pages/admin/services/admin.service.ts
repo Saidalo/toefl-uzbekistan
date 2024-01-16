@@ -52,4 +52,23 @@ export class AdminService {
       body
     ).pipe(map(res => {return res;}));
   }
+
+  public getExamsByUser(id: any){
+      return this.http.get(
+      environment.apiUrl + '/admin/getExamsByUser/' + id
+      ).pipe(map(res => {return res;}));
+  }
+
+  public getUsersByExam(id: any){
+    return this.http.get(
+      environment.apiUrl + '/admin/getAllAccountsForExam/' + id
+    ).pipe(map(res => {return res;}));
+  }
+
+  public updateScores(body:any){
+    return this.http.post(
+      environment.apiUrl + '/admin/updateScores',
+      body
+    ).pipe(map(res => {return res;}));
+  }
 }

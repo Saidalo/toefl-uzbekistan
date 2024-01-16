@@ -24,6 +24,7 @@ import {
 } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
 import {formatDate} from "@angular/common";
+import {EventDetail} from "../../data/event-detail";
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -49,7 +50,7 @@ export class CalendarComponent implements OnInit{
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any> | undefined;
 
   @Input() availableDates!: any[];
-  @Output() setDate = new EventEmitter<Date>();
+  @Output() setExam = new EventEmitter<any>();
   @Output() refreshDates = new EventEmitter<Date>();
 
   view: CalendarView = CalendarView.Month;
@@ -83,7 +84,7 @@ export class CalendarComponent implements OnInit{
 
   refresh = new Subject<void>();
 
-  events: CalendarEvent[] = [
+  events: CalendarEvent<EventDetail>[] = [
     // {
     //   start: subDays(startOfDay(new Date()), 1),
     //   end: addDays(new Date(), 1),
@@ -131,7 +132,13 @@ export class CalendarComponent implements OnInit{
   ngOnInit(): void {
     this.events = [];
     this.availableDates.forEach((item: any) => {
-      let event : any = {};
+      let event : CalendarEvent<EventDetail> = {
+        meta: {
+          description: item.description,
+          freespace: item.freespace,
+          id: item.exam_id,
+        }
+      } as CalendarEvent<EventDetail>;
       switch (true) {
         case item.freespace <= 0:
           event['color'] = colors['red'];
@@ -143,7 +150,8 @@ export class CalendarComponent implements OnInit{
           event['color'] = colors['green'];
           break;
       }
-      event['date'] = new Date(item['date']);
+      // event['date'] = new Date(item['date']);
+      event['id'] = item['exam_id'];
       event['start'] = new Date(item['date']);
       event['title'] = item.freespace + ' spaces available';
       this.events.push(event);
@@ -151,9 +159,15 @@ export class CalendarComponent implements OnInit{
     });
   }
 
+  registerExam(event: CalendarEvent<EventDetail> | undefined){
+    if(event == undefined){
+      return;
+    }
+    this.setExam.emit(event.id);
+  }
+
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
 
-    this.setDate.emit(date);
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||

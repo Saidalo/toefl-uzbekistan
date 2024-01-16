@@ -140,6 +140,9 @@ export class RegistrationComponent implements OnInit {
   getAllDateAvailability(){
     this.http.get(environment.apiUrl + '/account/getAllDateAvailability',
       {
+        params: {
+          type: this.selectedTest
+        },
         observe: 'response'
       }
     ).pipe(first()).subscribe({
@@ -308,6 +311,27 @@ export class RegistrationComponent implements OnInit {
       this.dateMessage = "No Exam";
     }
 
+  }
+
+  registerExam(exam_id: number){
+    this.isLoading = true;
+    const account_id = this.authenticationService.getUserId();
+    if(!account_id) {
+      this.notifier.notify('error', "Something went wrong!");
+      return;
+    }
+    this.authenticationService.registerExam(account_id, exam_id).subscribe({
+      next: (response: any) => {
+        this.isLoading = false;
+        this.notifier.notify('success', "Successfully registered your exam!");
+        this.generalStepper.next();
+      },
+      error: (error: any) => {
+        this.isLoading = false;
+        this.notifier.notify('error', "You already registered for the exam!");
+        this.generalStepper.next();
+      },
+    });
   }
 
   refreshDates(){

@@ -2,7 +2,47 @@
   *ngIf="exams.length>0 && !isLoading"
   [items]="exams"
   [tableName]="'Exams'"
+  [additionalActionName]="'Show Registered Accounts'"
+  (additionalAction)="openRegisteredAccountModal($event)"
   (updateItems)="updateExams()"
 >
 </app-table>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+
+<ng-template #moreActions let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">More actions</h4>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <mat-spinner *ngIf="isAccountsLoading"></mat-spinner>
+    <div *ngIf="!isAccountsLoading">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>id</th>
+          <th>Name</th>
+          <th>Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of accounts; index as i;">
+          <td>{{item.id}}</td>
+          <td>{{item.Name}}</td>
+          <td>
+            <input [(ngModel)]="response[i].score">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="saveScores()">Save</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Close</button>
+  </div>
+</ng-template>

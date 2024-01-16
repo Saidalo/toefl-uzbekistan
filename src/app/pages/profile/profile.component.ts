@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   birthdate: Date = new Date();
   model: NgbDateStruct | undefined;
   active = 1;
+  isAdmin = false;
 
   private readonly notifier: NotifierService;
 
@@ -120,6 +121,7 @@ export class ProfileComponent implements OnInit {
   account: any;
   ngOnInit() {
     this.id = this.authenticationService.getUserId();
+    this.isAdmin = this.authenticationService.isAdmin();
     console.log(this.id);
     if(this.id) {
       this.authenticationService.profile(this.id).subscribe((res: any) => {

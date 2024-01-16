@@ -1,7 +1,11 @@
 <section>
-  <div class="example-button-row p-3">
-    <button mat-raised-button [routerLink]="'all-accounts'">Accounts</button>
-    <button mat-raised-button color="primary" [routerLink]="'all-exams'">Exams</button>
+  <div class="btn-group btn-group-toggle p-3" data-toggle="buttons">
+    <label class="btn btn-secondary" [routerLink]="'all-accounts'">
+      <input type="radio" name="options" id="option1" autocomplete="off"> Accounts
+    </label>
+    <label class="btn btn-secondary" [routerLink]="'all-exams'">
+      <input type="radio" name="options" id="option2" autocomplete="off"> Exams
+    </label>
   </div>
 </section>
 <mat-divider></mat-divider>

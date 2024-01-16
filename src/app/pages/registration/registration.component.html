@@ -120,9 +120,9 @@
           <mat-label>Pick a exam date</mat-label>
           <mat-spinner *ngIf="datesLoading"></mat-spinner>
 
-          <app-calendar *ngIf="!datesLoading" [availableDates]="aviableDates" (setDate)="addSelectedDateFromCalendar($event)" (refreshDates)="refreshDates()" class="p-10"></app-calendar>
+          <app-calendar *ngIf="!datesLoading" [availableDates]="aviableDates" (setExam)="registerExam($event)" (refreshDates)="refreshDates()" class="p-10"></app-calendar>
           <div class="pt-3 text-right">
-            <button [disabled]="(dateMessage !== '')" mat-button (click)="goForwardDate(stepper)" class="btn btn-primary btn-lg">Next</button>
+<!--            <button [disabled]="(dateMessage !== '')" mat-button (click)="goForwardDate(stepper)" class="btn btn-primary btn-lg">Next</button>-->
           </div>
         </form>
       </mat-step>

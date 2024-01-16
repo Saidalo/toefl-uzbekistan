@@ -32,6 +32,9 @@
         <label for="{{ key }}">{{ key }}</label>
         <input [type]="key.includes('date')? 'date' : null" [disabled]="key === id_key" type="text" class="form-control" id="{{ key }}" name="{{key}}" [(ngModel)]="selectedItem[key]">
       </div>
+      <div>
+        <button *ngIf="!isAddNew && additionalActionName" type="button" class="btn btn-outline-info" (click)="additionalAction.emit(selectedItem)">{{additionalActionName}}</button>
+      </div>
     </form>
   </div>
   <div class="modal-footer">
