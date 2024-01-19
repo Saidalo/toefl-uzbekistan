@@ -4,6 +4,7 @@ import {HomeComponent} from "./pages/home/home.component";
 import {NotfoundComponent} from "./pages/notfound/notfound.component";
 import {AboutUsComponent} from "./pages/about-us/about-us.component";
 import {TeachersComponent} from "./pages/teachers/teachers.component";
+import {ToeflTests} from "./pages/our-tests/tests.component";
 import {CoursesComponent} from "./pages/courses/courses.component";
 import {ContactsComponent} from "./pages/contacts/contacts.component";
 import {LoginComponent} from "./pages/login/login.component";
@@ -81,6 +82,10 @@ const routes: Routes = [
     path: 'preparation',
     component: PreparationComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'our-tests/:test',
+    component: ToeflTests
   },
   {
     path: 'profile',
