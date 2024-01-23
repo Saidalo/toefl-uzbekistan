@@ -10,9 +10,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class HomeComponent {
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
   images = [
-    'https://www.stanford.edu/wp-content/uploads/2023/10/Hero-3-2-scaled.jpg',
-    'https://www.alpha-sense.com/wp-content/uploads/2021/01/AS-Blog-Corporate-Response-Insurrection.png',
-    'https://tourscanner.com/blog/wp-content/uploads/2022/01/fun-things-to-do-in-New-York-City-at-night.jpg'];
+    'assets/img/bg/banner3.jpg',
+    'assets/img/bg/banner2.jpg',
+    'assets/img/bg/banner1.jpg',];
+    //'assets/img/bg/american-flag-manhattan-new-york-downtown.jpg'
 
   contactForm = new FormGroup({
     fullName: new FormControl('', Validators.required),

@@ -176,4 +176,22 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
+
+  payViaClick() {
+    let objectDate = new Date();
+    let day = objectDate.getDate();
+    let month = objectDate.getMonth();
+    let year = objectDate.getFullYear();
+    const currentDate = `${day}-${month}-${year}`;
+    const service_id = 30465;
+    const merchant_id = 22928;
+    const secret_key = 'LVduPJQTWj3bN';
+    const merchant_user_id = 'toeflcenter';
+    const transaction_param = `${currentDate}-${localStorage.getItem('user_id')}`
+    window.location.href = `https://my.click.uz/services/pay?service_id=${service_id}&merchant_id=${merchant_id}&amount=1000&transaction_param=${transaction_param}`;
+  }
+
+  payViaPayme() {
+
+  }
 }

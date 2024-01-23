@@ -49,10 +49,29 @@
   //padding-bottom:20px;
   color:#fff;
   text-align:left;
-  max-width: 40%;
+  max-width: 60%;
 }
 
 .bigFont{
   font-size: 70px;
   line-height: 70px;
+}
+
+h1.banner-title,
+p.sub-title {
+  display: inline;
+}
+
+.blank {
+  min-height: 30px;
+}
+
+.blank-large {
+  min-height: 100px;
+}
+
+.about-1-img img {
+  margin-top: -30px;
+  width: 300px;
+  height: 100px;
 }
