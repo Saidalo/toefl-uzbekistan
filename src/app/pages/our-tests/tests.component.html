@@ -1,1 +1,41 @@
-<p>Account ID: {{ ourTest }}</p>
+<div>
+    <button type="button" class="btn btn-primary"
+        data-toggle="modal" data-target="#exampleModal">
+        Click to view modal
+    </button>
+    <!--Bootstrap modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 80%;">
+            <div class="modal-content">
+                <!-- Modal heading -->
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">
+                        What is the best strategy to get the highest score in TOEFL ITP Test ?
+                    </h2>
+                    <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                </div>
+                <!-- Modal body with image -->
+                <div class="modal-body">
+                    <p class="lead">Stop wasting your time and money, and start learning with the best to get the best results</p>
+                    <blockquote class="blockquote">
+                        <p class="mb-0"><b>Here are the advantages of our TOEFL ITP Course:</b></p>
+                    </blockquote>
+                    <img src="gfg.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-wrapper">
+    <div class="wrapper">
+        <h1>{{conent[ourTest].slogan}}</h1>
+        <p>{{conent[ourTest].text}}</p>
+    </div>
+</div>
