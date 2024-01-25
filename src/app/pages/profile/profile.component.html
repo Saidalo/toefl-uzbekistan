@@ -155,40 +155,14 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr class="table-success">
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                      <tr *ngFor="let exam of exams" class="table-danger">
+                        <th scope="row">{{ exam.exam_id }}</th>
+                        <td>{{this.account.Name}}</td>
+                        <td>{{this.account.Surname}}</td>
                         <td>@mdo</td>
-                        <td>TOEFL ITP</td>
-                        <td>12-01-2024</td>
-                        <td>Paid</td>
-                      </tr>
-                      <tr class="table-success">
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>TOEFL ITP</td>
-                        <td>12-01-2024</td>
-                        <td>Paid</td>
-                      </tr>
-                      <tr class="table-success">
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>TOEFL ITP</td>
-                        <td>12-01-2024</td>
-                        <td>Paid</td>
-                      </tr>
-                      <tr class="table-danger">
-                        <th scope="row">4</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>TOEFL ITP</td>
-                        <td>12-01-2024</td>
+                        <td>{{ exam.type }}</td>
+                        <td>{{ formatDate(exam.date, format, locale) }}</td>
+<!--                        <td>Paid</td>-->
                         <td>
                           <div class="row">
                             <div class="col-md-4">Not paid</div>
@@ -199,7 +173,7 @@
                       </tr>
                     </tbody>
                   </table>
-
+                  <mat-spinner *ngIf="isExamsLoading"></mat-spinner>
                 </div>
               </ng-template>
             </li>

@@ -10,6 +10,32 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
 
+<ng-template #editContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Account</h4>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+      <span>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group" *ngFor="let exam of exams | keyvalue">
+        <label for="{{ exam.key }}">{{ exam.key }}</label>
+        <input [type]="exam.key.includes('date')? 'date' : null" [disabled]="exam.key === 'id' || exam.key.includes('_id')" type="text" class="form-control" id="{{ exam.key }}" name="{{exam.key}}">
+      </div>
+      <div>
+<!--        <button *ngIf="!isAddNew && additionalActionName" type="button" class="btn btn-outline-info" (click)="additionalAction.emit(selectedItem)">{{additionalActionName}}</button>-->
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+<!--    <button *ngIf="!isAddNew" type="button" class="btn btn-danger" (click)="deleteItem(selectedItem[id_key])">Delete Item</button>-->
+<!--    <button *ngIf="!isAddNew" type="button" class="btn btn-primary" (click)="updateItem(selectedItem)">Save changes</button>-->
+<!--    <button *ngIf="isAddNew" type="button" class="btn btn-primary" (click)="addItem(selectedItem)">Create</button>-->
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Close</button>
+  </div>
+</ng-template>
+
 <ng-template #moreActions let-modal>
   <div class="modal-header">
     <h4 class="modal-title">More actions</h4>

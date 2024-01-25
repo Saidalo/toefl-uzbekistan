@@ -85,7 +85,8 @@ const routes: Routes = [
   },
   {
     path: 'our-tests/:test',
-    component: ToeflTests
+    component: ToeflTests,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',

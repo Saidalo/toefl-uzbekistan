@@ -8,6 +8,7 @@ import {NotifierService} from "angular-notifier";
 import {passwordMatchValidator} from "../registration/registration.component";
 import {NgbDateStruct, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import { saveAs } from 'file-saver';
+import {AdminService} from "../admin/services/admin.service";
 
 @Component({
   selector: 'profile',
@@ -22,6 +23,13 @@ export class ProfileComponent implements OnInit {
   model: NgbDateStruct | undefined;
   active = 1;
   isAdmin = false;
+  isExamsLoading = false;
+  exams: any[] = [];
+
+  format = 'dd/MM/yyyy';
+  myDate = '2019-06-29';
+  locale = 'en-US';
+
 
   private readonly notifier: NotifierService;
 
@@ -55,7 +63,8 @@ export class ProfileComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private _formBuilder: FormBuilder,
               notifierService: NotifierService,
-              private datePipe: DatePipe) {
+              private datePipe: DatePipe,
+              private adminService: AdminService) {
     this.notifier = notifierService;
   }
 
@@ -133,6 +142,7 @@ export class ProfileComponent implements OnInit {
     } else{
       this.notifier.notify('error', 'Something went wrong!');
     }
+    this.getExams();
   }
 
   logOut(){
@@ -176,6 +186,25 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
+
+  getExams() {
+    this.isExamsLoading = true;
+    this.adminService.getExamsByUser(this.id).subscribe({
+      next: (exams: any) => {
+        const format = 'dd/MM/yyyy';
+        const myDate = '2019-06-29';
+        const locale = 'en-US';
+        this.exams = exams.exams;
+        this.isExamsLoading = false;
+      },
+      error: error => {
+        console.log(error);
+        this.isExamsLoading = false;
+      }
+    });
+  }
+
+  protected readonly formatDate = formatDate;
 
   payViaClick() {
     let objectDate = new Date();
