@@ -1,0 +1,113 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,200italic);
+
+$background: #eee;
+$black: #222222;
+$white: #ffffff;
+
+$default: #fff;
+$defaultTextColor: #222222;
+$defaultSecondaryTextColor: #eee;
+
+
+$red: #D32F2F;
+$redTextColor: $white;
+$redSecondaryTextColor: #F44336;
+
+$blue: #303F9F;
+$blueTextColor: $white;
+$blueSecondaryTextColor: #3F51B5;
+
+$yellow: #F9A825;
+$yellowTextColor: $black;
+$yellowSecondaryTextColor: #FBC02D;
+.quote-card {
+    background: $default;
+    color: $defaultTextColor;
+    height: 100%;
+    padding: 20px;
+    padding-left: 50px;
+    box-sizing: border-box;
+    
+    position: relative;
+    overflow: hidden;
+    min-height: 120px;
+    
+    p {
+      font-size: 22px;
+      line-height: 1.5;
+      margin: 0;
+      max-width: 100%;
+    }
+    
+    cite {
+      font-size: 16px;
+      margin-top: 10px;
+      display: block;
+      font-weight: 200;
+      opacity: 0.8;
+    }
+    
+    &:before {
+      font-family: Georgia, serif;
+      content: "“";
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      font-size: 5em;
+      color: rgba($defaultSecondaryTextColor, 0.8);
+      font-weight: normal;
+    }
+    
+    &:after {
+      font-family: Georgia, serif;
+      content: "”";
+      position: absolute;
+      bottom: -100px;
+      line-height: 100px;
+      right: -12px;
+      font-size: 25em;
+      color: rgba($defaultSecondaryTextColor, 0.8);
+      font-weight: normal;
+    }
+    
+    @media(max-width: 640px) {
+      &:after {
+        font-size: 22em;
+        right: -25px;
+      }
+    }
+}
+
+.carousel-control-next {
+    color: gray;
+}
+
+
+
+
+/* display a stacked grid <767 pixels */
+.services-area {
+    display: block;
+} 
+
+/* display a 2-column grid >768 */
+@media (min-width: 768px) {
+  .services-area {
+        margin: 20px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+        justify-content: center;
+        grid-auto-flow: row dense;
+  }
+}
+
+.services-area > :nth-child(4n - 1) {
+  grid-column-start: 2;
+
+}
+
+.services-image {
+    max-width: 100%;
+    height: auto;
+}

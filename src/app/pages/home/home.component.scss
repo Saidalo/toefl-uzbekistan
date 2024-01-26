@@ -40,9 +40,9 @@
   padding-left: 20vw; /* Add padding to the left */
 }
 
-.carousel-caption{
+.carousel-caption {
   position:absolute;
-  bottom:30%;
+  bottom:20%;
   left:20%;
   z-index:10;
   //padding-top:20p;
@@ -53,13 +53,17 @@
 }
 
 .bigFont{
-  font-size: 70px;
-  line-height: 70px;
+  font-size: 60px;
+  line-height: 60px;
 }
 
 h1.banner-title,
 p.sub-title {
   display: inline;
+}
+
+.carousel-caption .secondary-title {
+  font-size: 25px;
 }
 
 .blank {

@@ -4,13 +4,15 @@ import {HomeComponent} from "./pages/home/home.component";
 import {NotfoundComponent} from "./pages/notfound/notfound.component";
 import {AboutUsComponent} from "./pages/about-us/about-us.component";
 import {TeachersComponent} from "./pages/teachers/teachers.component";
-import {ToeflTests} from "./pages/our-tests/tests.component";
 import {CoursesComponent} from "./pages/courses/courses.component";
 import {ContactsComponent} from "./pages/contacts/contacts.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {AuthGuard} from "./helpers/auth.guard";
 import {UnderConstructionComponent} from "./pages/under-construction/under-construction.component";
 import {PreparationComponent} from "./pages/preparation/preparation.component";
+import {ToeflItpComponent} from "./pages/toefl-itp/toefl-itp.component";
+import {ToeflIbtComponent} from "./pages/toefl-ibt/toefl-ibt.component";
+import {ToeicComponent} from "./pages/toeic/toeic.component";
 import {RegistrationComponent} from "./pages/registration/registration.component";
 import {AccountListComponent} from "./pages/account-list/account-list.component";
 import {VerificationComponent} from "./pages/verification/verification.component";
@@ -84,9 +86,19 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'our-tests/:test',
-    component: ToeflTests,
+    path: 'toefl-itp',
+    component: ToeflItpComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'toefl-ibt',
+    component: ToeflIbtComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'toeic',
+    component: ToeicComponent,
+    canActivate: []
   },
   {
     path: 'profile',

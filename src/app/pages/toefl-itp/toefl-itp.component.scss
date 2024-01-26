@@ -1,0 +1,225 @@
+.rounded-circle {
+    width: 200px;
+    height: 250px;
+  }
+  
+  .subtitle{
+    margin: 15px auto;
+    max-width: 70%;
+    text-align: center;
+    padding: 0 30px;
+    font-family: "Open Sans",arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #444;
+  }
+  
+  .content-part{
+    background-color: #f7f7f7;
+    padding: 36px;
+    border-radius: 16px;
+    border: solid;
+    border-width: thin;
+  }
+  
+  
+  .tab-pane li{
+    list-style: disc;
+  }
+  .cmp-text{
+    padding-left: 24px;
+  }
+  
+  .table-scroll-enable{
+    table{
+      tbody, td, tfoot, th, thead, tr {
+        border-color: inherit;
+        border-style: solid;
+        border-width: 0;
+      }
+      width: 80%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      caption-side: bottom;
+    }
+  }
+  
+  tbody, td, tfoot, th, thead, tr {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+  }
+  
+  .text table td, .text table th {
+    border: 1px solid #949494;
+    height: 3pc;
+    padding: .375rem 1rem;
+    vertical-align: middle;
+    line-height: normal;
+  }
+  
+  .text table th {
+    background-color: #d8eaff;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  table {
+    caption-side: bottom;
+    border-collapse: collapse;
+  }
+  
+  .nav-link {
+    background: #fff;
+    border-radius: 1pc;
+    //width: 197px;
+    //height: 90px;
+    border: 3px solid #fff;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    //font-size: .875rem;
+    //line-height: 1.125rem;
+    color: #003082;
+    text-transform: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    text-align: center;
+    text-decoration: none;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .nav-item{
+    margin: 0 0.5rem;
+  }
+  
+  .bakix-details-tab{
+    padding-top: 24px;
+  }
+  .product-desc-area{
+    background-color: #f2f2f2;
+  }
+  
+  .nav-link.active{
+    background-color: #003082;
+    color: #fff;
+  }
+  
+
+  //-------------------testimonial
+
+  @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,200italic);
+
+$background: #eee;
+$black: #222222;
+$white: #ffffff;
+
+$default: #fff;
+$defaultTextColor: #222222;
+$defaultSecondaryTextColor: #eee;
+
+
+$red: #D32F2F;
+$redTextColor: $white;
+$redSecondaryTextColor: #F44336;
+
+$blue: #303F9F;
+$blueTextColor: $white;
+$blueSecondaryTextColor: #3F51B5;
+
+$yellow: #F9A825;
+$yellowTextColor: $black;
+$yellowSecondaryTextColor: #FBC02D;
+.quote-card {
+    background: $default;
+    color: $defaultTextColor;
+    height: 100%;
+    padding: 20px;
+    padding-left: 50px;
+    box-sizing: border-box;
+    
+    position: relative;
+    overflow: hidden;
+    min-height: 120px;
+    
+    p {
+      font-size: 22px;
+      line-height: 1.5;
+      margin: 0;
+      max-width: 100%;
+    }
+    
+    cite {
+      font-size: 16px;
+      margin-top: 10px;
+      display: block;
+      font-weight: 200;
+      opacity: 0.8;
+    }
+    
+    &:before {
+      font-family: Georgia, serif;
+      content: "“";
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      font-size: 5em;
+      color: rgba($defaultSecondaryTextColor, 0.8);
+      font-weight: normal;
+    }
+    
+    &:after {
+      font-family: Georgia, serif;
+      content: "”";
+      position: absolute;
+      bottom: -100px;
+      line-height: 100px;
+      right: -12px;
+      font-size: 25em;
+      color: rgba($defaultSecondaryTextColor, 0.8);
+      font-weight: normal;
+    }
+    
+    @media(max-width: 640px) {
+      &:after {
+        font-size: 22em;
+        right: -25px;
+      }
+    }
+}
+
+.carousel-control-next {
+    color: gray;
+}
+
+
+
+
+/* display a stacked grid <767 pixels */
+.services-area {
+    display: block;
+} 
+
+/* display a 2-column grid >768 */
+@media (min-width: 768px) {
+  .services-area {
+        margin: 20px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+        justify-content: center;
+        grid-auto-flow: row dense;
+  }
+}
+
+.services-area > :nth-child(4n - 1) {
+  grid-column-start: 2;
+
+}
+
+.services-image {
+    max-width: 100%;
+    height: auto;
+}
