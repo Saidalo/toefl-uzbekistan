@@ -52,7 +52,7 @@ export class AllAccountsComponent implements OnInit {
   openMoreActions(account: any) {
     this.selectedAccount = account;
     this.isExamsLoading = true;
-    this.adminService.getExamsByUser(account.id).subscribe({
+    this.adminService.getExamsByUserById(account.id).subscribe({
       next: (exams: any) => {
         this.exams = exams.exams;
         this.isExamsLoading = false;

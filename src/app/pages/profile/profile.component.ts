@@ -189,7 +189,7 @@ export class ProfileComponent implements OnInit {
 
   getExams() {
     this.isExamsLoading = true;
-    this.adminService.getExamsByUser(this.id).subscribe({
+    this.adminService.getExamsByUser().subscribe({
       next: (exams: any) => {
         const format = 'dd/MM/yyyy';
         const myDate = '2019-06-29';
