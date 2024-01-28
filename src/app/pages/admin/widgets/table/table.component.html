@@ -5,15 +5,18 @@
 <!--  refresh button-->
   <button type="button" class="btn btn-primary" (click)="updateItems.emit()">Refresh</button>
 </div>
-<table class="table table-striped">
-  <thead>
+<table class="table table-striped table-sm">
+  <caption>{{tableName}}</caption>
+  <thead class="thead-dark">
   <tr>
     <th scope="col" *ngFor="let key of keys">{{ key }}</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let item of items" (click)="open(content, item)">
-    <td *ngFor="let key of keys">{{ item[key] }}</td>
+    <td *ngFor="let key of keys">
+      {{ itemType[key]?.type == 'date' ? formatDate(item[key], format, locale) : item[key] }}
+    </td>
   </tr>
   </tbody>
 </table>
@@ -28,9 +31,14 @@
   </div>
   <div class="modal-body">
     <form>
-      <div class="form-group" *ngFor="let key of keys">
+      <div class="form-group" *ngFor="let key of keys" [ngSwitch]="itemType[key]?.type">
         <label for="{{ key }}">{{ key }}</label>
-        <input [type]="key.includes('date')? 'date' : null" [disabled]="key === id_key" type="text" class="form-control" id="{{ key }}" name="{{key}}" [(ngModel)]="selectedItem[key]">
+        <input *ngSwitchDefault [disabled]="key === id_key" type="text" class="form-control" id="{{ key }}" name="{{key}}" [(ngModel)]="selectedItem[key]">
+        <input *ngSwitchCase="'date'" type="date" class="form-control" id="{{ key }}" name="{{key}}" [(ngModel)]="selectedItem[key]">
+        <select *ngSwitchCase="'select'" id="{{ key }}" class="form-control" aria-label="Default select example" name="{{key}}" [(ngModel)]="selectedItem[key]">
+<!--          <option selected>Open this select menu</option>-->
+          <option *ngFor="let i of itemType[key]?.list" [value]="i">{{i}}</option>
+        </select>
       </div>
       <div>
         <button *ngIf="!isAddNew && additionalActionName" type="button" class="btn btn-outline-info" (click)="additionalAction.emit(selectedItem)">{{additionalActionName}}</button>

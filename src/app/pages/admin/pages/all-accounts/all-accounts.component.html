@@ -1,6 +1,15 @@
 <app-table
   *ngIf="accounts.length>0 && !isLoading"
   [items]="accounts"
+  [itemType]="{
+    permissions: {
+      type: 'select',
+      list: [
+        'ADMIN',
+        'USER'
+      ]
+    }
+  }"
   [tableName]="'Accounts'"
   [additionalActionName]="'Show Registered Exams'"
   (additionalAction)="openMoreActions($event)"

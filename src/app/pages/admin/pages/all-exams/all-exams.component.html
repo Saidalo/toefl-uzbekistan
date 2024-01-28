@@ -1,6 +1,18 @@
 <app-table
   *ngIf="exams.length>0 && !isLoading"
   [items]="exams"
+  [itemType]="{
+    type: {
+      type: 'select',
+      list: [
+        'TOEFL_ITP',
+        'GRE'
+      ]
+    },
+    date: {
+      type: 'date'
+    }
+  }"
   [tableName]="'Exams'"
   [additionalActionName]="'Show Registered Accounts'"
   (additionalAction)="openRegisteredAccountModal($event)"

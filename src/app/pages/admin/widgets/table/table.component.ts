@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {AdminService} from "../../services/admin.service";
 import {NotifierService} from "angular-notifier";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-table',
@@ -11,6 +12,7 @@ import {NotifierService} from "angular-notifier";
 export class TableComponent implements OnInit {
 
   @Input() items: any | undefined;
+  @Input() itemType: any = {};
   @Input() additionalActionName: string | undefined;
   @Input() tableName: string | undefined;
   @Output() updateItems = new EventEmitter<any>();
@@ -18,6 +20,8 @@ export class TableComponent implements OnInit {
   keys: any;
   notifier: NotifierService;
   id_key: string = 'id';
+  format = 'dd/MM/yyyy';
+  locale = 'en-US';
 
   selectedItem: any;
   isAddNew = false;
@@ -103,4 +107,6 @@ export class TableComponent implements OnInit {
       }
     });
   }
+
+  protected readonly formatDate = formatDate;
 }
