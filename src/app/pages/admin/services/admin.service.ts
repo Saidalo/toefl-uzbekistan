@@ -53,10 +53,16 @@ export class AdminService {
     ).pipe(map(res => {return res;}));
   }
 
-  public getExamsByUser(id: any){
+  public getExamsByUser(){
       return this.http.get(
       environment.apiUrl + '/exam/getExamsByUser'
       ).pipe(map(res => {return res;}));
+  }
+
+  public getExamsByUserById(id: any){
+    return this.http.get(
+      environment.apiUrl + '/admin/getExamsByUser/'+id
+    ).pipe(map(res => {return res;}));
   }
 
   public getUsersByExam(id: any){
