@@ -78,3 +78,27 @@ p.sub-title {
   margin-top: -30px;
   height: 100px;
 }
+
+@media (max-width: 767px) {
+  //.slider-height {
+  //  //min-height: 800px;
+  //}
+  //.carousel-caption {
+  //  position:absolute;
+  //  bottom:5vh;
+  //  left:10vw;
+  //  z-index:10;
+  //  //padding-top:20p;
+  //  //padding-bottom:20px;
+  //  color:#fff;
+  //  text-align:left;
+  //  max-width: 60%;
+  //}
+  .hide-on-mobile {
+    display: none;
+  }
+  .bigFont{
+    font-size: 42px;
+    line-height: 42px;
+  }
+}
