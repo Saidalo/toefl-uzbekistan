@@ -36,7 +36,6 @@
         <input *ngSwitchDefault [disabled]="key === id_key" type="text" class="form-control" id="{{ key }}" name="{{key}}" [(ngModel)]="selectedItem[key]">
         <input *ngSwitchCase="'date'" type="date" class="form-control" id="{{ key }}" name="{{key}}" [(ngModel)]="selectedItem[key]">
         <select *ngSwitchCase="'select'" id="{{ key }}" class="form-control" aria-label="Default select example" name="{{key}}" [(ngModel)]="selectedItem[key]">
-<!--          <option selected>Open this select menu</option>-->
           <option *ngFor="let i of itemType[key]?.list" [value]="i">{{i}}</option>
         </select>
       </div>

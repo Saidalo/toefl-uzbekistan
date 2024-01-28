@@ -148,7 +148,7 @@
                         <th scope="col">#</th>
                         <th scope="col">First</th>
                         <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Score</th>
                         <th scope="col">Exam</th>
                         <th scope="col">Exam date</th>
                         <th scope="col">Payment Status</th>
@@ -159,7 +159,7 @@
                         <th scope="row">{{ exam.exam_id }}</th>
                         <td>{{this.account.Name}}</td>
                         <td>{{this.account.Surname}}</td>
-                        <td>@mdo</td>
+                        <td>{{ exam.score || 'not graded' }}</td>
                         <td>{{ exam.type }}</td>
                         <td>{{ formatDate(exam.date, format, locale) }}</td>
 <!--                        <td>Paid</td>-->
