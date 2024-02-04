@@ -35,7 +35,11 @@
             <th>exam_id</th>
             <th>date</th>
             <th>Description</th>
-            <th>Score</th>
+            <th>Reading</th>
+            <th>Writing</th>
+            <th>Listening</th>
+            <th>Speaking</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -44,8 +48,22 @@
             <td>{{exam.date}}</td>
             <td>{{exam.description}}</td>
             <td>
-              <span *ngIf="exam.score">{{exam.score}}</span>
-              <span *ngIf="!exam.score">Not Set</span>
+              <span *ngIf="exam.reading">{{exam.reading}}</span>
+              <span *ngIf="!exam.reading">Not Set</span>
+            </td>
+            <td>
+              <span *ngIf="exam.writing">{{exam.writing}}</span>
+              <span *ngIf="!exam.writing">Not Set</span>
+            </td>
+            <td>
+              <span *ngIf="exam.listening">{{exam.listening}}</span>
+              <span *ngIf="!exam.listening">Not Set</span>
+            </td>
+            <td>
+              <span *ngIf="exam.speaking">{{exam.speaking}}</span>
+              <span *ngIf="!exam.speaking">Not Set</span>
+            </td>
+            <td>
               <button type="button" class="btn btn-link" (click)="openEditScore(exam)">Edit</button>
             </td>
           </tr>
@@ -67,7 +85,23 @@
   </div>
   <div class="modal-body">
     <div>
-      <input [(ngModel)]="selectedExam.score">
+      <label for="reading">Reading</label>
+      <input id="reading" class="form-control" [(ngModel)]="selectedExam['reading']">
+
+      <label for="writing">Writing</label>
+      <input id="writing" class="form-control" [(ngModel)]="selectedExam['writing']">
+
+      <label for="listening">Listening</label>
+      <input id="listening" class="form-control" [(ngModel)]="selectedExam['listening']">
+
+      <label for="speaking">Speaking</label>
+      <input id="speaking" class="form-control" [(ngModel)]="selectedExam['speaking']">
+
+      <label for="payment">Payment status</label>
+      <select id="payment" class="form-control" aria-label="Default select example" name="payment" [(ngModel)]="selectedExam['payment']">
+        <option [ngValue]="false">Not Paid</option>
+        <option [ngValue]="true">Paid</option>
+      </select>
     </div>
   </div>
   <div class="modal-footer">

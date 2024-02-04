@@ -64,7 +64,10 @@
         <tr>
           <th>id</th>
           <th>Name</th>
-          <th>Score</th>
+          <th>Reading</th>
+          <th>Listening</th>
+          <th>Writing</th>
+          <th>Speaking</th>
         </tr>
         </thead>
         <tbody>
@@ -72,7 +75,22 @@
           <td>{{item.id}}</td>
           <td>{{item.Name}}</td>
           <td>
-            <input [(ngModel)]="response[i].score">
+            <input type="number" class="max-width-80" [(ngModel)]="response[i].reading">
+          </td>
+          <td>
+            <input type="number" class="max-width-80" [(ngModel)]="response[i].listening">
+          </td>
+          <td>
+            <input type="number" class="max-width-80" [(ngModel)]="response[i].writing">
+          </td>
+          <td>
+            <input type="number" class="max-width-80" [(ngModel)]="response[i]['speaking']">
+          </td>
+          <td>
+            <select id="payment" class="max-width-80 form-control" aria-label="Default select example" name="payment" [(ngModel)]="response[i]['payment']">
+              <option [ngValue]="false">Not Paid</option>
+              <option [ngValue]="true">Paid</option>
+            </select>
           </td>
         </tr>
         </tbody>

@@ -55,10 +55,17 @@ export class AllExamsComponent {
         this.accounts = exams.accounts;
         this.response = [];
         this.accounts.forEach((account: any) => {
+          if(account.payment === 1){
+            account.payment = true;
+          }
           this.response.push({
             account_id: account.id,
             exam_id: exam.exam_id,
-            score: account.score
+            reading: account.reading,
+            listening: account.listening,
+            speaking: account.speaking,
+            writing: account.writing,
+            payment: account.payment,
           });
         });
         this.isAccountsLoading = false;

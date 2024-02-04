@@ -67,15 +67,16 @@ export class AllAccountsComponent implements OnInit {
 
   updateScores(){
     this.isExamsLoading = true;
-    if(this.selectedExam.score === null || this.selectedExam.score === undefined){
-      this.selectedExam.score = 0;
-    }
     const scores = {
       scores:[
         {
           account_id: this.selectedAccount.id,
           exam_id: this.selectedExam.exam_id,
-          score: this.selectedExam.score
+          reading: this.selectedExam.reading,
+          listening: this.selectedExam.listening,
+          speaking: this.selectedExam.speaking,
+          writing: this.selectedExam.writing,
+          payment: this.selectedExam.payment
         }
       ]
     }
