@@ -76,7 +76,7 @@ export class AllAccountsComponent implements OnInit {
           listening: this.selectedExam.listening,
           speaking: this.selectedExam.speaking,
           writing: this.selectedExam.writing,
-          payment: this.selectedExam.payment
+          payment: this.selectedExam.payment === 1 ? true : false
         }
       ]
     }
@@ -93,6 +93,7 @@ export class AllAccountsComponent implements OnInit {
   }
 
   openEditScore(exam: any){
+    exam.payment = exam.payment === 1;
     this.selectedExam = exam;
     this.modalService.open(this.editScore);
   }

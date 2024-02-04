@@ -22,30 +22,30 @@
 
                 </div>
             </div>
-            <div class="card mb-4 mb-xl-0" *ngIf="!isAdmin">
+            <div class="card mb-4 mb-xl-0" *ngIf="!isAdmin && exams && exams.length > 0">
                 <div class="card-header">Scores</div>
                 <div class="card-body text-center">
                     <div class="row mb-2">
-                        <div class="col-xl-6">
+                        <div *ngIf="this.exams[0].reading" class="col-xl-6">
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 66.67%" aria-valuenow="25" aria-valuemin="20" aria-valuemax="30">Reading: 25</div>
+                                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': this.exams[0].reading+'%'}" aria-valuenow="25" aria-valuemin="20" aria-valuemax="30">Reading: {{this.exams[0].reading}}</div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div *ngIf="this.exams[0].listening" class="col-xl-6">
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 66.67%" aria-valuenow="25" aria-valuemin="20" aria-valuemax="30">Listening: 25</div>
+                                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': this.exams[0].listening+'%'}" aria-valuenow="25" aria-valuemin="20" aria-valuemax="30">Listening: {{this.exams[0].listening}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-6">
+                        <div *ngIf="this.exams[0].speaking" class="col-xl-6">
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 66.67%" aria-valuenow="25" aria-valuemin="20" aria-valuemax="30">Speaking: 25</div>
+                                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': this.exams[0].speaking+'%'}" aria-valuenow="25" aria-valuemin="20" aria-valuemax="30">Speaking: {{this.exams[0].speaking}}</div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div *ngIf="this.exams[0].writing" class="col-xl-6">
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 66.67%" aria-valuenow="25" aria-valuemin="20" aria-valuemax="30">Writing: 25</div>
+                                <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': this.exams[0].writing+'%'}" aria-valuenow="25" aria-valuemin="20" aria-valuemax="30">Writing: {{this.exams[0].writing}}</div>
                             </div>
                         </div>
                     </div>
@@ -148,23 +148,23 @@
                         <th scope="col">#</th>
                         <th scope="col">First</th>
                         <th scope="col">Last</th>
-                        <th scope="col">Score</th>
+                        <th scope="col">Grade</th>
                         <th scope="col">Exam</th>
                         <th scope="col">Exam date</th>
                         <th scope="col">Payment Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let exam of exams" class="table-danger">
+                      <tr *ngFor="let exam of exams" class="{{exam.payment ? 'table-success':'table-danger'}}">
                         <th scope="row">{{ exam.exam_id }}</th>
                         <td>{{this.account.Name}}</td>
                         <td>{{this.account.Surname}}</td>
                         <td>{{ exam.score || 'not graded' }}</td>
                         <td>{{ exam.type }}</td>
                         <td>{{ formatDate(exam.date, format, locale) }}</td>
-<!--                        <td>Paid</td>-->
+                        <td *ngIf="exam.payment">Paid</td>
                         <td>
-                          <div class="row">
+                          <div *ngIf="!exam.payment" class="row">
                             <div class="col-md-4">Not paid</div>
                             <div class="col-md-4"><button class="click btn btn-outline-primary" (click)="payViaClick()"></button></div>
                             <div class="col-md-4"><button class="payme btn btn-outline-primary" (click)="payViaPayme()"></button></div>

@@ -195,6 +195,10 @@ export class ProfileComponent implements OnInit {
         const myDate = '2019-06-29';
         const locale = 'en-US';
         this.exams = exams.exams;
+
+        this.exams.sort((a, b) => {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
         this.isExamsLoading = false;
       },
       error: error => {
