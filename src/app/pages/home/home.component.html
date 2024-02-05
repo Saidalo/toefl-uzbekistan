@@ -616,12 +616,9 @@
         <div class="col-xl-5 col-lg-5 mb-30">
           <div class="map-wrapper">
             <div id="contact-map" class="contact-map">
-              <google-map>
+              <google-map [options]="mapOptions">
                 <map-marker
-                  [position]="{
-                    lat: 41.27430931104191,
-                    lng: 69.2440141693078
-                  }"
+                  [position]="marker.position"
                   [label]="{
                     color: '#1d4b85',
                     text: 'TOEFL Test Center'

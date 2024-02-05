@@ -9,6 +9,15 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class HomeComponent {
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
+
+  // @ts-ignore
+  mapOptions = {
+    center: { lat: 41.28262750088908, lng: 69.24314579736573 },
+    zoom : 14
+  }
+  marker = {
+    position: { lat: 41.28262750088908, lng: 69.24314579736573 },
+  }
   images = [
     'assets/img/bg/banner3.jpg',
     'assets/img/bg/banner2.jpg',
