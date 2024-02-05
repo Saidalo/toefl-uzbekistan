@@ -43,6 +43,8 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
+import { GoogleMapsModule } from '@angular/google-maps';
+import { PopUpModalComponent } from './pop-up-modal/pop-up-modal.component'
 
 @NgModule({
   declarations: [
@@ -65,6 +67,7 @@ import {ErrorInterceptor} from "./helpers/error.interceptor";
     VerificationComponent,
     CalendarComponent,
     ProfileComponent,
+    PopUpModalComponent,
   ],
     imports: [
         BrowserModule,
@@ -90,6 +93,7 @@ import {ErrorInterceptor} from "./helpers/error.interceptor";
         }),
         MatRadioModule,
         MatSelectModule,
+        GoogleMapsModule
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

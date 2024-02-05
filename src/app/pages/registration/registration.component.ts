@@ -45,7 +45,7 @@ export class RegistrationComponent implements OnInit {
   });
 
   testOptions = [
-    {value: "TOEFL_ITP", text: "Bring the global standard in English-language assessment to your classroom with the TOEFL ITP® Assessment Series — a convenient, affordable and reliable assessment of English-language skills. More than 2,500 institutions in 50+ countries administer the tests annually.<br>When you use the TOEFL ITP tests, you'll measure students' proficiency level in four different skills — reading comprehension, listening comprehension, structure and written expression, and speaking. You'll be able to pinpoint the areas in which your students need help so you can tailor your teaching to meet those needs. Knowing your students' English-skill levels better today gives them the best chance for success tomorrow."},
+    {value: "TOEFL_ITP", text: "TOEFL ITP® Assessment Series — a convenient, affordable and reliable assessment of English-language skills. The tests are accepted in more than 2,500 institutions in 50+ countries annually. With the TOEFL ITP tests, you can measure your proficiency level in four different skills — reading comprehension, listening comprehension, structure and written expression, and speaking."},
     {value: "TOEFL_IBT", text: "Designed by institutions for institutions, the TOEFL iBT test meets your needs in a superior way. That's why more than 12,000 universities in over 160 countries trust it to showcase their applicants' ability to succeed in an English-speaking academic environment."}
   ];
   testText = "";

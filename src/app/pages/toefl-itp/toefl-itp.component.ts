@@ -13,5 +13,6 @@ export class ToeflItpComponent {
     // this.document.location.href = url;
     window.open(url, "_blank");
   }
-
+  public rating = 5;
+  public readonly = true
 }

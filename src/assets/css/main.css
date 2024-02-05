@@ -3591,6 +3591,15 @@ label {
   font-size: 14px;
   text-transform: uppercase;
 }
+
+.section-title .product {
+  color: white;
+}
+
+.section-title .agency {
+  color: white;
+}
+
 .section-title h1 {
   font-size: 45px;
   margin-bottom: 0;

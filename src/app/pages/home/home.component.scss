@@ -10,7 +10,7 @@
 }
 
 .bgimg1{
-  background-image: url('/assets/img/photo1698580124.jpg');
+  background-image: url('/assets/img/course-section.jpeg');
   //opacity: 0.75;
 }
 
@@ -80,20 +80,6 @@ p.sub-title {
 }
 
 @media (max-width: 767px) {
-  //.slider-height {
-  //  //min-height: 800px;
-  //}
-  //.carousel-caption {
-  //  position:absolute;
-  //  bottom:5vh;
-  //  left:10vw;
-  //  z-index:10;
-  //  //padding-top:20p;
-  //  //padding-bottom:20px;
-  //  color:#fff;
-  //  text-align:left;
-  //  max-width: 60%;
-  //}
   .hide-on-mobile {
     display: none;
   }
@@ -101,4 +87,53 @@ p.sub-title {
     font-size: 42px;
     line-height: 42px;
   }
+}
+
+.agency {
+  letter-spacing: 2px;
+    background: #096bd8;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.course-message > span {
+  color: white;
+  font-family: "cerebri_sansbold";
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+a.btn {
+  background: #096bd8;
+  border: medium none;
+  display: inline-block;
+  font-size: 14px;
+  margin-bottom: 0;
+  padding: 20px 40px;
+  text-align: center;
+  text-transform: uppercase;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  vertical-align: middle;
+  white-space: nowrap;
+  border-radius: 5px;
+  position: relative;
+  font-family: "cerebri_sansbold";
+}
+
+.about-area {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  z-index: 999;
+  opacity: 1;
+}
+
+.about-2-img > img{
+  width: 498px;
+  height: 503px;
 }
