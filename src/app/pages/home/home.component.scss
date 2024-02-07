@@ -137,3 +137,48 @@ a.btn {
   width: 498px;
   height: 503px;
 }
+.counter-area {
+	background-size: cover;
+	background-position: center center;
+}
+.counter-icon i {
+	color: #ffffff;
+	font-size: 40px;
+}
+.counter-text h1 {
+	font-size: 55px;
+	margin-top: 22px;
+	color: #fff;
+	font-family: "cerebri_sansbold";
+}
+.counter-text p {
+	font-size: 18px;
+	color: #fff;
+	line-height: 1;
+  margin-bottom: 10px;
+  font-family: 'cerebri_sansmedium';
+}
+.counter-text {
+  padding-right: 5%;
+}
+.plus-icon {
+	position: relative;
+	top: -30px;
+	font-size: 40px;
+	right: 2px;
+}
+.single-counter .counter-icon i {
+	color: #096bd8;
+}
+.single-counter .counter-icon i {
+	color: #096bd8;
+}
+.single-counter .counter-text h1 {
+	color: #333333;
+}
+.single-counter .plus-icon {
+	color: #096bd8;
+}
+.single-counter .counter-text p{
+	color: #afafaf;
+}

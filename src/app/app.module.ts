@@ -44,7 +44,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
 import { GoogleMapsModule } from '@angular/google-maps';
-import { PopUpModalComponent } from './pop-up-modal/pop-up-modal.component'
+import { PopUpModalComponent } from './pop-up-modal/pop-up-modal.component';
+import { CountUpModule } from 'ngx-countup';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { PopUpModalComponent } from './pop-up-modal/pop-up-modal.component'
     PopUpModalComponent,
   ],
     imports: [
+        CountUpModule,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,

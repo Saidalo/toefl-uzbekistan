@@ -34,5 +34,31 @@ export class HomeComponent {
   submitContactForm() {
 
   }
+  constructor() {}
+  model1: Test = new Test({
+    obs1: 89573115,
+    obs2: 83202,
 
+    add1: 181703,
+    add2: -189,
+
+    duration: 500,
+    interval: 5000,
+  });
+}
+
+
+export class Test {
+  constructor(data: any) {
+    Object.assign(this, data);
+  }
+
+  obs1 = 86046903;
+  obs2 = 200;
+
+  add1 = 1800;
+  add2 = -189;
+
+  duration = 1000;
+  interval = 1000;
 }
