@@ -137,6 +137,20 @@ a.btn {
   width: 498px;
   height: 503px;
 }
+
+.shape-item{
+  z-index: -1;
+}
+
+.verical-scroll{
+  overflow-x: scroll;
+}
+
+.my-contatiner{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
 .counter-area {
 	background-size: cover;
 	background-position: center center;

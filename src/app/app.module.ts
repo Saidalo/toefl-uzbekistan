@@ -46,6 +46,7 @@ import {ErrorInterceptor} from "./helpers/error.interceptor";
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PopUpModalComponent } from './pop-up-modal/pop-up-modal.component';
 import { CountUpModule } from 'ngx-countup';
+import { CustomCardComponent } from './widgets/custom-card/custom-card.component'
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { CountUpModule } from 'ngx-countup';
     CalendarComponent,
     ProfileComponent,
     PopUpModalComponent,
+    CustomCardComponent,
   ],
     imports: [
         CountUpModule,

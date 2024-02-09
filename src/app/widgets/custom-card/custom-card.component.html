@@ -1,0 +1,14 @@
+<div class="custom-card" [style]="Style">
+  <div class="top-color-design center" [style]="{'background-color': Style.color}">
+  </div>
+  <div class="card my-card">
+    <h1 class="pl-20 pt-30" [style]="{'color': Style.color}">{{ Title }}</h1>
+    <div class="ml-30 mr-10">
+      <p *ngFor="let d of Descriptions">{{d}}</p>
+    </div>
+    <div class="margin-auto"></div>
+    <div class="my-button text-center p-30">
+      <button class="btn btn-primary btn-lg btn-block" type="submit" [style]="{'background-color': Style.color}">BOOK NOW</button>
+    </div>
+  </div>
+</div>
