@@ -143,7 +143,7 @@ a.btn {
 }
 
 .verical-scroll{
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .my-contatiner{
@@ -195,4 +195,31 @@ a.btn {
 }
 .single-counter .counter-text p{
 	color: #afafaf;
+}
+
+.section-title-products .d-flex > span {
+  color: #33547C;
+  font-family: "cerebri_sansbold";
+  font-size: 20px;
+  line-height: 25px;
+}
+
+
+.b-pr-sm-left-2 {
+	height: 3px;
+	width: 60px;
+	background: #33547C;
+	display: inline-block;
+	top: -3px;
+	position: relative;
+	left: 5px;
+}
+
+.products-header {
+  margin-top: 10px;
+  font-family: Gilroy;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: 0em;
 }
