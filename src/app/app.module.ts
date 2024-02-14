@@ -46,7 +46,8 @@ import {ErrorInterceptor} from "./helpers/error.interceptor";
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PopUpModalComponent } from './pop-up-modal/pop-up-modal.component';
 import { CountUpModule } from 'ngx-countup';
-import { CustomCardComponent } from './widgets/custom-card/custom-card.component'
+import { CustomCardComponent } from './widgets/custom-card/custom-card.component';
+import { UrlVideoplayerComponent } from './widgets/url-videoplayer/url-videoplayer.component'
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { CustomCardComponent } from './widgets/custom-card/custom-card.component
     ProfileComponent,
     PopUpModalComponent,
     CustomCardComponent,
+    UrlVideoplayerComponent,
   ],
     imports: [
         CountUpModule,

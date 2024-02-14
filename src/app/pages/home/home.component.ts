@@ -1,6 +1,7 @@
-import {Component, ViewChild} from '@angular/core';
-import {NgbCarousel} from "@ng-bootstrap/ng-bootstrap";
+import {Component, inject, ViewChild} from '@angular/core';
+import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UrlVideoplayerComponent} from "../../widgets/url-videoplayer/url-videoplayer.component";
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class HomeComponent {
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
+  private modalService = inject(NgbModal);
 
   // @ts-ignore
   mapOptions = {
@@ -34,7 +36,7 @@ export class HomeComponent {
   submitContactForm() {
 
   }
-  constructor() {}
+
   model1: Test = new Test({
     obs1: 89573115,
     obs2: 83202,
@@ -45,6 +47,10 @@ export class HomeComponent {
     duration: 500,
     interval: 5000,
   });
+
+  openUrlVideoPlayer(url: string) {
+    this.modalService.open(UrlVideoplayerComponent, {size: 'lg', centered: true, windowClass: 'url-videoplayer-modal'}).componentInstance.url = url;
+  }
 }
 
 
