@@ -28,7 +28,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
-import {DatePipe} from "@angular/common";
+import {DatePipe, NgOptimizedImage} from "@angular/common";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatIconModule} from "@angular/material/icon";
@@ -99,7 +99,8 @@ import { UrlVideoplayerComponent } from './widgets/url-videoplayer/url-videoplay
         }),
         MatRadioModule,
         MatSelectModule,
-        GoogleMapsModule
+        GoogleMapsModule,
+        NgOptimizedImage
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
