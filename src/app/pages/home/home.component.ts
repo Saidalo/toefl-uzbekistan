@@ -2,6 +2,7 @@ import {Component, inject, ViewChild} from '@angular/core';
 import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UrlVideoplayerComponent} from "../../widgets/url-videoplayer/url-videoplayer.component";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-home',
@@ -33,8 +34,22 @@ export class HomeComponent {
     message: new FormControl('', Validators.required),
   });
 
-  submitContactForm() {
+  constructor(private authenticationService: AuthenticationService,) {
 
+  }
+
+
+  submitContactForm() {
+    this.authenticationService.sendContactForm(this.contactForm.value).subscribe({
+      next: (response: any) => {
+        alert('Message sent successfully');
+        this.contactForm.reset();
+      },
+      error: error => {
+        console.log(error);
+        alert('Something went wrong!');
+      }
+    });
   }
 
   model1: Test = new Test({
