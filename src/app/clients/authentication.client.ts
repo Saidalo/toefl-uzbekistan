@@ -85,5 +85,12 @@ export class AuthenticationClient {
       }
     ).pipe(map(res => {return res;}));
   }
+
+  sendContactForm(form: any) {
+    return this.http.post(
+      environment.apiUrl + '/account/sendContactForm',
+      form
+    ).pipe(map(res => {return res;}));
+  }
 }
 

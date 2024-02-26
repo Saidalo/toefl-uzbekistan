@@ -133,11 +133,6 @@ a.btn {
   opacity: 1;
 }
 
-.about-2-img > img{
-  width: 498px;
-  height: 503px;
-}
-
 .shape-item{
   z-index: -1;
 }
@@ -222,4 +217,8 @@ a.btn {
   font-weight: 700;
   line-height: 50px;
   letter-spacing: 0em;
+}
+
+#contact-map {
+  height: 500px;
 }

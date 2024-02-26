@@ -28,7 +28,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
-import {DatePipe} from "@angular/common";
+import {DatePipe, NgOptimizedImage} from "@angular/common";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatIconModule} from "@angular/material/icon";
@@ -46,7 +46,8 @@ import {ErrorInterceptor} from "./helpers/error.interceptor";
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PopUpModalComponent } from './pop-up-modal/pop-up-modal.component';
 import { CountUpModule } from 'ngx-countup';
-import { CustomCardComponent } from './widgets/custom-card/custom-card.component'
+import { CustomCardComponent } from './widgets/custom-card/custom-card.component';
+import { UrlVideoplayerComponent } from './widgets/url-videoplayer/url-videoplayer.component'
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { CustomCardComponent } from './widgets/custom-card/custom-card.component
     ProfileComponent,
     PopUpModalComponent,
     CustomCardComponent,
+    UrlVideoplayerComponent,
   ],
     imports: [
         CountUpModule,
@@ -97,7 +99,8 @@ import { CustomCardComponent } from './widgets/custom-card/custom-card.component
         }),
         MatRadioModule,
         MatSelectModule,
-        GoogleMapsModule
+        GoogleMapsModule,
+        NgOptimizedImage
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
