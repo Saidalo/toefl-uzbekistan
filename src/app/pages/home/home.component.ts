@@ -12,11 +12,11 @@ export class HomeComponent {
 
   // @ts-ignore
   mapOptions = {
-    center: { lat: 41.28262750088908, lng: 69.24314579736573 },
+    center: { lat: 41.273934363766266, lng: 69.24416437318845 },
     zoom : 14
   }
   marker = {
-    position: { lat: 41.28262750088908, lng: 69.24314579736573 },
+    position: { lat: 41.273934363766266, lng: 69.24416437318845 },
   }
   images = [
     'assets/img/bg/banner3.jpg',
