@@ -12,10 +12,6 @@
         <div class="col-xl-4 col-lg-4 col-md-6">
           <div class="header-right f-right ">
             <div class="header-icon f-right">
-              <!-- <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-youtube"></i></a> -->
               <a href="/login" *ngIf="!isLoggedIn"><i class="fas fa-sign-in-alt"></i>Log in</a>
               <a href="/profile" *ngIf="isLoggedIn"><i class="fa fa-user pr-2" aria-hidden="true"></i>Profile</a>
               <a href="/admin" *ngIf="isAdmin"><i class="fa fa-universal-access pr-2" aria-hidden="true"></i>Admin</a>
@@ -25,98 +21,60 @@
       </div>
     </div>
   </div>
-  <div id="sticky-header" class="main-menu-area">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <div class="row">
-        <div class="col-xl-1 col-lg-1 d-flex align-items-center">
-          <div class="logo">
-            <a routerLink="/"><img src="assets/img/logo/logo_toefl.svg" alt="" width="150px"/></a>
-          </div>
+      <a class="navbar-brand" href="/"><img class="pl-1" src="assets/img/logo/logo_toefl.svg" alt="" width="150px"/></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
 
-        </div>
-        <div class="col-xl-11 col-lg-11">
-          <div class="header-button f-right d-none d-lg-block">
-            <a class="btn btn-primary" *ngIf="isLoggedIn && !isAdmin" href="/register"><span class="btn-text">REGISTER FOR A TEST<i class="far fa-long-arrow-right"></i></span> </a>
-            <a class="btn btn-primary" *ngIf="!isLoggedIn" href="/register"><span class="btn-text">REGISTER<i class="far fa-long-arrow-right"></i></span> </a>
-<!--            <a class="btn" routerLink="login"><span class="btn-text">Register <i class="far fa-long-arrow-right"></i></span> </a>-->
-          </div>
-          <div class="main-menu text-right">
-            <nav id="mobile-menu">
-              <ul>
-                <li><a href="/">home</a>
-                <!-- <li><a routerLink="/account-list">Applicants</a></li> -->
-                <li><a href="#">Our Tests</a>
-                    <ul class="sub-menu text-left">
-                      <li class="toefl-itp"><a href="/toefl-itp">TOEFL ITP</a></li>
-                      <li class="toefl-ibt"><a href="/toefl-ibt">TOEFL iBT</a></li>
-                      <li class="gre"><a href="/our-tests/gre">GRE</a></li>
-                      <li class="toeic"><a href="/toeic">TOEIC</a></li>
-                    </ul>
-                </li>
-                <li><a class="nav-link" id="id-prep" data-toggle="tab" routerLink="/preparation" role="tab"
-                  aria-controls="profile" aria-selected="false" style="cursor: pointer;">Prepare</a></li>
-                <li><a routerLink="/resources">Resources</a>
-                  <ul class="sub-menu text-left">
-                    <li><a href="/resources/test-materials">TEST materials</a></li>
-                    <li><a href="/resources/mock-test">MOCK test</a></li>
-                  </ul>
-                </li>
-                <!-- <li><a routerLink="preparation">Preparation</a></li> -->
-                <li><a routerLink="/faq">FAQ</a></li>
-                <li><a routerLink="/partners">Partners</a>
-                  <ul class="sub-menu text-left">
-                    <li><a href="/partners/ets-global">ETS Global</a></li>
-                    <li><a href="/partners/universities">Universities</a></li>
-                    <li><a href="/partners/learning-centers">Learning centers</a></li>
-                    <li><a href="/partners/educational-organisations">Educational organisations</a></li>
-                  </ul>
-                </li>
-                <li><a routerLink="contact-us">Contact us</a></li>
-                <!-- <li><a routerLink="about-us">About</a></li> -->
-<!--                <li><a href="it-services.html">Services</a>-->
-<!--                  <ul class="sub-menu text-left">-->
-<!--                    <li><a href="it-services.html">Services</a>-->
-<!--                    <li><a href="services-02.html">services 02</a></li>-->
-<!--                    <li><a href="services-03.html">services-03</a></li>-->
-<!--                    <li><a href="it-management.html">it management</a></li>-->
-<!--                  </ul>-->
-<!--                </li>-->
-<!--                <li><a href="blog.html">blog</a>-->
-<!--                  <ul class="sub-menu text-left">-->
-<!--                    <li><a href="blog.html">blog</a></li>-->
-<!--                    <li><a href="blog-3-col.html">blog 3 col</a></li>-->
-<!--                    <li><a href="blog-left-sidebar.html">blog left sidebar</a></li>-->
-<!--                    <li><a href="blog-details.html">blog details</a></li>-->
-<!--                  </ul>-->
-<!--                </li>-->
-<!--                <li><a href="#">pages</a>-->
-<!--                  <ul class="sub-menu text-left">-->
-<!--                    <li><a href="case-study.html">case study</a></li>-->
-<!--                    <li><a href="case-study-02.html">case study 02</a></li>-->
-<!--                    <li><a href="case-carousel.html">case carousel</a></li>-->
-<!--                    <li><a href="case-details.html">case details</a></li>-->
-<!--                    <li><a href="career.html">career</a></li>-->
-<!--                    <li><a href="faq.html">faq</a></li>-->
-<!--                    <li><a href="goals.html">goals</a></li>-->
-<!--                    <li><a href="pricing.html">pricing</a></li>-->
-<!--                    <li><a href="shop.html">shop</a></li>-->
-<!--                    <li><a href="product-details.html">product details</a></li>-->
-<!--                    <li><a href="team.html">team</a></li>-->
-<!--                    <li><a href="single-team.html">single team</a></li>-->
-<!--                    <li><a href="contact.html">contact</a></li>-->
-<!--                  </ul>-->
-<!--                </li>-->
-                <!-- <li><a routerLink="contact">contact</a></li> -->
-
-                <!-- <li><a routerLink="/register">REGISTER FOR A TEST</a></li> -->
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="mobile-menu"></div>
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto  pl-2 pt-2">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Our Tests
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/toefl-itp">TOEFL ITP</a>
+              <a class="dropdown-item" href="/toefl-ibt">TOEFL iBT</a>
+              <a class="dropdown-item" href="/our-tests/gre">GRE</a>
+              <a class="dropdown-item" href="/toeic">TOEIC</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/preparation">Prepare</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownResources" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Resources
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownResources">
+              <a class="dropdown-item" href="/resources/test-materials">Test Materials</a>
+              <a class="dropdown-item" href="/resources/mock-test">Mock Test</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/faq">FAQ</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPartners" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Partners
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownPartners">
+              <a class="dropdown-item" href="/partners/ets-global">ETS Global</a>
+              <a class="dropdown-item" href="/partners/universities">Universities</a>
+              <a class="dropdown-item" href="/partners/learning-centers">Learning Centers</a>
+              <a class="dropdown-item" href="/partners/educational-organisations">Educational Organisations</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact-us">Contact Us</a>
+          </li>
+        </ul>
       </div>
-    </div>
-  </div>
+      </div>
+  </nav>
 </header>
