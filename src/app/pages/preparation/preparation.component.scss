@@ -106,3 +106,8 @@ table {
   background-color: #003082;
   color: #fff;
 }
+
+.tab-content {
+  font-family: 'Gilroy-Medium';
+  src: local('Gilroy-Medium'), url(../../../assets/fonts/gilroy/Gilroy-Medium.ttf) format('truetype');
+}
