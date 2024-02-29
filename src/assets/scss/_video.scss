@@ -21,6 +21,21 @@
 	content: "";
 	opacity: .7;
 }
+
+.video-img-ceo{position: relative;}
+.video-img-ceo img {
+	width: 100%;
+}
+.video-img-ceo:before{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: #091b29;
+	left: 0;
+	top:0;
+	content: "";
+	opacity: .7;
+}
 .video-icon {
 	position: absolute;
 	top: 50%;
