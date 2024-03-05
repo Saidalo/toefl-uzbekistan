@@ -48,6 +48,7 @@ import { PopUpModalComponent } from './pop-up-modal/pop-up-modal.component';
 import { CountUpModule } from 'ngx-countup';
 import { CustomCardComponent } from './widgets/custom-card/custom-card.component';
 import { UrlVideoplayerComponent } from './widgets/url-videoplayer/url-videoplayer.component'
+import {CarouselModule} from "ngx-owl-carousel-o";
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { UrlVideoplayerComponent } from './widgets/url-videoplayer/url-videoplay
         MatRadioModule,
         MatSelectModule,
         GoogleMapsModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        CarouselModule
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

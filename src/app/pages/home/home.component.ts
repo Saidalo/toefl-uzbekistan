@@ -3,6 +3,7 @@ import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UrlVideoplayerComponent} from "../../widgets/url-videoplayer/url-videoplayer.component";
 import {AuthenticationService} from "../../services/authentication.service";
+import {OwlOptions} from "ngx-owl-carousel-o";
 
 @Component({
   selector: 'app-home',
@@ -65,6 +66,37 @@ export class HomeComponent {
 
   openUrlVideoPlayer(url: string) {
     this.modalService.open(UrlVideoplayerComponent, {size: 'lg', centered: true, windowClass: 'url-videoplayer-modal'}).componentInstance.url = url;
+  }
+
+  customOptions: OwlOptions = {
+    loop: true,
+    items: 4,
+    mouseDrag: false,
+    touchDrag: true,
+    pullDrag: false,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    center: true,
+    autoplay: true,
+    autoWidth: true,
+    margin: 0,
+    responsive: {
+      0: {
+        items: 1
+      },
+      800: {
+        items: 2
+      },
+      1200: {
+        items: 3
+      },
+      1300: {
+        items: 4
+      }
+    },
+    nav: false,
+    rewind: true
   }
 }
 

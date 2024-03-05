@@ -198,7 +198,7 @@
   <div class="shape d-none d-xl-block">
     <div class="shape-item team-01 bounce-animate"><img src="assets/img/shape/shape-1.png" alt=""></div>
   </div>
-  <div class="my-contatiner">
+  <div class="">
     <div class="row mb-50">
       <div class="col-xl-12 col-lg-12">
         <div class="section-title-products  mb-30">
@@ -213,43 +213,54 @@
 
 
     </div>
-    <div class="d-flex verical-scroll justify-content-center">
-      <app-custom-card
-        [Title]="'TOEFL ITP'"
-        [Descriptions]="[
-          'Accepted at most universities in Uzbekistan for Master’s and Ph.D.',
-          'Obtain a 50% increase in your salary with a C1-level Certificate',
-          'Gain scholarships at 2,500+ international universities'
-        ]"
-        [Style]="{'color': '#4F70BD'}"
-      ></app-custom-card>
-      <app-custom-card
-        [Title]="'TOEFL iBT'"
-        [Descriptions]="[
+    <div class="container">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+          <app-custom-card
+          [Title]="'TOEFL ITP'"
+          [Descriptions]="[
+            'Accepted at most universities in Uzbekistan for Master’s and Ph.D.',
+            'Obtain a 50% increase in your salary with a C1-level Certificate',
+            'Gain scholarships at 2,500+ international universities'
+          ]"
+          [Style]="{'color': '#4F70BD'}"
+        ></app-custom-card>
+        </ng-template>
+        <ng-template carouselSlide>
+          <app-custom-card
+          [Title]="'TOEFL iBT'"
+          [Descriptions]="[
           'Enter the best and most prestigious universities abroad',
           'Accepted in all universities in Uzbekistan',
           'Win Scholarships from TOP 100 universities around the world'
         ]"
-        [Style]="{'color': '#062775'}"
-      ></app-custom-card>
-      <app-custom-card
-        [Title]="'TOEIC'"
-        [Descriptions]="[
+          [Style]="{'color': '#062775'}"
+        ></app-custom-card>
+        </ng-template>
+        <ng-template carouselSlide>
+          <app-custom-card
+            [Title]="'TOEIC'"
+            [Descriptions]="[
           '100% accepted to study and work in South Korea',
           'Best certificate for employees of travel agencies, airlines, and international companies',
           'Accepted for Master’s, Ph.D. at Uzbek Universities'
         ]"
-        [Style]="{'color': '#179959'}"
-      ></app-custom-card>
-      <app-custom-card
-        [Title]="'GRE (Math)'"
-        [Descriptions]="[
+            [Style]="{'color': '#179959'}"
+          ></app-custom-card>
+        </ng-template>
+
+        <ng-template carouselSlide>
+          <app-custom-card
+            [Title]="'GRE (Math)'"
+            [Descriptions]="[
           'Get more scholarships when entering a master’s degree in a foreign university',
           'Enter the TOP universities in the USA, the UK, Europe and Asia with a GRE Certificate',
           'Get a 50% increase in salary with a score of 695 Certificate'
         ]"
-        [Style]="{'color': '#630F54'}"
-      ></app-custom-card>
+            [Style]="{'color': '#630F54'}"
+          ></app-custom-card>
+        </ng-template>
+      </owl-carousel-o>
     </div>
   </div>
 </div>
@@ -601,7 +612,7 @@
             <p>Dilmurod Sharifov, a founder & director of TOEFL Test Center, presented a FREE webinar titled "Strategies for gaining B2 and C1 from TOEFL ITP Test".</p>
             <p>Because of the requests and wishes of many of our subscribers, we posted the full format of this webinar on our YouTube channel. </p>
             <p>📺 While watching this webinar video, you will find answers to questions like:</p>
-            
+
               <ul>
                 <li><p>- What is the TOEFL ITP certificate, and why is it needed?</p></li>
                 <li><p>- What allowances are available for teachers?</p></li>
@@ -835,7 +846,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
         <div class="blog-wrapper">
           <div class="blog-img">
