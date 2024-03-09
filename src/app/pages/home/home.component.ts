@@ -69,34 +69,38 @@ export class HomeComponent {
   }
 
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     items: 4,
     mouseDrag: false,
     touchDrag: true,
     pullDrag: false,
     dots: true,
     navSpeed: 700,
-    navText: ['', ''],
-    center: true,
-    autoplay: true,
-    autoWidth: true,
-    margin: 0,
+    center: false,
+    autoplay: false,
+    autoWidth: false,
+    stagePadding: 10,
+    margin: 10,
     responsive: {
       0: {
-        items: 1
+        items: 1,
+        autoWidth: true
       },
       800: {
-        items: 2
+        items: 2,
+        autoWidth: true
       },
-      1200: {
-        items: 3
+      1100: {
+        items: 3,
+        autoWidth: true
       },
-      1300: {
-        items: 4
+      1500: {
+        items: 4,
+        autoWidth: true
       }
     },
     nav: false,
-    rewind: true
+    rewind: false
   }
 }
 
