@@ -69,51 +69,51 @@
         </form>
 
       </mat-step>
-<!--      <mat-step [stepControl]="secondFormGroup">-->
-<!--        <ng-template matStepLabel>Upload Image</ng-template>-->
-<!--        <form [formGroup]="secondFormGroup" class="formFlex">-->
-<!--          <table>-->
-<!--            <tr>-->
-<!--              <td rowspan="4" class="p-3">-->
-<!--                <img width="64" height="64" src="https://img.icons8.com/cotton/64/checked-identification-documents.png" alt="checked-identification-documents"/>-->
-<!--              </td>-->
-<!--              <td class="p-3"><mat-label>Uplaod image</mat-label></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td class="p-3">-->
-<!--                <mat-radio-group aria-label="Select an option" formControlName="identity_type">-->
-<!--                  <mat-radio-button checked="true" value="passport">Passport</mat-radio-button>-->
-<!--                  <mat-radio-button value="national_id">National ID</mat-radio-button>-->
-<!--                  <mat-radio-button value="other_id">Other ID</mat-radio-button>-->
-<!--                </mat-radio-group>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td class="pb-3 pl-3 pr-3">-->
+      <mat-step [stepControl]="secondFormGroup">
+        <ng-template matStepLabel>Upload Image</ng-template>
+        <form [formGroup]="secondFormGroup" class="formFlex">
+          <table>
+            <tr>
+              <td rowspan="4" class="p-3">
+                <img width="64" height="64" src="https://img.icons8.com/cotton/64/checked-identification-documents.png" alt="checked-identification-documents"/>
+              </td>
+              <td class="p-3"><mat-label>Uplaod image</mat-label></td>
+            </tr>
+            <tr>
+              <td class="p-3">
+                <mat-radio-group aria-label="Select an option" formControlName="identity_type">
+                  <mat-radio-button checked="true" value="passport">Passport</mat-radio-button>
+                  <mat-radio-button value="national_id">National ID</mat-radio-button>
+                  <mat-radio-button value="other_id">Other ID</mat-radio-button>
+                </mat-radio-group>
+              </td>
+            </tr>
+            <tr>
+              <td class="pb-3 pl-3 pr-3">
 
-<!--                <mat-form-field>-->
-<!--                  <mat-label>Country</mat-label>-->
-<!--                  <mat-select formControlName="country">-->
-<!--                    <mat-option *ngFor="let country of myVars.countryOptions" [value]="country.value">{{country.label}}</mat-option>-->
-<!--                  </mat-select>-->
-<!--                </mat-form-field>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td class="p-3">-->
-<!--                <input type="file"-->
-<!--                       class="form-control"-->
-<!--                       id="customFile"-->
-<!--                       accept="image/*"-->
-<!--                       (change)="selectFile($event)"/>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--          </table>-->
-<!--          <div class="text-right">-->
-<!--            <button mat-button (click)="goForwardUploadImage(stepper)" class="btn btn-primary btn-lg">Next</button>-->
-<!--          </div>-->
-<!--        </form>-->
-<!--      </mat-step>-->
+                <mat-form-field>
+                  <mat-label>Country</mat-label>
+                  <mat-select formControlName="country">
+                    <mat-option *ngFor="let country of myVars.countryOptions" [value]="country.value">{{country.label}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td class="p-3">
+                <input type="file"
+                       class="form-control"
+                       id="customFile"
+                       accept="image/*"
+                       (change)="selectFile($event)"/>
+              </td>
+            </tr>
+          </table>
+          <div class="text-right">
+            <button mat-button (click)="goForwardUploadImage(stepper)" class="btn btn-primary btn-lg">Next</button>
+          </div>
+        </form>
+      </mat-step>
       <mat-step [stepControl]="thirdFormGroup">
         <ng-template matStepLabel>Pick a date</ng-template>
         <form [formGroup]="thirdFormGroup" class="formFlex formFlexCalendar">
