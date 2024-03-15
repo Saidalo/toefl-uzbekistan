@@ -154,8 +154,10 @@ export class CalendarComponent implements OnInit{
       event['id'] = item['exam_id'];
       event['start'] = new Date(item['date']);
       event['title'] = item.freespace + ' spaces available';
-      this.events.push(event);
 
+      if(event['start'] > new Date()){
+        this.events.push(event);
+      }
     });
   }
 
