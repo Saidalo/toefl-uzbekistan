@@ -222,3 +222,70 @@ a.btn {
 #contact-map {
   height: 500px;
 }
+
+
+.content{
+  background-image: url("/assets/img/background.jpg");
+  background-size: cover;
+  //position: relative;
+  text-align: center;
+  background-position: right;
+  img{
+    //margin-right: 10px;
+  }
+}
+
+.modal-body{
+  padding: 0;
+  overflow: hidden;
+}
+
+.bodyOfModal{
+  //position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #1b2f3e;
+  text-align: left;
+  h2, p, li{
+    color: #fff;
+  }
+  .campot{
+    background-color: white;
+
+    padding: 6px;
+    p{
+      color: #1b2f3e;
+      margin-bottom: 0;
+      font-style: italic;
+      font-size: 16px;
+      font-weight: lighter;
+      // last child
+      &:first-child{
+        margin-bottom: -5px;
+      }
+    }
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  ul li:before {
+    content: '✓';
+    margin-right: 10px;
+  }
+  .roundedButton{
+    border-radius: 50px;
+    color: white;
+    background-color: orange !important;
+  }
+  @media screen and (max-width: 990px) {
+    .flexxss{
+      width: 60% !important;
+    }
+    button{
+      text-wrap: auto;
+    }
+  }
+}

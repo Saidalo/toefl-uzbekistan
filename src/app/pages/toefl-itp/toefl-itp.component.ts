@@ -19,8 +19,8 @@ export class ToeflItpComponent implements OnInit{
 
   ngOnInit() {
     setTimeout(() => {
-      this.modalService.open(this.registerModal, { centered: true });
-    }, 3000);
+      this.modalService.open(this.registerModal, { centered: true, size: "lg"});
+    }, 5000);
 
 
   }

@@ -952,3 +952,36 @@
   </div>
 </div> -->
 <!-- newsletter-area-end -->
+
+<ng-template #registerModal let-modal>
+  <div class="modal-body">
+    <div class="content">
+      <!--      <img src="assets/img/background.jpg" style="overflow: hidden" width="100%" height="auto" alt="">-->
+      <div class="d-flex align-items-stretch">
+        <div class="bodyOfModal pl-3 pt-4 col-12 col-md-5 flexxss">
+          <h2>WANNA GET THE HIGHEST SCORE ON THE TEST?</h2>
+          <div class="campot">
+            <p>Stop wasting time and money!</p>
+            <p>Start with the best to get the best!</p>
+          </div>
+          <p>Why choose TOEFL ITP course?</p>
+          <ul>
+            <li>Learn effective strategies for achieving B2 or C1-level</li>
+            <li>Master your skills with professional mentors</li>
+            <li>Improve your 4-skill areas for the TOEFL exam</li>
+            <li>All lessons are live and recorded via ZOOM Meetings</li>
+          </ul>
+
+          <button type="button" class="btn btn-block mb-5 roundedButton" routerLink="/register" (click)="modal.close('Save click')">Join our TOEFL ITP Online Courses</button>
+        </div>
+        <div class="col-">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  <div class="modal-footer">-->
+  <!--    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>-->
+  <!--    <button type="button" class="btn btn-primary" routerLink="/register" (click)="modal.close('Save click')">Register to exam</button>-->
+  <!--  </div>-->
+</ng-template>
