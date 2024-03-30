@@ -3025,6 +3025,7 @@ label {
   font-family: "cerebri_sansbold";
   color: #333333;
   margin-left: 9px;
+  margin-bottom: 9px;
 }
 
 .slider-btn i {
@@ -5275,8 +5276,8 @@ label {
 }
 
 .video-wrapper {
-  margin-left: 30px;
-  margin-top: 45px;
+  margin-left: 50px;
+  margin-top: 15%;
 }
 
 .video-img {

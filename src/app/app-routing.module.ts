@@ -17,6 +17,7 @@ import {RegistrationComponent} from "./pages/registration/registration.component
 import {AccountListComponent} from "./pages/account-list/account-list.component";
 import {VerificationComponent} from "./pages/verification/verification.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import { BlogsComponent } from './pages/blogs/blogs.component';
 const adminModule = () =>
   import("./pages/admin/admin.module").then((x) => x.AdminModule);
 
@@ -104,6 +105,11 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'blogs',
+    component: BlogsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: "admin",
