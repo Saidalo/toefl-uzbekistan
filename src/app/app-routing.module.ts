@@ -107,7 +107,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'blogs',
+    path: 'blogs/:blog',
     component: BlogsComponent,
     canActivate: [AuthGuard],
   },
