@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,23 +6,25 @@ import { ActivatedRoute } from '@angular/router';
     templateUrl: './blogs.component.html',
     styleUrls: ['./blogs.component.scss']
 })
-export class BlogsComponent {
+export class BlogsComponent implements OnInit {
     public blog: string | null = null;
     public displayBlogTitle: string = ''
     public displayBlogTextList: string[] = [];
     public sourceImg: string = ''
 JSON: any;
+
+    currentBlog: any;
     constructor(private route: ActivatedRoute) {}
 
     ngOnInit() {
         this.blog = this.route.snapshot.paramMap.get('blog');
         this.displayBlogTitle = this.blog ? this.blogs[this.blog].title : '';
-        this.displayBlogTextList = (this.blog ? this.blogs[this.blog].text : []).map((text: any) => `<p>${text}</p>`).join('');
+        this.displayBlogTextList = (this.blog ? this.blogs[this.blog].text : []);
         this.sourceImg = `assets/img/blog/${this.blog}`;
         console.log(this.displayBlogTextList);
     }
 
-    private blogs: any = {
+    blogs: any = {
         'blog-7.jpg': {
             title: 'ETS Global has authorised TOEFL TEST CENTER to become an Authorised Test Center.',
             text: [
@@ -61,7 +63,7 @@ JSON: any;
                 '•	All about test results and their value',
                 '•	Where to get support materials?',
                 '•	What is the TOEFL iBT Home Edition',
-                '•	Live Q&A session - an opportunity to get answers from the experts at ETS Global, the institution behind the test!',                
+                '•	Live Q&A session - an opportunity to get answers from the experts at ETS Global, the institution behind the test!',
                 'Honourable Speakers of the Webinar:',
                 'Darya Nelidova',
                 'ELT Coordinator at ETS Global',

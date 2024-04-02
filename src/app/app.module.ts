@@ -50,6 +50,7 @@ import { CustomCardComponent } from './widgets/custom-card/custom-card.component
 import { UrlVideoplayerComponent } from './widgets/url-videoplayer/url-videoplayer.component'
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {ToeflItpComponent} from "./pages/toefl-itp/toefl-itp.component";
+import {BlogsComponent} from "./pages/blogs/blogs.component";
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import {ToeflItpComponent} from "./pages/toefl-itp/toefl-itp.component";
     PopUpModalComponent,
     CustomCardComponent,
     UrlVideoplayerComponent,
-    ToeflItpComponent
+    ToeflItpComponent,
+    BlogsComponent
   ],
     imports: [
         CountUpModule,
