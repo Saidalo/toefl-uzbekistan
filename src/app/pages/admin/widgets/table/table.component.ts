@@ -63,6 +63,7 @@ export class TableComponent implements OnInit {
         this.notifier.notify('success', 'Item deleted successfully');
         this.items = this.items.filter((item: any) => item.id !== id);
         this.modalService.dismissAll();
+        this.updateItems.emit();
       },
       error: error => {
         this.notifier.notify('error', 'Item not deleted');
@@ -85,6 +86,7 @@ export class TableComponent implements OnInit {
       next: (res: any) => {
         this.notifier.notify('success', 'Item updated successfully');
         this.modalService.dismissAll();
+        this.updateItems.emit();
       },
       error: error => {
         this.notifier.notify('error', 'Item not updated');
@@ -103,6 +105,7 @@ export class TableComponent implements OnInit {
       next: (res: any) => {
         this.notifier.notify('success', 'Item created successfully');
         this.modalService.dismissAll();
+        this.updateItems.emit();
       },
       error: error => {
         this.notifier.notify('error', 'Item not created');

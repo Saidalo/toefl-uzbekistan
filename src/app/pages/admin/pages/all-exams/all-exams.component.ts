@@ -1,5 +1,4 @@
 import {Component, ViewChild} from '@angular/core';
-import {FormControl} from "@angular/forms";
 import {AdminService} from "../../services/admin.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NotifierService} from "angular-notifier";
@@ -87,6 +86,7 @@ export class AllExamsComponent {
       next: (res: any) => {
         this.isAccountsLoading = false;
         this.notifier.notify('success', 'Score updated successfully');
+        this.updateExams();
       },
       error: error => {
         this.notifier.notify('error', 'Score not updated');
