@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   keys: any;
   notifier: NotifierService;
   id_key: string = 'id';
-  format = 'dd/MM/yyyy';
+  format = 'yyyy-MM-dd';
   locale = 'en-US';
 
   selectedItem: any;
@@ -48,6 +48,9 @@ export class TableComponent implements OnInit {
       this.isAddNew = true;
     } else {
       this.isAddNew = false;
+    }
+    if(item['date']) {
+      item['date'] = formatDate(item['date'], 'yyyy-MM-dd', this.locale);
     }
     this.selectedItem = { ...item };
     this.modalService.open(content);

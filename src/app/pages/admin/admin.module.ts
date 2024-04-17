@@ -14,7 +14,7 @@ import {MatDividerModule} from "@angular/material/divider";
 import {RouterModule} from "@angular/router";
 import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {NgbInputDatepicker} from "@ng-bootstrap/ng-bootstrap";
+import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbInputDatepicker} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -45,7 +45,10 @@ import {NgbInputDatepicker} from "@ng-bootstrap/ng-bootstrap";
     ]),
     MatInputModule,
     MatDatepickerModule,
-    NgbInputDatepicker
+    NgbInputDatepicker,
+    NgbDropdown,
+    NgbDropdownMenu,
+    NgbDropdownItem
   ]
 })
 export class AdminModule { }

@@ -136,6 +136,7 @@ export class CalendarComponent implements OnInit{
         meta: {
           description: item.description,
           freespace: item.freespace,
+          time: item.time,
           id: item.exam_id,
         }
       } as CalendarEvent<EventDetail>;
@@ -153,7 +154,7 @@ export class CalendarComponent implements OnInit{
       // event['date'] = new Date(item['date']);
       event['id'] = item['exam_id'];
       event['start'] = new Date(item['date']);
-      event['title'] = item.freespace + ' spaces available';
+      event['title'] = item.freespace + ' spaces available - ' + item['time'];
 
       if(event['start'] > new Date()){
         this.events.push(event);
