@@ -34,7 +34,7 @@ jobs:
          host: toefl-test.uz
          username: wwwtoefl
          key: ${{ secrets.SSH_KEY }}
-         script: rm -rf /home/wwwtoefl/public_html/*
+         script: rm -rf /home/wwwwtoefl/domains/toefl-test.uz/public_html/*
 
       - name: Deploy
         uses: appleboy/scp-action@master
@@ -43,7 +43,7 @@ jobs:
           username: wwwtoefl
           key: ${{ secrets.SSH_KEY }}
           source: "dist/toefl-uzbek-angular/*"
-          target: "/home/wwwtoefl/public_html/"
+          target: "/home/wwwwtoefl/domains/toefl-test.uz/public_html/"
 
       - name: Move files
         uses: appleboy/ssh-action@master
@@ -52,7 +52,7 @@ jobs:
          username: wwwtoefl
          key: ${{ secrets.SSH_KEY }}
          script: |
-          cd /home/wwwtoefl/public_html/
+          cd /home/wwwwtoefl/domains/toefl-test.uz/public_html
           mv dist/toefl-uzbek-angular/* .
 #          find . -mindepth 1 ! \( -name 'dist' -o -name '.htaccess' \) -exec rm -rf {} +
 
