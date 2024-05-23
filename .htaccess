@@ -1,10 +1,10 @@
 # DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
-PassengerAppRoot "/home/toefltes/domains/toefl-test.uz/public_html"
+PassengerAppRoot "/home/wwwwtoefl/domains/toefl-test.uz/public_html"
 PassengerBaseURI "/"
-PassengerNodejs "/home/toefltes/nodevenv/domains/toefl-test.uz/public_html/16/bin/node"
+PassengerNodejs "/home/wwwtoefl/nodevenv/domains/toefl-test.uz/public_html/16/bin/node"
 PassengerAppType node
-PassengerStartupFile /home/toefltes/domains/toefl-test.uz/public_html/src/main.ts
-PassengerAppLogFile "/home/toefltes/domains/toefl-test.uz/public_html/passenger.log"
+PassengerStartupFile /home/wwwtoefl/domains/toefl-test.uz/public_html/src/main.ts
+PassengerAppLogFile "/home/wwwtoefl/domains/toefl-test.uz/public_html/passenger.log"
 # DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
 RewriteEngine On
 
