@@ -33,7 +33,7 @@ jobs:
         with:
          host: toefl-test.uz
          username: wwwtoefl
-         key: ${{ secrets.SSH_PRIVATE_KEY }}
+         key: ${{ secrets.SSH_KEY }}
          script: rm -rf /home/wwwtoefl/public_html/*
 
       - name: Deploy
@@ -41,7 +41,7 @@ jobs:
         with:
           host: toefl-test.uz
           username: wwwtoefl
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_KEY }}
           source: "dist/toefl-uzbek-angular/*"
           target: "/home/wwwtoefl/public_html/"
 
@@ -50,7 +50,7 @@ jobs:
         with:
          host: toefl-test.uz
          username: wwwtoefl
-         key: ${{ secrets.SSH_PRIVATE_KEY }}
+         key: ${{ secrets.SSH_KEY }}
          script: |
           cd /home/wwwtoefl/public_html/
           mv dist/toefl-uzbek-angular/* .
