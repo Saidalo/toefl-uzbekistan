@@ -26,6 +26,10 @@ export class TableComponent implements OnInit {
   selectedItem: any;
   isAddNew = false;
 
+  time = { hour: 9, minute: 0 };
+  meridian = true;
+  newTime: string = '';
+
   constructor(
     private modalService: NgbModal,
     private adminService: AdminService,
@@ -49,8 +53,14 @@ export class TableComponent implements OnInit {
     } else {
       this.isAddNew = false;
     }
+    this.meridian = true;
+    this.time = {hour: 9, minute: 0};
+    this.newTime = '';
     if(item['date']) {
       item['date'] = formatDate(item['date'], 'yyyy-MM-dd', this.locale);
+    }
+    if(item['time']) {
+      this.time = this.getTime(item['time']);
     }
     this.selectedItem = { ...item };
     this.modalService.open(content);
@@ -112,6 +122,17 @@ export class TableComponent implements OnInit {
         console.log(error);
       }
     });
+  }
+
+  onTimeChange(value:{hour:string,minute:string}, key: string) : void{
+    console.log(value)
+    this.newTime=`${value.hour}:${value.minute}`;
+    this.selectedItem[key] = this.newTime;
+  }
+
+  getTime(key: string){
+    const time = key.split(':');
+    return {hour: parseInt(time[0]), minute: parseInt(time[1])};
   }
 
   protected readonly formatDate = formatDate;

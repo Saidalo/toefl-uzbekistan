@@ -14,7 +14,13 @@ import {MatDividerModule} from "@angular/material/divider";
 import {RouterModule} from "@angular/router";
 import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbInputDatepicker} from "@ng-bootstrap/ng-bootstrap";
+import {
+    NgbDropdown,
+    NgbDropdownItem,
+    NgbDropdownMenu,
+    NgbInputDatepicker,
+    NgbTimepicker
+} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -24,31 +30,32 @@ import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbInputDatepicker} from 
     TableComponent,
     AllExamsComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    MatTableModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    MatButtonModule,
-    MatDividerModule,
-    RouterModule.forChild([
-      {
-        path: "",
-        component: AdminComponent,
-        children: [
-          {path: "all-accounts", component: AllAccountsComponent},
-          {path: "all-exams", component: AllExamsComponent}
-        ]
-      }
-    ]),
-    MatInputModule,
-    MatDatepickerModule,
-    NgbInputDatepicker,
-    NgbDropdown,
-    NgbDropdownMenu,
-    NgbDropdownItem
-  ]
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        MatTableModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        MatButtonModule,
+        MatDividerModule,
+        RouterModule.forChild([
+            {
+                path: "",
+                component: AdminComponent,
+                children: [
+                    {path: "all-accounts", component: AllAccountsComponent},
+                    {path: "all-exams", component: AllExamsComponent}
+                ]
+            }
+        ]),
+        MatInputModule,
+        MatDatepickerModule,
+        NgbInputDatepicker,
+        NgbDropdown,
+        NgbDropdownMenu,
+        NgbDropdownItem,
+        NgbTimepicker
+    ]
 })
 export class AdminModule { }

@@ -36,15 +36,17 @@
         <input *ngSwitchDefault [disabled]="key === id_key" type="text" class="form-control" id="{{ key }}" name="{{key}}" [(ngModel)]="selectedItem[key]">
         <input *ngSwitchCase="'date'" type="date" class="form-control" id="{{ key }}" name="{{key}}" [(ngModel)]="selectedItem[key]">
         <div *ngSwitchCase="'time'">
-          <select id="{{ key }}" class="form-select" aria-label="Default select example" name="{{key}}" [(ngModel)]="selectedItem[key]">
-            <option
-              *ngFor="let num of [].constructor(24); let i = index"
-              [selected]="i===0"
-              [value]="i+':00'"
-            >
-              {{i}}:00
-            </option>
-          </select>
+          <ngb-timepicker [(ngModel)]="time" [meridian]="meridian" [ngModelOptions]="{standalone: true}" (ngModelChange)="onTimeChange($event, key)"/>
+          <pre>{{newTime}}</pre>
+<!--          <select id="{{ key }}" class="form-select" aria-label="Default select example" name="{{key}}" [(ngModel)]="selectedItem[key]">-->
+<!--            <option-->
+<!--              *ngFor="let num of [].constructor(24); let i = index"-->
+<!--              [selected]="i===0"-->
+<!--              [value]="i+':00'"-->
+<!--            >-->
+<!--              {{i}}:00-->
+<!--            </option>-->
+<!--          </select>-->
         </div>
         <select *ngSwitchCase="'select'" id="{{ key }}" class="form-control" aria-label="Default select example" name="{{key}}" [(ngModel)]="selectedItem[key]">
           <option *ngFor="let i of itemType[key]?.list" [value]="i">{{i}}</option>
