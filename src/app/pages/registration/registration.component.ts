@@ -134,7 +134,6 @@ export class RegistrationComponent implements OnInit {
         }
       })
     }
-    this.getAllDateAvailability();
   }
 
   getAllDateAvailability(){
