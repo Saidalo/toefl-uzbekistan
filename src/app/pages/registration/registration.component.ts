@@ -368,6 +368,7 @@ export class RegistrationComponent implements OnInit {
   goForwardExamType(stepper: any) {
 
     this.generalStepper.next();
+    this.getAllDateAvailability();
     // if(this.testTypeFormGroup.valid) {
     //   stepper.next();
     //   // this.isLoading = true;
