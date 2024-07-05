@@ -126,7 +126,7 @@ export class TableComponent implements OnInit {
 
   onTimeChange(value:{hour:string,minute:string}, key: string) : void{
     console.log(value)
-    this.newTime=`${value.hour}:${value.minute}`;
+    this.newTime=`${value.hour}:${value.minute == '0' ? '00' : value.minute}`;
     this.selectedItem[key] = this.newTime;
   }
 
