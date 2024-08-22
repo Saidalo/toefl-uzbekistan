@@ -189,7 +189,11 @@ export class RegistrationComponent implements OnInit {
     const data: FormData = new FormData();
     // / Map firstFormGroup to formData
     Object.keys(this.firstFormGroup.controls).forEach(key => {
-      data.append(key, this.firstFormGroup.get(key)?.value);
+      if(key == 'phone') {
+        data.append(key, `+998${this.firstFormGroup.get(key)?.value}`);
+      } else {
+        data.append(key, this.firstFormGroup.get(key)?.value);
+      }
     });
 
     this.authenticationService.registerAccount(this.firstFormGroup.value).subscribe({
