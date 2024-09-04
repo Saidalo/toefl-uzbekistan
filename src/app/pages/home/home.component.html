@@ -220,9 +220,9 @@
             <app-custom-card
               [Title]="'TOEFL ITP'"
               [Descriptions]="[
-            'Accepted at most universities in Uzbekistan for Master’s and Ph.D.',
-            'Obtain a 50% increase in your salary with a C1-level Certificate',
-            'Gain scholarships at 2,500+ international universities'
+            'Accepted at most universities in <b>Uzbekistan for Master’s</b> and Ph.D.',
+            'Obtain a <b>50% increase</b> in your salary with a C1-level Certificate',
+            'Gain scholarships at <b>2,500+</b> international universities'
           ]"
               [Style]="{'color': '#4F70BD'}"
             ></app-custom-card>
@@ -233,11 +233,24 @@
             <app-custom-card
               [Title]="'TOEFL iBT'"
               [Descriptions]="[
-          'Enter the best and most prestigious universities abroad',
-          'Accepted in all universities in Uzbekistan',
-          'Win Scholarships from TOP 100 universities around the world'
+          'Enter the <b>best and most prestigious</b> universities abroad',
+          'Accepted in <b>all universities</b> in Uzbekistan',
+          'Win <b>Scholarships</b> from TOP 100 universities around the world'
         ]"
               [Style]="{'color': '#062775'}"
+            ></app-custom-card>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="d-flex justify-content-center">
+            <app-custom-card
+              [Title]="'GRE General'"
+              [Descriptions]="[
+          'Get more scholarships when entering a master’s degree in a foreign university',
+          'Enter the TOP universities in the USA, the UK, Europe and Asia with a GRE Certificate',
+          'Get a 50% increase in salary with a score of 695 Certificate'
+        ]"
+              [Style]="{'color': '#630F54'}"
             ></app-custom-card>
           </div>
         </ng-template>
@@ -254,20 +267,6 @@
             ></app-custom-card>
           </div>
 
-        </ng-template>
-
-        <ng-template carouselSlide>
-          <div class="d-flex justify-content-center">
-            <app-custom-card
-              [Title]="'GRE (Math)'"
-              [Descriptions]="[
-          'Get more scholarships when entering a master’s degree in a foreign university',
-          'Enter the TOP universities in the USA, the UK, Europe and Asia with a GRE Certificate',
-          'Get a 50% increase in salary with a score of 695 Certificate'
-        ]"
-              [Style]="{'color': '#630F54'}"
-            ></app-custom-card>
-          </div>
         </ng-template>
       </owl-carousel-o>
     </div>

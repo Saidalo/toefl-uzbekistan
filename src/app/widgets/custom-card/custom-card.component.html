@@ -4,7 +4,7 @@
   <div class="card my-card">
     <h1 class="pl-20 pt-30" [style]="{'color': Style.color}">{{ Title }}</h1>
     <div class="ml-30 mr-10">
-      <p *ngFor="let d of Descriptions">{{d}}</p>
+      <p *ngFor="let d of Descriptions" [innerHTML]="d"></p>
     </div>
     <div class="margin-auto"></div>
     <div class="my-button text-center p-30">
