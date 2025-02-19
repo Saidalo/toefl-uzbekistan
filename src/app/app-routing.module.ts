@@ -50,27 +50,27 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactsComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: 'account-list',
     component: AccountListComponent,
-    canActivate: [AuthGuard],
+    canActivate: [],
   },
   {
     path: 'courses',
     component: CoursesComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: 'teachers',
     component: TeachersComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: 'about-us',
     component: AboutUsComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: '404',
@@ -79,22 +79,22 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: 'preparation',
     component: PreparationComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: 'toefl-itp',
     component: ToeflItpComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: 'toefl-ibt',
     component: ToeflIbtComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: 'toeic',
